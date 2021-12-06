@@ -1,0 +1,619 @@
+/*
+Author: XpeedStudio
+Author URI: http://themeforest.net/user/XpeedStudio/portfolio
+*/
+@media(min-width: 1500px){
+	.banner-v2 .banner-item{
+		height: 1100px;
+	}
+	.banner-v2 .banner-v2-img .banner-ico.banner-ico-1{
+		width: 94px;
+	}
+	.featured-area:before{
+		width: 36%;
+		height: 100%;
+	}
+	.featured-area:after {
+		width: 40%;
+		height: 69%;
+	}
+	.how-work-and-token-area:before {
+		width: 39%;
+		height: 80%;
+	}
+	.how-work-and-token-area:after {
+		width: 39%;
+		height: 66%;
+	}
+	.document-and-team-area:before {
+		width: 31%;
+		height: 100%;
+	}
+	.document-and-team-area:after {
+		width: 37%;
+		height: 69%;
+	}
+	.blog-and-social-area:before {
+		width: 38%;
+		height: 100%;
+	}
+}
+@media (min-width: 1600px) and (max-width: 2000px){
+	.roadmap-timeline img{
+		max-width: 1500px;
+		display: block;
+		margin: auto;
+		height: 105px;
+	}
+	.roadmap-timeline-item .xs-roadmap:before{
+		display: none;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(1) {
+		margin-top: -20px;
+		margin-left: 106px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(2) {
+		margin-top: -9px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(3) {
+		margin-top: -45px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(4) {
+		margin-top: -43px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(5) {
+		margin-top: 14px;
+	}
+}
+@media (min-width: 1280px) and (max-width: 1600px){
+	.roadmap-timeline img{
+		  max-width: 1150px;
+		  display: block;
+		  margin: auto;
+		  height: 105px;
+	}
+	.roadmap-timeline-item .xs-roadmap:before{
+		display: none;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(1) {
+		margin-top: -12px;
+		margin-left: 48px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(2) {
+		margin-top: -11px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(3) {
+		margin-top: -45px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(4) {
+		margin-top: -47px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(5) {
+		margin-top: 5px;
+	}
+}
+@media (min-width: 1200px) and (max-width: 1280px){
+	.roadmap-timeline img{
+		max-width: 1150px;
+		display: block;
+		margin: auto;
+		height: 105px;
+	}
+	.roadmap-timeline-item .xs-roadmap:before{
+		display: none;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(1) {
+		margin-top: -12px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(2) {
+		margin-top: -11px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(3) {
+		margin-top: -47px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(4) {
+		margin-top: -46px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(5) {
+		margin-top: 7px;
+	}
+	.roadmap-timeline-item{
+		margin-left: 32px;
+	}
+	.chart-label li img{
+		display: none;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+	.banner-content .banner-title{
+		font-size: 60px;
+	}
+	.banner-v2 .banner-item{
+		height: 660px;
+	}
+	.banner-v2 .banner-title{
+		font-size: 40px;
+		margin-bottom: 22px;
+	}
+	.banner-v2-img .banner-ico{
+		max-width: 52px;
+	}
+	.xs-tabs-menu a{
+		padding: 30px 6px;
+	}
+	.hidden-title{
+		font-size: 140px;
+	}
+	.roadmap-timeline img{
+		max-width: 950px;
+		display: block;
+		margin: auto;
+		height: 105px;
+	}
+	.roadmap-timeline-item .xs-roadmap:before{
+		display: none;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(1) {
+		margin-top: -15px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(2) {
+		margin-top: -11px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(3) {
+		margin-top: -47px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(4) {
+		margin-top: -46px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(5) {
+		margin-top: 7px;
+	}
+	.roadmap-timeline-item{
+		margin-left: 3px;
+	}
+	.chart-label li img,
+	.single-roadmap-timeline b{
+		display: none;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.section-p-120{
+		padding: 80px 0;
+	}
+	/*-------------- menu ------------*/
+	.navigation-portrait .nav-menus-wrapper {
+		background-color: #010029;
+	}
+	.nav-toggle:before {
+		background-color: #f5f5f5;
+		box-shadow: 0 0.5em 0 0 #e4e4e4, 0 1em 0 0 #ffffff;
+	}
+	.navigation-portrait .nav-menu > li{
+		border-color: #000;
+	}
+	/*------------------- banner ---------------*/
+	.banner-item{
+		min-height: inherit;
+	}
+	.banner-content .banner-title {
+		font-size: 55px;
+		margin-bottom: 26px;
+	}
+	.banner-img-item .banner-ico{
+		max-width: 45px;
+	}
+
+	.banner-v2 .banner-item{
+		height: 500px;
+	}
+	.banner-v2 .banner-title{
+		font-size: 34px;
+		margin-bottom: 20px;
+	}
+	.banner-v2 .banner-v2-img .banner-ico.banner-ico-1{
+		max-width: 40px;
+	}
+	/*-------------- blockcain -----------*/
+	.blockcain-top{
+		padding-right: 0;
+	}
+	.blockcain-img{
+		margin-bottom: 50px;
+	}
+	.column-title{
+		font-size: 30px;
+	}
+	.section-title-item .section-title {
+		font-size: 30px;
+		margin-bottom: 60px;
+		line-height: 35px;
+	}
+	.main-fetured-item{
+		padding: 80px 15px;
+	}
+	.main-fetured-item .single-feaured-item {
+		padding: 0 0px;
+	}
+	.feature-title{
+		font-size: 17px;
+	}
+	.hidden-title{
+		font-size: 114px;
+	}
+	.blockcain-v3 {
+		padding: 70px 0 70px;
+	}
+	/*------------- featured ---------*/
+	.featured-sec {
+		padding-bottom: 80px;
+	}
+	.blockcain-business-sec {
+		padding: 72px 0 52px;
+	}
+	.section-padding {
+		padding: 78px 0;
+	}
+	.work-video{
+		margin-top: 50px;
+	}
+	/*----------- how work ----*/
+	.chart-label li img{
+		display: none;
+	}
+	.chart-gap [class*='col-']{
+		margin-bottom: 50px;
+	}
+	.chart-gap [class*='col-']:last-of-type{
+		margin-bottom: 0;
+	}
+	/*------------- token -----*/
+	.token-distribution-sec{
+		padding-bottom: 0;
+	}
+
+	/*------------- roadmap ------*/
+	
+	.roadmap-timeline-item .xs-roadmap:before,
+	.roadmap-timeline img{
+		display: none;
+	}
+	.roadmap-timeline-item,
+	.single-roadmap-timeline p{
+		padding: 0;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(1),
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(2),
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(3),
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(4), 
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(5),
+	.single-roadmap-timeline{
+		margin-top: 0px;
+	}
+	.blog-featured-post {
+		margin-bottom: 50px;
+	}
+	.single-social-list{
+		margin-bottom: 30px;
+	}
+	.footer-widget{
+		margin-bottom: 40px;
+	}
+	.chart-label{
+		margin-top: 50px;
+	}
+	.single-roadmap-timeline b{
+		display: none;
+	}
+	/*------------ client logo -------*/
+	.client-logo-v3 .client-logo-item {
+		padding: 60px 0;
+	}
+	/*--------------- team ------------*/
+	.single-team{
+		margin-bottom: 40px;
+	}
+	.team-sec{
+		padding-bottom: 50px;
+	}
+
+}
+
+@media only screen and (max-width: 767px) {
+
+	.section-padding {
+		padding: 60px 0 0;
+	}
+	.section-p-120 {
+		padding: 60px 0;
+	}
+	/*---------- display none opt ----*/
+	.featured-area:before,
+	.featured-poligonal-img,
+	.how-work-and-token-area:before,
+	.how-work-and-token-area:after,
+	.chart-label li img,
+	.roadmap-timeline img,
+	.roadmap-timeline-item .xs-roadmap:before,
+	.single-roadmap-timeline:after,
+	.single-roadmap-timeline:before,
+	.document-and-team-area:before,
+	.document-and-team-area:after,
+	.blockcain-top:before,
+	.single-roadmap-timeline b{
+		display: none;
+	}
+
+	/*---------- section title -------*/
+	.xs-section-title{
+		margin-bottom: 10px;
+	}
+	.section-title-item .section-title {
+		font-size: 26px;
+		margin-bottom: 40px;
+		line-height: 36px;
+	}
+	/*--------------- menu ----------*/
+	.navigation-portrait .nav-menus-wrapper{
+		background-color: #010029;
+	}
+	.navigation-portrait .nav-menu > li {
+		border-top: solid 1px #0f183a;
+		border-bottom: 1px solid #000;
+	}
+	.nav-toggle:before {
+		background-color: #f5f5f5;
+		box-shadow: 0 0.5em 0 0 #e4e4e4, 0 1em 0 0 #ffffff;
+	}
+	/*---------- banner area ------*/
+	.banner-item {
+		min-height: 0;
+		padding-top: 131px;
+		
+	}
+	.banner-content .banner-title {
+		font-size: 30px;
+		margin-bottom: 17px;
+		line-height: 45px;
+	}
+	.banner-content p,
+	.blockcain-top{
+		padding: 0;
+	}
+	.banner-img-item{
+		margin: 20px 0 0;
+	}
+	.banner-img-item .banner-img{
+		width: 100%;
+	}
+	.banner-img-item .banner-ico{
+		max-width: 28px;
+		animation: bounce 1s ease-in-out 0s alternate;
+	}
+	.banner-v2 .banner-item{
+		height: 550px;
+		padding-top: 100px;
+	}
+	.banner-v2 .banner-v2-img .banner-ico.banner-ico-1 {
+	    right: 26%;
+		top: 31%;
+		max-width: 38px;
+		animation: bounce 1s ease-in-out 0s alternate;
+	}
+	.banner-v3{
+		padding-bottom: 50px;
+	}
+	/*------------- blockcain -----*/
+	.main-fetured-item{
+		padding: 50px 0;
+	}
+	.blockcain-top-sec {
+		padding: 50px 0;
+	}
+	.column-title {
+		font-size: 26px;
+		line-height: 42px;
+	}
+	.blockcain-top-content p:last-child{
+		margin-bottom: 0;
+	}
+	.main-fetured-item .single-feaured-item img {
+		margin-bottom: 30px;
+	}
+	.main-fetured-item .single-feaured-item {
+		padding: 0 80px;
+		margin-bottom: 40px;
+	}
+
+	.main-fetured-item [class*='col-']:last-of-type .single-feaured-item,
+	.client-logo-item [class*='col-']:last-of-type .client-logo{
+		margin-bottom: 0;
+	}
+	.blockcain-business-sec {
+		padding: 76px 0px 0;
+	}
+	.blockcain-img,
+	.xs-count-down{
+		margin-bottom: 40px;
+	}
+	/*------------- blockcain v3 ------------*/
+	.hidden-title{
+		font-size: 90px;
+	}
+	.blockcain-business-v3{
+		padding-bottom: 60px;
+	}
+	/*------ client logo ---*/
+	.client-logo-item {
+		padding: 50px 0;
+	}
+	.client-logo-item .client-logo {
+		margin-bottom: 10px;
+	}
+	/*------------- how work ---------*/
+	.xs-counter-list li {
+		padding: 7px;
+	}
+	.xs-counter-list li strong{
+		font-size: 20px;
+	}
+	.xs-counter-list li span {
+		font-size: 12px;
+	}
+	/*------------- token --------*/
+	
+	.chart-gap .xs-single-title{
+		margin-bottom: 30px;
+	}
+	.chart-label li:last-child{
+		margin-bottom: 0;
+	}
+	.roadmap-timeline-item{
+		padding: 0;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(1),
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(2),
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(3),
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(4),
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(5){
+		margin-top: 0;
+		margin-bottom: 40px;
+	}
+	.roadmap-timeline-item .xs-roadmap:nth-of-type(5){
+		margin-bottom: 0;
+	}
+	/*------------ document area ----*/
+	.xs-tabs-menu,
+	.xs-tabs-content,
+	.xs-tabs-img{
+		margin-bottom: 50px;
+	}
+	.tab_item_1 .xs-tabs-img{
+		margin-bottom: 0;
+	}
+	.xs-tabs-menu a{
+		margin-bottom: 15px;
+	}
+	.ico-table table tr td {
+		padding: 12px 20px;
+	}
+	.documentaion-shap-img img.d-shap-img-1{
+		-webkit-animation-iteration-count: unset;
+		animation-iteration-count: unset;
+	}
+	/*---------- team -----*/
+	.single-team,
+	.blog-featured-post{
+		margin-bottom: 40px;
+	}
+	.team-sec [class*='col']:last-of-type .single-team{
+		margin-bottom: 0;
+	} 
+
+	/*---------- blog ----*/
+	.xs-blog-title{
+		font-size: 22px; 
+	}
+	.blog-featured-post .blog-featured-content{
+		padding: 0 27px 20px;
+	}
+	.single-blog-post .xs-post-title{
+		font-size: 16px;
+	}
+	/*--------- social list ----*/
+	.social-list-sec{
+		padding-bottom: 40px;
+	}
+	.single-social-list{
+		margin-bottom: 30px;
+	}
+	/*------------- footer area -----*/
+	.footer-area{
+		padding: 50px 0;
+	}
+	.footer-widget{
+		margin-bottom: 40px;
+	}
+	.footer-widget.support{
+		margin-left: 0;
+	}
+	.footer-widget .widget-title {
+		font-size: 20px;
+		margin-bottom: 18px;
+	}
+	.widget-subscibe .subscribe-email{
+		margin-top: 10px;
+	}
+	.single-roadmap-timeline h3{
+		text-align: center;
+		min-width: 300px;
+	}
+	.single-roadmap-timeline p{
+		text-align: center;
+	}
+}
+@media only screen and (max-width: 567px) {
+	/*----------- banner animation -----*/
+	.banner-img-item .banner-ico{
+		max-width: 22px;
+
+	}
+	.banner-ico.banner-ico-1 {
+		left: 19.8%;
+		top: 32%;
+	}
+	.banner-ico.banner-ico-2 {
+		left: 29%;
+		top: 0;
+	}
+	.banner-ico.banner-ico-4 {
+		right: 31.2%;
+		top: 7%;
+	}
+	.banner-ico.banner-ico-3 {
+		top: 22%;
+		left: 50%;
+	}
+	.banner-ico.banner-ico-5 {
+		right: 14.8%;
+		top: 28%;
+
+	}
+	.banner-v2 .banner-item {
+		height: 470px;
+	}
+	
+	.banner-v2-img{
+		display: none;
+	}
+
+	/*-------------- token and distrubution -------*/
+	.chart-label{
+		margin-bottom: 30px;
+		text-align: center;
+		padding-left: 0px;
+	}
+	.chart-label li{
+		left:0!important;
+		top: 0!important;
+	}
+/*---- featured area -----------*/
+	.main-fetured-item .single-feaured-item {
+		padding: 0 20px;
+		margin-bottom: 40px;
+	}
+	/*----------- footer area ------*/
+	.footer-area [class*='col-']:last-of-type .footer-widget{
+		margin-bottom: 0;
+	}
+	.client-logo-item .client-logo {
+		margin-bottom: 30px;
+	}
+
+	.flag-lists li {
+		display: block;
+		text-align: left;
+		margin-bottom: 18px;
+		margin-right: 0px;
+	}
+}

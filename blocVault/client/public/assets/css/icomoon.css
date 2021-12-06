@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?5e0hnp');
+  src:  url('../fonts/icomoon.eot?5e0hnp#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?5e0hnp') format('truetype'),
+    url('../fonts/icomoon.woff?5e0hnp') format('woff'),
+    url('../fonts/icomoon.svg?5e0hnp#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bitcoin-logo:before {
+  content: "\e900";
+}
+.icon-blockchain:before {
+  content: "\e901";
+}
+.icon-contact:before {
+  content: "\e902";
+}
+.icon-facebook-letter-logo:before {
+  content: "\e903";
+}
+.icon-github-logo:before {
+  content: "\e904";
+}
+.icon-medium:before {
+  content: "\e905";
+}
+.icon-menu2:before {
+  content: "\e906";
+}
+.icon-play:before {
+  content: "\e907";
+}
+.icon-report:before {
+  content: "\e908";
+}
+.icon-slack:before {
+  content: "\e909";
+}
+.icon-structure:before {
+  content: "\e90a";
+}
+.icon-tranjection:before {
+  content: "\e90b";
+}
+.icon-twitter-logo-silhouette:before {
+  content: "\e90c";
+}
+.icon-wallet:before {
+  content: "\e90d";
+}
+.icon-whitepaper:before {
+  content: "\e90e";
+}
+.icon-youtube:before {
+  content: "\e90f";
+}
