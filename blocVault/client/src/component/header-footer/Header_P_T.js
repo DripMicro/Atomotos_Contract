@@ -810,8 +810,8 @@ export default function HomeNavbar() {
                       </li>
                     </ul>
                     <div className="btn-wrapper text-center">
-                      {isPrivateBuy==true && (<button className="btn btn-primary" onClick={toggleModal}>ENTER ICO</button>)}
-                      {isGetBV==true && (<button className="btn btn-primary" onClick={handlegetFundsBNB}>Get BV</button>)}
+                      {accounts.length > 0 && isPrivateBuy==true && (<button className="btn btn-primary" onClick={toggleModal}>ENTER ICO</button>)}
+                      {accounts.length > 0 && isGetBV==true && (<button className="btn btn-primary" onClick={handlegetFundsBNB}>Get BV</button>)}
                     </div>
                     <Modal
                       isOpen={isOpen}
