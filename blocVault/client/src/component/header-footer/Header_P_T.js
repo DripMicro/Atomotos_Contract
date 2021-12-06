@@ -247,7 +247,7 @@ export default function HomeNavbar() {
         if (Number(Amount) >= 0.25 && Number(Amount) <= 2){
           if (publicSaleInstance) {
             const walletlist = await publicSaleInstance.methods.getPrivateWhiteList().call();
-            if(walletlist.indexOf(account[0]) !== -1) {
+            if(walletlist.indexOf(accounts[0]) !== -1) {
               store.addNotification({
                 title: "Error BNB Request",
                 message: "You already bought BV Token. You can only buy once.",
