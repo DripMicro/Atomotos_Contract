@@ -1,13 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch  } from "react-router-dom"
 import ReactNotifications from "react-notifications-component";
-import Routes from "./Routes";
 import {Header , Footer} from "./component/header-footer";
 // import LandingPage from './view/LandingPage'
 import LandingPage from "./view/LandingPage";
 import Black from "./view/Black";
 import Admin from "./view/Admin";
 import Owner from "./view/Owner";
+import React, { Component }  from 'react';
 
 function App() {
   return (

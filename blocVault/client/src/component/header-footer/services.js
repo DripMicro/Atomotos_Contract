@@ -4,10 +4,10 @@ import Notify from 'bnc-notify'
 import Onboard from 'bnc-onboard'
 
 const networkId = 56
-const rpcUrl = 'https://data-seed-prebsc-1-s1.binance.org:8545/'
+const rpcUrl = 'https://bsc-dataseed1.defibit.io/';
 const apiUrl = process.env.REACT_APP_API_URL
 const staging = process.env.REACT_APP_STAGING
-const dappId = '46adf0d3-f535-4655-9157-10e714d8eae0'
+const dappId = '12153f55-f29e-4f11-aa07-90f10da5d778'
 
 export function initOnboard(subscriptions) {
   const onboard = staging ? stagingOnboard : Onboard
@@ -33,7 +33,12 @@ export function initOnboard(subscriptions) {
         },
         {
           walletName: 'walletConnect',
-          infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
+          rpc: {
+            // 1: `https://mainnet.infura.io/v3/${infuraApiKey}`,
+            '56': 'https://bsc-dataseed1.defibit.io/' 
+          },
+          bridge: 'https://bridge.walletconnect.org',
+          //infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
         },
         { walletName: 'cobovault', appName: 'React Demo', rpcUrl },
         { walletName: 'keystone', appName: 'React Demo', rpcUrl },

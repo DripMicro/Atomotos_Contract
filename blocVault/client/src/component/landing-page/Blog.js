@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 export default function Blog() {
     return (
       <div className="blog-and-footer-area">

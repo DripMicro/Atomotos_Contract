@@ -462,7 +462,12 @@ export default function HomeNavbar() {
                 <li>
                   {wallet.provider && (
                     <button className="btn btn-primary wallet_btn" onClick={onboard.walletReset}>
-                      Reset Wallet State
+                      Reset Wallet
+                    </button>
+                  )}
+                  {wallet.provider && (
+                    <button className="btn btn-primary wallet_btn" onClick={onboard.walletCheck}>
+                      Wallet Checks
                     </button>
                   )}
                   {!wallet.provider && (
