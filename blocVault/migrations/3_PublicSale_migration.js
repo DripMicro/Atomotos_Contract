@@ -14,8 +14,8 @@ module.exports = async function (deployer, network) {
             BUSDTokenAddress = 0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee;
         console.log(BUSDTokenAddress);
         const bvTokenInstance = await bvToken.deployed();
-        const startOfICO = Math.floor(Date.UTC(2021, 9, 17, 13, 25, 0) / 1000);
-        const endOfICO = Math.floor(Date.UTC(2021, 11, 22, 13, 40, 0) / 1000);
+        const startOfICO = 1638801600;
+        const endOfICO = 1638802800;
         console.log('------------------------------------------');
         console.log(endOfICO);
         console.log(bvTokenInstance.address);

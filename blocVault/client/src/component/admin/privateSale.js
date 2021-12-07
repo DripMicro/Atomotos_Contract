@@ -120,7 +120,7 @@ export default function Particles() {
               BVToken.abi,
               BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
             );
-            tokenInstance_temp.options.address = "0x2E9fB66e958Bfc339f6d7988c32632abebeA7AFd";
+            tokenInstance_temp.options.address = "0xD2480fC75309b1F8178d125468DF1fa9Ba963e8b";
             setTokenInstance(tokenInstance_temp);
 
             const publicSaleInstance_temp = new web3_provider.eth.Contract(
@@ -128,7 +128,7 @@ export default function Particles() {
               PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
             );
             console.log(2)
-            publicSaleInstance_temp.options.address = "0x3Fb1569cBe8dA8F5Ff7E2C4607AB0335A57D4c3d";
+            publicSaleInstance_temp.options.address = "0xB591984Ce4E52DDD22d5F601d4cB5dFf2640713F";
             setPublicSaleInstance(publicSaleInstance_temp);
             console.log(publicSaleInstance_temp)
     

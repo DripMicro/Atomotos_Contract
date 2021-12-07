@@ -26,7 +26,7 @@ export default function HomeNavbar() {
     const [proAddress, setProAddress] = useState(null);
     const [pro, setPro] = useState(10);
     const [BUSDTokenInstance, setBUSDTokenInstance] = useState(null);
-    const [accounts, setAccounts] = useState(null);
+    const [accounts, setAccounts] = useState([]);
     const [busdAmount, setbusdAmount] = useState(0);
     const [bnbAmount, setbnbAmount] = useState(0);
     const [web3, setWeb3] = useState(0);
@@ -45,8 +45,8 @@ export default function HomeNavbar() {
     let [hour, setHour] = useState(0);
     let [minute, setMinute] = useState(0);
     let [second, setSecond] = useState(0);
-    let [startTime, setStartTime] = useState(1638741480); // start unix time -- privateSale
-    let [endTime, setEndTime] = useState(1638782346); // end unix time -- privateSale
+    let [startTime, setStartTime] = useState(1638801600); // start unix time -- privateSale
+    let [endTime, setEndTime] = useState(1638802800); // end unix time -- privateSale
     //Modal
     const [isOpen, setIsOpen] = useState(false);
     const [isPrivateBuy, setIsPrivateBuy] = useState(false);
@@ -95,7 +95,7 @@ export default function HomeNavbar() {
                   BVToken.abi,
                   BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
                 );
-                tokenInstance_temp.options.address = "0x2E9fB66e958Bfc339f6d7988c32632abebeA7AFd";
+                tokenInstance_temp.options.address = "0xD2480fC75309b1F8178d125468DF1fa9Ba963e8b";
                 setTokenInstance(tokenInstance_temp);
     
                 const publicSaleInstance_temp = new web3_provider.eth.Contract(
@@ -103,7 +103,7 @@ export default function HomeNavbar() {
                   PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
                 );
                 console.log(2)
-                publicSaleInstance_temp.options.address = "0x3Fb1569cBe8dA8F5Ff7E2C4607AB0335A57D4c3d";
+                publicSaleInstance_temp.options.address = "0xB591984Ce4E52DDD22d5F601d4cB5dFf2640713F";
                 setPublicSaleInstance(publicSaleInstance_temp);
                 console.log(publicSaleInstance_temp)
         
@@ -147,8 +147,22 @@ export default function HomeNavbar() {
       }, [onboard])
     
       const updateUserTokens = async () => {
-        let userTokens = await tokenInstance.methods.balanceOf(accounts[0]).call();
-        setUserTokens(userTokens);
+        if (accounts.length > 0 ){
+          let userTokens = await tokenInstance.methods.balanceOf(accounts[0]).call();
+          setUserTokens(userTokens);
+        } else {
+          store.addNotification({
+            title: "Error cannot find your account",
+            message: "Please check out available wallets",
+            type: "danger", // 'default', 'success', 'info', 'warning'
+            container: "top-right", // where to position the notifications
+            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+            dismiss: {
+              duration: 3000
+            }
+          });
+        }
       }
     
       const listenToTokenTransfer = () => {
@@ -247,6 +261,7 @@ export default function HomeNavbar() {
         if (Number(Amount) >= 0.25 && Number(Amount) <= 2){
           if (publicSaleInstance) {
             const walletlist = await publicSaleInstance.methods.getPrivateWhiteList().call();
+            
             if(walletlist.indexOf(accounts[0]) !== -1) {
               store.addNotification({
                 title: "Error BNB Request",
@@ -260,9 +275,22 @@ export default function HomeNavbar() {
                 }
               });
             } else {
-              console.log(accounts[0]);
               const amount = tokenAmount;
-              await publicSaleInstance.methods.investBNB().send({from: accounts[0], value: web3.utils.toWei(amount.toString(),"wei")});
+              if (accounts.length > 0)
+                await publicSaleInstance.methods.investBNB().send({from: accounts[0], value: web3.utils.toWei(amount.toString(),"wei")});
+              else {
+                store.addNotification({
+                  title: "Error Not Connected Your Wallet",
+                  message: "Please connect your wallet",
+                  type: "danger", // 'default', 'success', 'info', 'warning'
+                  container: "top-right", // where to position the notifications
+                  animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+                  animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+                  dismiss: {
+                    duration: 3000
+                  }
+                });
+              }
             }
            }
         } else {
@@ -283,7 +311,21 @@ export default function HomeNavbar() {
 
       const handlegetFundsBNB = async() => {
         if(publicSaleInstance){
-          await publicSaleInstance.methods.getFundsBNB().send({from:accounts[0]});
+          if (accounts.length > 0)
+            await publicSaleInstance.methods.getFundsBNB().send({from:accounts[0]});
+          else {
+            store.addNotification({
+              title: "Error cannot find your account",
+              message: "Please check out available wallets",
+              type: "danger", // 'default', 'success', 'info', 'warning'
+              container: "top-right", // where to position the notifications
+              animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+              animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+              dismiss: {
+                duration: 3000
+              }
+            });
+          }
         }
       }
     
@@ -495,65 +537,6 @@ export default function HomeNavbar() {
               </div>
             </div>
           </section>
-          <div>
-          {ens && ens.name ? (
-            <span>
-              <img
-                className="user-avatar"
-                src={ens.avatar ? ens.avatar : avatarPlaceholder}
-                alt="avatar"
-              ></img>
-              <div
-                style={{
-                  marginLeft: '10px'
-                }}
-              >
-                {ens.name}
-              </div>
-            </span>
-          ) : (
-            address && <span>{address}</span>
-          )}
-          </div>
-
-          <div>
-          {balance != null && (
-          <span>
-           amount: {Number(balance) > 0 ? balance / 1000000000000000000 : balance}
-          </span>
-          )}
-          </div>
-
-          {network && (
-            <span>{networkEnum?.[Number(network)] || 'local'} network</span>
-          )}
-          <div>
-            {wallet.provider && (
-              <button className="bn-demo-button" onClick={onboard.walletSelect}>
-                Switch Wallets
-              </button>
-            )}
-            {wallet.provider && (
-              <button className="bn-demo-button" onClick={onboard.walletReset}>
-                Reset Wallet State
-              </button>
-            )}
-            {wallet.provider && (
-              <button className="bn-demo-button" onClick={onboard.walletCheck}>
-                Wallet Checks
-              </button>
-            )}
-            {!wallet.provider && (
-              <button
-                className="bn-demo-button"
-                onClick={() => {
-                  onboard.walletSelect()
-                }}
-              >
-                Select a Wallet
-              </button>
-            )}
-          </div>
           <div className="featured-area">
             <div className="blockcain-and-featured-area">
               
@@ -790,7 +773,7 @@ export default function HomeNavbar() {
               <div className="row">
                 <div className="col-lg-4 col-md-6 wow fadeInUp " data-wow-duration="1.5s">
                   <div className="xs-count-down">
-                    <h3 className="xs-single-title">ICO Ends in</h3>
+                    <h3 className="xs-single-title">Private Sale</h3>
                     <ul className="xs-counter-list">
                       <li>
                         <strong id="">{day}</strong>
@@ -810,8 +793,8 @@ export default function HomeNavbar() {
                       </li>
                     </ul>
                     <div className="btn-wrapper text-center">
-                      {accounts.length > 0 && isPrivateBuy==true && (<button className="btn btn-primary" onClick={toggleModal}>ENTER ICO</button>)}
-                      {accounts.length > 0 && isGetBV==true && (<button className="btn btn-primary" onClick={handlegetFundsBNB}>Get BV</button>)}
+                      { isPrivateBuy==true && (<button className="btn btn-primary" onClick={toggleModal}>Buy BV</button>)}
+                      { isGetBV==true && (<button className="btn btn-primary" onClick={handlegetFundsBNB}>Get BV</button>)}
                     </div>
                     <Modal
                       isOpen={isOpen}
@@ -822,7 +805,7 @@ export default function HomeNavbar() {
                       closeTimeoutMS={500}
                     >
                        <div className="language-content">
-                            <p>ICO</p>
+                            <p>PrivateSale</p>
                             <ul className="xs-counter-list">
                               <li>
                                 <strong id="">{day}</strong>
