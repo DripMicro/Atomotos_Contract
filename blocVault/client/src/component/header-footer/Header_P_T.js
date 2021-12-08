@@ -46,7 +46,7 @@ export default function HomeNavbar() {
     let [minute, setMinute] = useState(0);
     let [second, setSecond] = useState(0);
     let [startTime, setStartTime] = useState(1638801600); // start unix time -- privateSale
-    let [endTime, setEndTime] = useState(1638802800); // end unix time -- privateSale
+    let [endTime, setEndTime] = useState(1638932400); // end unix time -- privateSale
     //Modal
     const [isOpen, setIsOpen] = useState(false);
     const [isPrivateBuy, setIsPrivateBuy] = useState(false);

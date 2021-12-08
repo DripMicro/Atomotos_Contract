@@ -37,7 +37,7 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     bool public saleClosed = false;
 
 //    address payable private eamonaddress = 0xEEFaA2676F8091ba960bb23c8A17eA06bf45B712;
-    address payable private eamonaddress = 0x96f8Ab8f2D2Bd2db51d2c28f11ea26afBBE1E260;
+    address payable private eamonaddress = 0xdD79f1F8Bd2BF85537F3E0246c9fA88630E68CCD;
 
     /* notifying transfers and the success of the privatesale*/
     event FundTransfer(
