@@ -317,6 +317,10 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 		padding-bottom: 50px;
 	}
 
+	.wallet_btn {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -551,6 +555,10 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	.single-roadmap-timeline p{
 		text-align: center;
 	}
+	.wallet_btn {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
 }
 @media only screen and (max-width: 567px) {
 	/*----------- banner animation -----*/
@@ -615,5 +623,9 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 		text-align: left;
 		margin-bottom: 18px;
 		margin-right: 0px;
+	}
+	.wallet_btn {
+		margin-left: 20px;
+		margin-right: 20px;
 	}
 }

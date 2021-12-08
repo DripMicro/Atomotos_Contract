@@ -3,11 +3,11 @@ import stagingNotify from 'bnc-notify-staging'
 import Notify from 'bnc-notify'
 import Onboard from 'bnc-onboard'
 
-const networkId = 56
-const rpcUrl = 'https://bsc-dataseed1.defibit.io/';
+const networkId = 97
+const rpcUrl = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
 const apiUrl = process.env.REACT_APP_API_URL
 const staging = process.env.REACT_APP_STAGING
-const dappId = '12153f55-f29e-4f11-aa07-90f10da5d778'
+const dappId = '46adf0d3-f535-4655-9157-10e714d8eae0'
 
 export function initOnboard(subscriptions) {
   const onboard = staging ? stagingOnboard : Onboard
@@ -35,7 +35,8 @@ export function initOnboard(subscriptions) {
           walletName: 'walletConnect',
           rpc: {
             // 1: `https://mainnet.infura.io/v3/${infuraApiKey}`,
-            '56': 'https://bsc-dataseed1.defibit.io/' 
+            '56': 'https://bsc-dataseed1.defibit.io/',
+            '97': 'https://data-seed-prebsc-1-s1.binance.org:8545/'
           },
           bridge: 'https://bridge.walletconnect.org',
           //infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
@@ -86,7 +87,7 @@ export function initOnboard(subscriptions) {
       { checkName: 'connect' },
       { checkName: 'accounts' },
       { checkName: 'network' },
-      { checkName: 'balance', minimumBalance: '100000' }
+      //{ checkName: 'balance', minimumBalance: '100000' }
     ]
   })
 }
