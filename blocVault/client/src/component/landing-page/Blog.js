@@ -39,7 +39,7 @@ export default function Blog() {
                     <div className="media-body">
                       <span className="post-meta-date">  </span>
                       <h4 className="xs-post-title">
-                        <a href="blog-single.html">Secure your assets in the BV-Vault, An offline in app solution that's safe.</a>
+                        <a href="">Secure your assets in the BV-Vault, An offline in app solution that's safe.</a>
                       </h4>
                     </div>
                   </div>
@@ -51,7 +51,7 @@ export default function Blog() {
                     <div className="media-body">
                       <span className="post-meta-date">  </span>
                       <h4 className="xs-post-title">
-                        <a href="blog-single.html">The worlds best wallet and app solution for NFT's and cross chain tokens.</a>
+                        <a href="">The worlds best wallet and app solution for NFT's and cross chain tokens.</a>
                       </h4>
                     </div>
                   </div>
@@ -63,7 +63,7 @@ export default function Blog() {
                     <div className="media-body">
                       <span className="post-meta-date">  </span>
                       <h4 className="xs-post-title">
-                        <a href="blog-single.html">Swap assets and track your portfolio across multiple network in BV-Swap</a>
+                        <a href="">Swap assets and track your portfolio across multiple network in BV-Swap</a>
                       </h4>
                     </div>
                   </div>
