@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
 // import getWeb3 from "./getWeb3";
 import Web3 from "web3";
-import Web3Modal from 'web3modal';
-import WalletConnectProvider from '@walletconnect/web3-provider';
-import evmChains from 'evm-chains';
-import Fortmatic from 'fortmatic';
 import BVToken from "../../contracts/BVToken.json";
 import PublicSale from "../../contracts/PublicSale.json";
 import BUSDToken from "../../contracts/BUSDToken.json";
@@ -20,7 +16,7 @@ import Modal from "react-modal";
 import TimeAgo from 'javascript-time-ago';
 import en from "javascript-time-ago/locale/en.json";
 import "../css/style.css";
-// import { init, onConnect, onDisconnect } from '../../util/we3modal';
+import { init, onConnect, onDisconnect } from '../../util/we3modal';
 
 TimeAgo.addDefaultLocale(en);
 Modal.setAppElement("#root");
@@ -39,7 +35,7 @@ export default function HomeNavbar() {
     const [Amount, setAmount] = useState(0);
     const [onboard, setOnboard] = useState(null)
     const [notify, setNotify] = useState(null)
-    // const [provider, setProvider] = useState(null);
+    const [provider, setProvider] = useState(null);
     const [address, setAddress] = useState(null)
     const [ens, setEns] = useState(null)
     const [network, setNetwork] = useState(null)
@@ -58,205 +54,9 @@ export default function HomeNavbar() {
     const [isPrivateBuy, setIsPrivateBuy] = useState(false);
     const [isGetBV, setIsGetBV] = useState(false);
 
-    // Web3modal instance
-    const [web3Modal, setWeb3Modal] = useState(null);
-
-    const [walletConnected, setWalletConnected] = useState(false);
-
-    // Chosen wallet provider given by the dialog window
-    let [provider, setProvider] = useState(null);
-    // Address of the selected account
-    let selectedAccount;
-    
-    // let provider;
-
     function toggleModal() {
         setIsOpen(!isOpen);
     }
-///////////////////////////////////////////////
-    function init() {
-
-      console.log("Initializing example");
-      console.log("WalletConnectProvider is", WalletConnectProvider);
-      console.log("Fortmatic is", Fortmatic);
-      console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
-      // console.log(provider);
-      // Check that the web page is run in a secure context,
-      // as otherwise MetaMask won't be available
-      if(window.location.protocol !== 'https:') {
-        // https://ethereum.stackexchange.com/a/62217/620
-        const alert = document.querySelector("#alert-error-https");
-        alert.style.display = "block";
-        document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
-        return;
-      }
-    
-      // Tell Web3modal what providers we have available.
-      // Built-in web browser provider (only one can exist as a time)
-      // like MetaMask, Brave or Opera is added automatically by Web3modal
-      const providerOptions = {
-        walletconnect: {
-          package: WalletConnectProvider,
-          options: {
-            // Mikko's test key - don't copy as your mileage may vary
-            infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-          }
-        },
-    
-        fortmatic: {
-          package: Fortmatic,
-          options: {
-            // Mikko's TESTNET api key
-            key: "pk_test_391E26A3B43A3350"
-          }
-        }
-      };
-    
-      let web3_Modal = new Web3Modal({
-        cacheProvider: false, // optional
-        providerOptions, // required
-        disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
-      });
-
-      setWeb3Modal(web3_Modal);
-    
-      console.log("Web3Modal instance is", web3Modal);
-    }
-
-    async function fetchAccountData() {
-
-      // Get a Web3 instance for the wallet
-      const web3 = new Web3(provider);
-    
-      console.log("Web3 instance is", web3);
-    
-      // Get connected chain id from Ethereum node
-      const chainId = await web3.eth.getChainId();
-      // Load chain information over an HTTP API
-      // console.log(chainId)
-      // console.log(evmChains)
-      // const chainData = evmChains.getChain(chainId);
-      // document.querySelector("#network-name").textContent = chainData.name;
-    
-      // Get list of accounts of the connected wallet
-      const accounts = await web3.eth.getAccounts();
-    
-      // MetaMask does not give you all accounts, only the selected account
-      console.log("Got accounts", accounts);
-      selectedAccount = accounts[0];
-    
-      // document.querySelector("#selected-account").textContent = selectedAccount;
-      console.log('selectedAccount', selectedAccount);
-    
-      // Get a handl
-      const template = document.querySelector("#template-balance");
-      const accountContainer = document.querySelector("#accounts");
-    
-      // Purge UI elements any previously loaded accounts
-      // accountContainer.innerHTML = '';
-    
-      // Go through all accounts and get their ETH balance
-      const rowResolvers = accounts.map(async (address) => {
-        const balance = await web3.eth.getBalance(address);
-        // ethBalance is a BigNumber instance
-        // https://github.com/indutny/bn.js/
-        const ethBalance = web3.utils.fromWei(balance, "ether");
-        const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4);
-        // Fill in the templated row and put in the document
-        // const clone = template.content.cloneNode(true);
-        // clone.querySelector(".address").textContent = address;
-        // clone.querySelector(".balance").textContent = humanFriendlyBalance;
-        // accountContainer.appendChild(clone);
-        console.log(address);
-        console.log(humanFriendlyBalance);
-      });
-    
-      // Because rendering account does its own RPC commucation
-      // with Ethereum node, we do not want to display any results
-      // until data for all accounts is loaded
-      await Promise.all(rowResolvers);
-      // Display fully loaded UI for wallet data
-      // document.querySelector("#prepare").style.display = "none";
-      // document.querySelector("#connected").style.display = "block";
-      setWalletConnected(true);
-    }
-    
-    async function refreshAccountData() {
-
-      // If any current data is displayed when
-      // the user is switching acounts in the wallet
-      // immediate hide this data
-      // document.querySelector("#connected").style.display = "none";
-      // document.querySelector("#prepare").style.display = "block";
-      setWalletConnected(false);
-      // Disable button while UI is loading.
-      // fetchAccountData() will take a while as it communicates
-      // with Ethereum node via JSON-RPC and loads chain data
-      // over an API call.
-      // document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
-      await fetchAccountData(provider);
-      // document.querySelector("#btn-connect").removeAttribute("disabled")
-    }
-
-
-
-    async function onConnect() {
-
-      console.log("Opening a dialog", web3Modal);
-      try {
-        provider = await web3Modal.connect();
-      } catch(e) {
-        console.log("Could not get a wallet connection", e);
-        return;
-      }
-      console.log(provider);
-      setProvider(provider);
-      console.log(provider);
-      console.log('provider accounts changed')
-      // Subscribe to accounts change
-      provider.on("accountsChanged", (accounts) => {
-        fetchAccountData();
-      });
-      console.log('provider chain changed')
-      // Subscribe to chainId change
-      provider.on("chainChanged", (chainId) => {
-        fetchAccountData();
-      });
-      console.log('provider network changed')
-      // Subscribe to networkId change
-      provider.on("networkChanged", (networkId) => {
-        fetchAccountData();
-      });
-    
-      await refreshAccountData();
-    }
-
-    async function onDisconnect() {
-
-      console.log("Killing the wallet connection", provider);
-    
-      // TODO: Which providers have close method?
-      if(provider.close) {
-        await provider.close();
-    
-        // If the cached provider is not cleared,
-        // WalletConnect will default to the existing session
-        // and does not allow to re-scan the QR code with a new wallet.
-        // Depending on your use case you may want or want not his behavir.
-        await web3Modal.clearCachedProvider();
-        setProvider(null);
-      }
-    
-      selectedAccount = null;
-    
-      // Set the UI back to the initial state
-      // document.querySelector("#prepare").style.display = "block";
-      // document.querySelector("#connected").style.display = "none";
-      setWalletConnected(false);
-    }
-///////////////////////////////////////////////
-
-
 
     const getPets = () => {
         try{
@@ -267,7 +67,7 @@ export default function HomeNavbar() {
           setCountTime(endTime - localTime);
         else 
           setCountTime(endTime - startTime);
-          // Get network provider and web3 instance.
+        // Get network provider and web3 instance.
           const onboard = initOnboard({
             address: setAddress,
             ens: setEns,
@@ -280,7 +80,7 @@ export default function HomeNavbar() {
                 const web3_provider = new Web3(
                   wallet.provider
                 )
-                // setProvider(web3_provider);
+                setProvider(web3_provider);
                 setWeb3(web3_provider);
     
                 const networkId_temp = web3_provider.eth.net.getId();
@@ -312,7 +112,7 @@ export default function HomeNavbar() {
                 window.localStorage.setItem('selectedWallet', wallet.name)
               } else {
                 let provider_temp = null;
-                // setProvider(provider_temp);
+                setProvider(provider_temp);
                 setWallet({})
               }
             }
@@ -338,8 +138,6 @@ export default function HomeNavbar() {
           });
         }
     }
-
-
   
     useEffect(() => {
         const previouslySelectedWallet =
@@ -348,7 +146,7 @@ export default function HomeNavbar() {
         if (previouslySelectedWallet && onboard) {
           onboard.walletSelect(previouslySelectedWallet)
         }
-    }, [onboard])
+      }, [onboard])
     
       const updateUserTokens = async () => {
         if (accounts.length > 0 ){
@@ -602,30 +400,30 @@ export default function HomeNavbar() {
         init();
       },[])
 
-      useEffect(() => {
-          let localTime = Math.ceil((new Date).getTime()/1000);
-          let remainTime = CountTime;
-          // privateSale Time
-          if (localTime >= startTime && localTime <= endTime){
-            remainTime -= 1;
-            if (remainTime >= 0) {
-              countdown(remainTime)
-              setIsPrivateBuy(true)
-            } 
-            // console.log(remainTime)  
-          } else {
-            initTime()
-            setIsPrivateBuy(false)
-          }
-          // Get BV
-          if (localTime > endTime){
-            setIsGetBV(true)
-          } else {
-            setIsGetBV(false)
-          }
-      
-          setTimeout(() => setCountTime(remainTime), 1000);
-      }, );
+        useEffect(() => {
+            let localTime = Math.ceil((new Date).getTime()/1000);
+            let remainTime = CountTime;
+            // privateSale Time
+            if (localTime >= startTime && localTime <= endTime){
+              remainTime -= 1;
+              if (remainTime >= 0) {
+                countdown(remainTime)
+                setIsPrivateBuy(true)
+              } 
+              // console.log(remainTime)  
+            } else {
+              initTime()
+              setIsPrivateBuy(false)
+            }
+            // Get BV
+            if (localTime > endTime){
+              setIsGetBV(true)
+            } else {
+              setIsGetBV(false)
+            }
+        
+            setTimeout(() => setCountTime(remainTime), 1000);
+        }, );
 
   return (
     <>
@@ -665,7 +463,7 @@ export default function HomeNavbar() {
                   </a>
                 </li>
                 <li>
-                  {/* {wallet.provider && (
+                  {wallet.provider && (
                     <button className="btn btn-primary wallet_btn" onClick={onboard.walletReset}>
                       Reset Wallet
                     </button>
@@ -674,15 +472,10 @@ export default function HomeNavbar() {
                     <button className="btn btn-primary wallet_btn" onClick={onboard.walletCheck}>
                       Wallet Checks
                     </button>
-                  )} */}
-                  {!walletConnected && (
+                  )}
+                  {!wallet.provider && (
                     <button className="btn btn-primary wallet_btn" onClick={() => { onConnect() }}>
                       Connect Wallet
-                    </button>
-                  )}
-                  {walletConnected && (
-                    <button className="btn btn-primary wallet_btn" onClick={() => { onDisconnect() }}>
-                      Disconnect Wallet
                     </button>
                   )}
                 </li>

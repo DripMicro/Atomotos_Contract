@@ -70,20 +70,20 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.6;\r\n\r\ninterface IPublicSale {\r\n    function getBVTBalance() external returns (uint256);\r\n\r\n    function updateDeadline(uint256 _dead) external;\r\n\r\n    function updateStart(uint256 _start) external;\r\n\r\n    function withdrawBVT() external returns (uint256 balance);\r\n\r\n    function withdrawBNB() external payable;\r\n}\r\n",
-  "sourcePath": "D:\\Work\\BlockChain\\BlocVault-git\\BlocVault\\BlocVault\\contracts\\interfaces\\IPublicSale.sol",
+  "sourcePath": "D:\\Work\\BlockChain\\BlocVault-git\\BlocVaultAddWallet\\blocVault\\contracts\\interfaces\\IPublicSale.sol",
   "ast": {
     "absolutePath": "project:/contracts/interfaces/IPublicSale.sol",
     "exportedSymbols": {
       "IPublicSale": [
-        2179
+        2151
       ]
     },
-    "id": 2180,
+    "id": 2152,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2155,
+        "id": 2127,
         "literals": [
           "solidity",
           "^",
@@ -99,38 +99,38 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2179,
+        "id": 2151,
         "linearizedBaseContracts": [
-          2179
+          2151
         ],
         "name": "IPublicSale",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "bad7e4de",
-            "id": 2160,
+            "id": 2132,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getBVTBalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2156,
+              "id": 2128,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "111:2:11"
             },
             "returnParameters": {
-              "id": 2159,
+              "id": 2131,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2158,
+                  "id": 2130,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2160,
+                  "scope": 2132,
                   "src": "132:7:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -139,7 +139,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2157,
+                    "id": 2129,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "132:7:11",
@@ -153,7 +153,7 @@
               ],
               "src": "131:9:11"
             },
-            "scope": 2179,
+            "scope": 2151,
             "src": "89:52:11",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -161,23 +161,23 @@
           },
           {
             "functionSelector": "42af1884",
-            "id": 2165,
+            "id": 2137,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateDeadline",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2163,
+              "id": 2135,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2162,
+                  "id": 2134,
                   "mutability": "mutable",
                   "name": "_dead",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2165,
+                  "scope": 2137,
                   "src": "173:13:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -186,7 +186,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2161,
+                    "id": 2133,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "173:7:11",
@@ -201,12 +201,12 @@
               "src": "172:15:11"
             },
             "returnParameters": {
-              "id": 2164,
+              "id": 2136,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "196:0:11"
             },
-            "scope": 2179,
+            "scope": 2151,
             "src": "149:48:11",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -214,23 +214,23 @@
           },
           {
             "functionSelector": "f81ed6ae",
-            "id": 2170,
+            "id": 2142,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateStart",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2168,
+              "id": 2140,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2167,
+                  "id": 2139,
                   "mutability": "mutable",
                   "name": "_start",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2170,
+                  "scope": 2142,
                   "src": "226:14:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -239,7 +239,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2166,
+                    "id": 2138,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "226:7:11",
@@ -254,12 +254,12 @@
               "src": "225:16:11"
             },
             "returnParameters": {
-              "id": 2169,
+              "id": 2141,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "250:0:11"
             },
-            "scope": 2179,
+            "scope": 2151,
             "src": "205:46:11",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -267,29 +267,29 @@
           },
           {
             "functionSelector": "63074859",
-            "id": 2175,
+            "id": 2147,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawBVT",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2171,
+              "id": 2143,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "279:2:11"
             },
             "returnParameters": {
-              "id": 2174,
+              "id": 2146,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2173,
+                  "id": 2145,
                   "mutability": "mutable",
                   "name": "balance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2175,
+                  "scope": 2147,
                   "src": "300:15:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -298,7 +298,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2172,
+                    "id": 2144,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "300:7:11",
@@ -312,7 +312,7 @@
               ],
               "src": "299:17:11"
             },
-            "scope": 2179,
+            "scope": 2151,
             "src": "259:58:11",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -320,32 +320,32 @@
           },
           {
             "functionSelector": "1d111d13",
-            "id": 2178,
+            "id": 2150,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawBNB",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2176,
+              "id": 2148,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "345:2:11"
             },
             "returnParameters": {
-              "id": 2177,
+              "id": 2149,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "364:0:11"
             },
-            "scope": 2179,
+            "scope": 2151,
             "src": "325:40:11",
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2180,
+        "scope": 2152,
         "src": "60:308:11"
       }
     ],
@@ -356,7 +356,7 @@
       "absolutePath": "project:/contracts/interfaces/IPublicSale.sol",
       "exportedSymbols": {
         "IPublicSale": [
-          2179
+          2151
         ]
       },
       "license": "MIT"
@@ -371,7 +371,7 @@
             ".6"
           ]
         },
-        "id": 2155,
+        "id": 2127,
         "name": "PragmaDirective",
         "src": "33:23:11"
       },
@@ -387,10 +387,10 @@
           "contractKind": "interface",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            2179
+            2151
           ],
           "name": "IPublicSale",
-          "scope": 2180
+          "scope": 2152
         },
         "children": [
           {
@@ -403,7 +403,7 @@
                 null
               ],
               "name": "getBVTBalance",
-              "scope": 2179,
+              "scope": 2151,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -416,7 +416,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2156,
+                "id": 2128,
                 "name": "ParameterList",
                 "src": "111:2:11"
               },
@@ -427,7 +427,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 2160,
+                      "scope": 2132,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -439,22 +439,22 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 2157,
+                        "id": 2129,
                         "name": "ElementaryTypeName",
                         "src": "132:7:11"
                       }
                     ],
-                    "id": 2158,
+                    "id": 2130,
                     "name": "VariableDeclaration",
                     "src": "132:7:11"
                   }
                 ],
-                "id": 2159,
+                "id": 2131,
                 "name": "ParameterList",
                 "src": "131:9:11"
               }
             ],
-            "id": 2160,
+            "id": 2132,
             "name": "FunctionDefinition",
             "src": "89:52:11"
           },
@@ -468,7 +468,7 @@
                 null
               ],
               "name": "updateDeadline",
-              "scope": 2179,
+              "scope": 2151,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -481,7 +481,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_dead",
-                      "scope": 2165,
+                      "scope": 2137,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -493,17 +493,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 2161,
+                        "id": 2133,
                         "name": "ElementaryTypeName",
                         "src": "173:7:11"
                       }
                     ],
-                    "id": 2162,
+                    "id": 2134,
                     "name": "VariableDeclaration",
                     "src": "173:13:11"
                   }
                 ],
-                "id": 2163,
+                "id": 2135,
                 "name": "ParameterList",
                 "src": "172:15:11"
               },
@@ -514,12 +514,12 @@
                   ]
                 },
                 "children": [],
-                "id": 2164,
+                "id": 2136,
                 "name": "ParameterList",
                 "src": "196:0:11"
               }
             ],
-            "id": 2165,
+            "id": 2137,
             "name": "FunctionDefinition",
             "src": "149:48:11"
           },
@@ -533,7 +533,7 @@
                 null
               ],
               "name": "updateStart",
-              "scope": 2179,
+              "scope": 2151,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -546,7 +546,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_start",
-                      "scope": 2170,
+                      "scope": 2142,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -558,17 +558,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 2166,
+                        "id": 2138,
                         "name": "ElementaryTypeName",
                         "src": "226:7:11"
                       }
                     ],
-                    "id": 2167,
+                    "id": 2139,
                     "name": "VariableDeclaration",
                     "src": "226:14:11"
                   }
                 ],
-                "id": 2168,
+                "id": 2140,
                 "name": "ParameterList",
                 "src": "225:16:11"
               },
@@ -579,12 +579,12 @@
                   ]
                 },
                 "children": [],
-                "id": 2169,
+                "id": 2141,
                 "name": "ParameterList",
                 "src": "250:0:11"
               }
             ],
-            "id": 2170,
+            "id": 2142,
             "name": "FunctionDefinition",
             "src": "205:46:11"
           },
@@ -598,7 +598,7 @@
                 null
               ],
               "name": "withdrawBVT",
-              "scope": 2179,
+              "scope": 2151,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -611,7 +611,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2171,
+                "id": 2143,
                 "name": "ParameterList",
                 "src": "279:2:11"
               },
@@ -622,7 +622,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "balance",
-                      "scope": 2175,
+                      "scope": 2147,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -634,22 +634,22 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 2172,
+                        "id": 2144,
                         "name": "ElementaryTypeName",
                         "src": "300:7:11"
                       }
                     ],
-                    "id": 2173,
+                    "id": 2145,
                     "name": "VariableDeclaration",
                     "src": "300:15:11"
                   }
                 ],
-                "id": 2174,
+                "id": 2146,
                 "name": "ParameterList",
                 "src": "299:17:11"
               }
             ],
-            "id": 2175,
+            "id": 2147,
             "name": "FunctionDefinition",
             "src": "259:58:11"
           },
@@ -663,7 +663,7 @@
                 null
               ],
               "name": "withdrawBNB",
-              "scope": 2179,
+              "scope": 2151,
               "stateMutability": "payable",
               "virtual": false,
               "visibility": "external"
@@ -676,7 +676,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2176,
+                "id": 2148,
                 "name": "ParameterList",
                 "src": "345:2:11"
               },
@@ -687,22 +687,22 @@
                   ]
                 },
                 "children": [],
-                "id": 2177,
+                "id": 2149,
                 "name": "ParameterList",
                 "src": "364:0:11"
               }
             ],
-            "id": 2178,
+            "id": 2150,
             "name": "FunctionDefinition",
             "src": "325:40:11"
           }
         ],
-        "id": 2179,
+        "id": 2151,
         "name": "ContractDefinition",
         "src": "60:308:11"
       }
     ],
-    "id": 2180,
+    "id": 2152,
     "name": "SourceUnit",
     "src": "33:337:11"
   },
@@ -712,7 +712,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-06T04:39:27.530Z",
+  "updatedAt": "2021-12-10T06:25:34.529Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
