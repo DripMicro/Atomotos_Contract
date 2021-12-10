@@ -1,103 +1,103 @@
-import stagingOnboard from 'bnc-onboard-staging'
-import stagingNotify from 'bnc-notify-staging'
-import Notify from 'bnc-notify'
-import Onboard from 'bnc-onboard'
+// import stagingOnboard from 'bnc-onboard-staging'
+// import stagingNotify from 'bnc-notify-staging'
+// import Notify from 'bnc-notify'
+// import Onboard from 'bnc-onboard'
 
-const networkId = 97
-const rpcUrl = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
-const apiUrl = process.env.REACT_APP_API_URL
-const staging = process.env.REACT_APP_STAGING
-const dappId = '46adf0d3-f535-4655-9157-10e714d8eae0'
+// const networkId = 97
+// const rpcUrl = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
+// const apiUrl = process.env.REACT_APP_API_URL
+// const staging = process.env.REACT_APP_STAGING
+// const dappId = '46adf0d3-f535-4655-9157-10e714d8eae0'
 
-export function initOnboard(subscriptions) {
-  const onboard = staging ? stagingOnboard : Onboard
-  return onboard({
-    dappId,
-    hideBranding: false,
-    networkId,
-    apiUrl,
-    // darkMode: true,
-    subscriptions,
-    walletSelect: {
-      wallets: [
-        { walletName: 'metamask' },
-        {
-          walletName: 'trezor',
-          appUrl: 'https://reactdemo.blocknative.com',
-          email: 'aaron@blocknative.com',
-          rpcUrl
-        },
-        {
-          walletName: 'ledger',
-          rpcUrl
-        },
-        {
-          walletName: 'walletConnect',
-          rpc: {
-            // 1: `https://mainnet.infura.io/v3/${infuraApiKey}`,
-            '56': 'https://bsc-dataseed1.defibit.io/',
-            '97': 'https://data-seed-prebsc-1-s1.binance.org:8545/'
-          },
-          bridge: 'https://bridge.walletconnect.org',
-          //infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
-        },
-        { walletName: 'cobovault', appName: 'React Demo', rpcUrl },
-        { walletName: 'keystone', appName: 'React Demo', rpcUrl },
-        { walletName: 'keepkey', rpcUrl },
-        {
-          walletName: 'lattice',
-          appName: 'Onboard Demo',
-          rpcUrl
-        },
-        { walletName: 'coinbase' },
-        { walletName: 'status' },
-        { walletName: 'walletLink', rpcUrl },
-        {
-          walletName: 'portis',
-          apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
-        },
-        { walletName: 'fortmatic', apiKey: 'pk_test_886ADCAB855632AA' },
-        { walletName: 'torus' },
-        { walletName: 'trust', rpcUrl },
-        { walletName: 'opera' },
-        { walletName: 'operaTouch' },
-        { walletName: 'imToken', rpcUrl },
-        { walletName: 'meetone' },
-        { walletName: 'mykey', rpcUrl },
-        { walletName: 'wallet.io', rpcUrl },
-        { walletName: 'huobiwallet', rpcUrl },
-        { walletName: 'alphawallet', rpcUrl },
-        { walletName: 'hyperpay' },
-        { walletName: 'atoken' },
-        { walletName: 'liquality' },
-        { walletName: 'frame' },
-        { walletName: 'tokenpocket', rpcUrl },
-        { walletName: 'authereum', disableNotifications: true },
-        { walletName: 'ownbit' },
-        { walletName: 'gnosis' },
-        { walletName: 'dcent' },
-        { walletName: 'bitpie' },
-        { walletName: 'xdefi' },
-        { walletName: 'binance', rpcUrl },
-        { walletName: 'tp' },
-      ]
-    },
-    walletCheck: [
-      { checkName: 'derivationPath' },
-      { checkName: 'connect' },
-      { checkName: 'accounts' },
-      { checkName: 'network' },
-      //{ checkName: 'balance', minimumBalance: '100000' }
-    ]
-  })
-}
+// export function initOnboard(subscriptions) {
+//   const onboard = staging ? stagingOnboard : Onboard
+//   return onboard({
+//     dappId,
+//     hideBranding: false,
+//     networkId,
+//     apiUrl,
+//     // darkMode: true,
+//     subscriptions,
+//     walletSelect: {
+//       wallets: [
+//         { walletName: 'metamask' },
+//         {
+//           walletName: 'trezor',
+//           appUrl: 'https://reactdemo.blocknative.com',
+//           email: 'aaron@blocknative.com',
+//           rpcUrl
+//         },
+//         {
+//           walletName: 'ledger',
+//           rpcUrl
+//         },
+//         {
+//           walletName: 'walletConnect',
+//           rpc: {
+//             // 1: `https://mainnet.infura.io/v3/${infuraApiKey}`,
+//             '56': 'https://bsc-dataseed1.defibit.io/',
+//             '97': 'https://data-seed-prebsc-1-s1.binance.org:8545/'
+//           },
+//           bridge: 'https://bridge.walletconnect.org',
+//           //infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
+//         },
+//         { walletName: 'cobovault', appName: 'React Demo', rpcUrl },
+//         { walletName: 'keystone', appName: 'React Demo', rpcUrl },
+//         { walletName: 'keepkey', rpcUrl },
+//         {
+//           walletName: 'lattice',
+//           appName: 'Onboard Demo',
+//           rpcUrl
+//         },
+//         { walletName: 'coinbase' },
+//         { walletName: 'status' },
+//         { walletName: 'walletLink', rpcUrl },
+//         {
+//           walletName: 'portis',
+//           apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
+//         },
+//         { walletName: 'fortmatic', apiKey: 'pk_test_886ADCAB855632AA' },
+//         { walletName: 'torus' },
+//         { walletName: 'trust', rpcUrl },
+//         { walletName: 'opera' },
+//         { walletName: 'operaTouch' },
+//         { walletName: 'imToken', rpcUrl },
+//         { walletName: 'meetone' },
+//         { walletName: 'mykey', rpcUrl },
+//         { walletName: 'wallet.io', rpcUrl },
+//         { walletName: 'huobiwallet', rpcUrl },
+//         { walletName: 'alphawallet', rpcUrl },
+//         { walletName: 'hyperpay' },
+//         { walletName: 'atoken' },
+//         { walletName: 'liquality' },
+//         { walletName: 'frame' },
+//         { walletName: 'tokenpocket', rpcUrl },
+//         { walletName: 'authereum', disableNotifications: true },
+//         { walletName: 'ownbit' },
+//         { walletName: 'gnosis' },
+//         { walletName: 'dcent' },
+//         { walletName: 'bitpie' },
+//         { walletName: 'xdefi' },
+//         { walletName: 'binance', rpcUrl },
+//         { walletName: 'tp' },
+//       ]
+//     },
+//     walletCheck: [
+//       { checkName: 'derivationPath' },
+//       { checkName: 'connect' },
+//       { checkName: 'accounts' },
+//       { checkName: 'network' },
+//       //{ checkName: 'balance', minimumBalance: '100000' }
+//     ]
+//   })
+// }
 
-export function initNotify() {
-  const notify = staging ? stagingNotify : Notify
-  return notify({
-    dappId,
-    networkId,
-    apiUrl,
-    onerror: error => console.log(`Notify error: ${error.message}`)
-  })
-}
+// export function initNotify() {
+//   const notify = staging ? stagingNotify : Notify
+//   return notify({
+//     dappId,
+//     networkId,
+//     apiUrl,
+//     onerror: error => console.log(`Notify error: ${error.message}`)
+//   })
+// }

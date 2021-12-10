@@ -115,10 +115,10 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
             // msgvalue = amount;
 
         require(block.timestamp >= start, "sale-not-started");        
-        require(
-            saleClosed == false && block.timestamp < deadline,
-            "sale-closed"
-        );
+        // require(
+        //     saleClosed == false && block.timestamp < deadline,
+        //     "sale-closed"
+        // );
 
 		require(msg.value >= 0.25 * 10**18, "Fund is less than 0.25 BNB");
 		require(msg.value <= 2 * 10**18, "Fund is more than 2 BNB");

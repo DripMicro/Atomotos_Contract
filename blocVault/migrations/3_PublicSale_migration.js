@@ -5,7 +5,7 @@ const { toWei } = web3.utils;
 
 module.exports = async function (deployer, network) {
     try {
-        let BUSDTokenAddress;
+        // let BUSDTokenAddress;
         console.log(network);
         if (network == 'develop' || network == 'ganache_local') {
             await deployer.deploy(BUSDToken);

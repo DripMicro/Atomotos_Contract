@@ -52,7 +52,7 @@ export default function HomeNavbar() {
     let [minute, setMinute] = useState(0);
     let [second, setSecond] = useState(0);
     let [startTime, setStartTime] = useState(1638801600); // start unix time -- privateSale
-    let [endTime, setEndTime] = useState(1638932400); // end unix time -- privateSale
+    let [endTime, setEndTime] = useState(1639363768); // end unix time -- privateSale
     //Modal
     const [isOpen, setIsOpen] = useState(false);
     const [isPrivateBuy, setIsPrivateBuy] = useState(false);
@@ -75,7 +75,12 @@ export default function HomeNavbar() {
     }
 ///////////////////////////////////////////////
     function init() {
-
+      // Count Time
+      let localTime = Math.ceil((new Date).getTime()/1000);
+      if(localTime > startTime)
+        setCountTime(endTime - localTime);
+      else 
+        setCountTime(endTime - startTime);
       console.log("Initializing example");
       console.log("WalletConnectProvider is", WalletConnectProvider);
       console.log("Fortmatic is", Fortmatic);
@@ -83,13 +88,13 @@ export default function HomeNavbar() {
       // console.log(provider);
       // Check that the web page is run in a secure context,
       // as otherwise MetaMask won't be available
-      if(window.location.protocol !== 'https:') {
-        // https://ethereum.stackexchange.com/a/62217/620
-        const alert = document.querySelector("#alert-error-https");
-        alert.style.display = "block";
-        document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
-        return;
-      }
+      // if(window.location.protocol !== 'https:') {
+      //   // https://ethereum.stackexchange.com/a/62217/620
+      //   const alert = document.querySelector("#alert-error-https");
+      //   alert.style.display = "block";
+      //   document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+      //   return;
+      // }
     
       // Tell Web3modal what providers we have available.
       // Built-in web browser provider (only one can exist as a time)
@@ -99,7 +104,7 @@ export default function HomeNavbar() {
           package: WalletConnectProvider,
           options: {
             // Mikko's test key - don't copy as your mileage may vary
-            infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+            infuraId: "3f88fa504c1d4ec1bec07966779f1ce0",
           }
         },
     
@@ -127,6 +132,7 @@ export default function HomeNavbar() {
 
       // Get a Web3 instance for the wallet
       const web3 = new Web3(provider);
+      setWeb3(web3);
     
       console.log("Web3 instance is", web3);
     
@@ -139,18 +145,45 @@ export default function HomeNavbar() {
       // document.querySelector("#network-name").textContent = chainData.name;
     
       // Get list of accounts of the connected wallet
-      const accounts = await web3.eth.getAccounts();
+      const accounts_temp = await web3.eth.getAccounts();
+      
+      const networkId_temp = web3.eth.net.getId();
+      networkId_temp.then(function(networkId){
+        setNetwork(networkId);
+      })
+
+      // accounts_temp.then(function(accounts){
+        setAccounts(accounts_temp);
+
+        // console.log(accounts_temp)
+      // })
+    
+      const tokenInstance_temp = new web3.eth.Contract(
+        BVToken.abi,
+        BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
+      );
+      tokenInstance_temp.options.address = "0x8057F40f92dA0b6A8C954cb365fa8c20b05F0354";
+      setTokenInstance(tokenInstance_temp);
+
+      const publicSaleInstance_temp = new web3.eth.Contract(
+        PublicSale.abi,
+        PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
+      );
+      console.log(2)
+      publicSaleInstance_temp.options.address = "0xB5Ae04865E5a205CD2E706462ca24453D44Fc24F";
+      setPublicSaleInstance(publicSaleInstance_temp);
+      console.log(publicSaleInstance_temp)
     
       // MetaMask does not give you all accounts, only the selected account
       console.log("Got accounts", accounts);
-      selectedAccount = accounts[0];
+      // selectedAccount = accounts[0];
     
       // document.querySelector("#selected-account").textContent = selectedAccount;
-      console.log('selectedAccount', selectedAccount);
+      // console.log('selectedAccount', selectedAccount);
     
       // Get a handl
-      const template = document.querySelector("#template-balance");
-      const accountContainer = document.querySelector("#accounts");
+      // const template = document.querySelector("#template-balance");
+      // const accountContainer = document.querySelector("#accounts");
     
       // Purge UI elements any previously loaded accounts
       // accountContainer.innerHTML = '';
@@ -297,17 +330,17 @@ export default function HomeNavbar() {
                   BVToken.abi,
                   BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
                 );
-                tokenInstance_temp.options.address = "0x0a9F7f237441B4E3F37fFf9dA07be5fA73C67372";
+                // tokenInstance_temp.options.address = "0x67Aa195a37BFaEd9135757BD9C08ea341a06fA4d";
                 setTokenInstance(tokenInstance_temp);
     
                 const publicSaleInstance_temp = new web3_provider.eth.Contract(
                   PublicSale.abi,
                   PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
                 );
-                console.log(2)
-                publicSaleInstance_temp.options.address = "0xB93408466512D0e0C5D4d3aC8426a500d9AffE40";
+                
+                // publicSaleInstance_temp.options.address = "0x87974e335eD405F8BE47a78a459A6244517E5368";
                 setPublicSaleInstance(publicSaleInstance_temp);
-                console.log(publicSaleInstance_temp)
+                
         
                 window.localStorage.setItem('selectedWallet', wallet.name)
               } else {
@@ -465,7 +498,7 @@ export default function HomeNavbar() {
         if (Number(Amount) >= 0.25 && Number(Amount) <= 2){
           if (publicSaleInstance) {
             const walletlist = await publicSaleInstance.methods.getPrivateWhiteList().call();
-            
+            console.log(publicSaleInstance);
             if(walletlist.indexOf(accounts[0]) !== -1) {
               store.addNotification({
                 title: "Error BNB Request",
@@ -480,8 +513,13 @@ export default function HomeNavbar() {
               });
             } else {
               const amount = tokenAmount;
+              console.log(accounts[0].toString())
+              console.log(amount);
+              console.log( web3.utils.toWei(amount.toString(),"wei"))
+              const bnbfunds = await publicSaleInstance.methods.getbalance().call();
+              console.log(bnbfunds);
               if (accounts.length > 0)
-                await publicSaleInstance.methods.investBNB().send({from: accounts[0], value: web3.utils.toWei(amount.toString(),"wei")});
+                await publicSaleInstance.methods.investBNB().send({from: accounts[0].toString(), value: web3.utils.toWei(amount.toString(),"wei")});
               else {
                 store.addNotification({
                   title: "Error Not Connected Your Wallet",
@@ -498,6 +536,7 @@ export default function HomeNavbar() {
             }
            }
         } else {
+          console.log(publicSaleInstance);
           store.addNotification({
             title: "Error BNB quantity",
             message: "You have to input between 0.5 BNB and 2 BNB.",
