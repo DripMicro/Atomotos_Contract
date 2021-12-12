@@ -21,7 +21,7 @@ require("dotenv").config({path: "./.env"});
  */
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const bscTest = "https://data-seed-prebsc-1-s1.binance.org:8545";
+const bscMain = "https://bsc-dataseed.binance.org/";
 const AccountIndex = 0;
 
 const fs = require('fs');
@@ -77,9 +77,9 @@ module.exports = {
     // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
     // Useful for private networks
-    bscTestnet: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, bscTest),
-      network_id: 97,   // This network is yours, in the cloud. 
+    bscMainnet: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, bscMain),
+      network_id: 56,   // This network is yours, in the cloud. 
       production: true    // Treats this network as if it was a public net. (default: false)
     }
   },

@@ -8,12 +8,10 @@ import Fortmatic from 'fortmatic';
 import BVToken from "../../contracts/BVToken.json";
 import PublicSale from "../../contracts/PublicSale.json";
 import BUSDToken from "../../contracts/BUSDToken.json";
-import { initOnboard, initNotify } from './services.js';
+import { initOnboard, initNotify } from '../landing-page/services';
 // import { ethers } from 'ethers';
 // import getSigner from './signer'
 import Onboard from 'bnc-onboard'
-import avatarPlaceholder from './avatar-placeholder.png'
-import networkEnum from './networkEnum'
 import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import Modal from "react-modal";
@@ -64,7 +62,6 @@ export default function HomeNavbar() {
 
     // Web3modal instance
     const [web3Modal, setWeb3Modal] = useState(null);
-
     const [walletConnected, setWalletConnected] = useState(false);
 
     // Chosen wallet provider given by the dialog window
@@ -527,7 +524,7 @@ export default function HomeNavbar() {
               }
             });
           }
-        } else {
+        }else{
           store.addNotification({
             title: "Error cannot find your account",
             message: "Please check out available wallets",
@@ -568,6 +565,18 @@ export default function HomeNavbar() {
           console.log(bnbfunds);
           setPrivateBNB(Number(bnbfunds)/10**18)
           setPrivateRate({width: (Number(bnbfunds)/60**18).toString()+'%'})
+        } else {
+          store.addNotification({
+            title: "Error cannot find your account",
+            message: "Please check out available wallets",
+            type: "danger", // 'default', 'success', 'info', 'warning'
+            container: "top-right", // where to position the notifications
+            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+            dismiss: {
+              duration: 3000
+            }
+          });
         }
       }
 
@@ -620,6 +629,7 @@ export default function HomeNavbar() {
           // before start 
           if (localTime < startTime){
             setTimeTitle('Private Sale Starts in')
+            // console.log(startIn)
             startIn -= 1;
             if (startIn >= 0) {
               countdown(startIn)
@@ -633,7 +643,10 @@ export default function HomeNavbar() {
             if (remainTime >= 0) {
               countdown(remainTime)
               setIsPrivateBuy(true)
-            } 
+              if(remainTime %60 == 0) {
+                handleGetBNBBalance()
+              }
+            }
             // console.log(remainTime)  
           } else if (localTime > endTime) {
             initTime()
@@ -652,359 +665,82 @@ export default function HomeNavbar() {
 
   return (
     <>
-      <header className="header">
-        <div className="container">
-          <nav id="navigation1" className="navigation">
-            <div className="nav-header">
-              <a className="nav-brand" href="index.html">
-                <img src="assets/images/trypto_logo_blue.png" alt="" />
-              </a>
-              <div className="nav-toggle" />
-            </div>
-
-            <div className="nav-menus-wrapper xs-menu">
-              <ul className="header-right align-to-right">
-               
-              </ul>
-              <ul className="nav-menu align-to-right">
-                <li className="active">
-                  <a href="#">Home</a>
-               
-                </li>
-                <li>
-                  <a href="#featured" className="scrolls">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#how_work" className="scrolls">
-                    Pre-Sale ICO
-                  </a>
-                </li>
-   
-                <li>
-                  <a href="#whitePaper" className="scrolls">
-                    White Paper
-                  </a>
-                </li>
-                <li>
-                  {/* {wallet.provider && (
-                    <button className="btn btn-primary wallet_btn" onClick={onboard.walletReset}>
-                      Reset Wallet
-                    </button>
-                  )}
-                  {wallet.provider && (
-                    <button className="btn btn-primary wallet_btn" onClick={onboard.walletCheck}>
-                      Wallet Checks
-                    </button>
-                  )} */}
-                  {!walletConnected && (
-                    <button className="btn btn-primary wallet_btn" onClick={() => { onConnect() }}>
-                      Connect Wallet
-                    </button>
-                  )}
-                  {walletConnected && (
-                    <button className="btn btn-primary wallet_btn" onClick={() => { onDisconnect() }}>
-                      Disconnect Wallet
-                    </button>
-                  )}
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        {/* <!-- .container END --> */}
-      </header>
-      
-      <div id="particles-js">
-          <section className="banner-sec" id="particles-js1">
-            <div
-              className="banner-item"
-              style={{
-                background:
-                  'url(assets/images/background/banner_bg.jpg) no-repeat center center /cover'
-              }}
-            >
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-8 mx-auto">
-                    <div className="banner-content">
-                      <h1 className="banner-title">Welcome to the BlocVault Ecosystem</h1>
-                      <p>
-                        BlocVault is a decentralized BSC project that will use the BVLT token to reward
-                        investors and holders within our App and on our Platform. 
-                      </p>
-                      <a href="#" className="btn btn-primary">
-                        HOW TO BUY
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="banner-img-item">
-                  <img
-                    className="banner-img"
-                    src="assets/images/banner/banner_img.png"
-                    alt=""
-                  />
-                  <img
-                    className="banner-ico banner-ico-1"
-                    src="assets/images/banner/b1.png"
-                    alt=""
-                  />
-                  <img
-                    className="banner-ico banner-ico-2"
-                    src="assets/images/banner/b2.png"
-                    alt=""
-                  />
-                  <img
-                    className="banner-ico banner-ico-3"
-                    src="assets/images/banner/b3.png"
-                    alt=""
-                  />
-                  <img
-                    className="banner-ico banner-ico-4"
-                    src="assets/images/banner/b4.png"
-                    alt=""
-                  />
-                  <img
-                    className="banner-ico banner-ico-5"
-                    src="assets/images/banner/b5.png"
-                    alt=""
-                  />
-                </div>
+        <header className="header">
+          <div className="container">
+            <nav id="navigation1" className="navigation">
+              <div className="nav-header">
+                <a className="nav-brand" href="index.html">
+                  <img src="assets/images/trypto_logo_blue.png" alt="" />
+                </a>
+                <div className="nav-toggle" />
               </div>
-            </div>
-          </section>
+
+              <div className="nav-menus-wrapper xs-menu">
+                <ul className="nav-menu align-to-right">
+                  <li>
+                    {!walletConnected && (
+                      <button className="btn btn-primary wallet_btn" onClick={() => { onConnect() }}>
+                        Connect Wallet
+                      </button>
+                    )}
+                    {walletConnected && (
+                      <button className="btn btn-primary wallet_btn" onClick={() => { onDisconnect() }}>
+                        Disconnect Wallet
+                      </button>
+                    )}
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          {/* <!-- .container END --> */}
+        </header>
+        <div id="particles-js" className='ps_background'>
           <div className="featured-area">
-            <div className="blockcain-and-featured-area">
-              
-              <section className="blockcain-top-sec">
-                <div className="container">
-                  <div className="row">
-                    <div
-                      className="col-md-6 wow fadeInUp"
-                      data-wow-duration="1.5s"
-                    >
-                    
-                      <div className="blockcain-top">
-                        <h2 className="column-title">
-                          Our revolutionary App suite.
-                        </h2>
-                        <p>
-                          Buy, Sell, Swap, Trade, Chat and track all your 
-                          investments in one place. Use our BV debit card
-                          in-store worldwide.  
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="col-md-5 offset-md-1 wow fadeInUp"
-                      data-wow-duration="2s"
-                    >
-                      <div className="blockcain-top-content">
-                        <h2 className="column-title">
-                          Stay connected with our marketplace. 
-                        </h2>
-                        <p>
-                          Our NFT marketplace & online products will allow
-                          users to connect send & receive assets in seconds
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-  
-              <section className="featured-sec" id="featured">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-8 mx-auto">
-                      <div className="section-title-item">
-                        <small className="xs-section-title"></small>
-                        <h2 className="section-title">Revolutionary Features</h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="main-fetured-item">
-                    <div className="row">
-                      <div
-                        className="col-md-4 wow fadeInUp"
-                        data-wow-duration="1.5s"
-                      >
-                        <div className="single-feaured-item">
-                          <img src="assets/images/feature/icon-1.png" alt="" />
-                          <h3 className="feature-title">
-                            BV PAY
-                          </h3>
-                          <p>
-                            Use our in app exchange 
-                            and BV Debit Card to shop 
-                            in-store worldwide. 
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        className="col-md-4 wow fadeInUp"
-                        data-wow-duration="2s"
-                      >
-                        <div className="single-feaured-item">
-                          <img src="assets/images/feature/icon-2.png" alt="" />
-                          <h3 className="feature-title">BV CHAT</h3>
-                          <p>
-                            Chat with friends & family
-                            on the go. Video call or group
-                            call with other investors. 
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        className="col-md-4 wow fadeInUp"
-                        data-wow-duration="2.5s"
-                      >
-                        <div className="single-feaured-item">
-                          <img src="assets/images/feature/icon-3.png" alt="" />
-                          <h3 className="feature-title">
-                            BV SWAP
-                          </h3>
-                          <p>
-                            Swap tokens across 
-                            networks in seconds with 
-                            BV multi chain swap
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-  
-                  <div
-                    className="featured-poligonal-img wow fadeInUp"
-                    data-wow-duration="1.5s"
-                  >
-                    <img
-                      className="poligonal-img"
-                      src="assets/images/feature/poligonal.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div className="blockcain-and-logo-area">
+            <div className="blockcain-and-logo-area ps-logo-area">
               <section className="blockcain-business-sec">
                 <div className="container">
                   <div className="row">
                     <div
-                      className="col-md-6 col-lg-6 wow fadeInUp"
-                      data-wow-duration="1.5s"
-                    >
-                      <div className="blockcain-img">
-                        <img
-                          src="assets/images/blockchain/block_img.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className="col-md-6 col-lg-5 offset-lg-1 wow fadeInUp"
+                      className="col-md-6 col-lg-10 offset-lg-1 wow fadeInUp"
                       data-wow-duration="2s"
                     >
                       <div className="blockcain-content">
                         <small className="xs-section-title">
                         </small>
-                        <h3 className="column-title">The BVLT Token</h3>
-                        <p>
-                          The BVLT token is a Binance smart chain (BSC) deflationary token.
-                          Binance smart chain (BSC) was developed as a means of utilizing
-                          solidity-based smart contracts with much greater speed and efficiency
-                          than other, competing chains. With decentralized exchanges on BSC
-                          offering lightning fast swaps and extremely low fees, BSC has started to
-                          become one of the most widely used block-chains for decentralized
-                          finance (Defi). BSC uses a token protocol developed by the Binance team
-                          called BEP-20. The BVLT tokens deflationary nature means that each time
-                          a transaction occurs using a deflationary token a percentage of the tokens
-                          used in the transactions are destroyed permanently. This function is
-                          constantly at work removing tokens from the total available supply. Over
-                          time, this action works to help increase the value of each token
-                          dramatically as it increases the scarcity of tokens.
+                        <h3 className="column-title" style={{textAlign:'center'}}>The BVLT Token</h3>
+                        <p className="ps_titleTitle">
+                              The BVLT token is a Binance smart chain (BSC) deflationary token. <br/><br/>
+                            Binance smart chain (BSC) was developed as a means of utilizing solidity-based smart contracts with much greater speed and efficiency than other, competing chains. <br/><br/>
+                            With decentralized exchanges on BSC offering lightning fast swaps and extremely low fees, BSC has started to become one of the most widely used block-chains for decentralized finance (Defi). <br/><br/>
+                            BSC uses a token protocol developed by the Binance team called BEP-20. <br/><br/>
+                            The BVLT tokens deflationary nature means that each time a transaction occurs using a deflationary token a percentage of the tokens used in the transactions are destroyed permanently. <br/><br/>
+                            This function is constantly at work removing tokens from the total available supply. <br/><br/>
+                            Over time, this action works to help increase the value of each token dramatically as it increases the scarcity of tokens.<br/>
                         </p>
-                        <a href="#" className="btn btn-primary">
+                        {/* <a href="#" className="btn btn-primary">
                           BUY TOKEN
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                   </div>
                 </div>
               </section>
   
-              <section className="client-logo-sec">
-                <div className="container">
-                  <div className="client-logo-item">
-                    <div className="row owl-carousel" id="client-slider">
-                      <div
-                        className="col-sm wow fadeInUp"
-                        data-wow-duration="1.5s"
-                      >
-                        <div className="client-logo">
-                          <img
-                            src="assets/images/client_logo/logo_style1.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div className="col-sm wow fadeInUp" data-wow-duration="2s">
-                        <div className="client-logo">
-                          <img
-                            src="assets/images/client_logo/logo_style2.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        className="col-sm wow fadeInUp"
-                        data-wow-duration="2.5s"
-                      >
-                        <div className="client-logo">
-                          <img
-                            src="assets/images/client_logo/logo_style3.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div className="col-sm wow fadeInUp" data-wow-duration="3s">
-                        <div className="client-logo">
-                          <img
-                            src="assets/images/client_logo/logo_style4.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        className="col-sm wow fadeInUp"
-                        data-wow-duration="3.5s"
-                      >
-                        <div className="client-logo">
-                          <img
-                            src="assets/images/client_logo/logo_style5.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+             
             </div>
           </div>
+
         </div>
      
-        <div className="how-work-and-token-area">
-          <section className="how-work-sec section-padding" id="how_work">
+        <div className="how-work-and-token-area  ps_background">
+          <section className="how-work-sec ps-logo-area section-padding" id="how_work">
             <div className="container">
               <div className="row">
                 <div className="col-lg-8 mx-auto">
                   <div className="section-title-item">
                     <small className="xs-section-title"></small>
-                    <h2 className="section-title">Token Launch Details</h2>
+                    <h2 className="section-title">Token Sale Details</h2>
                   </div>
                 </div>
               </div>
@@ -1078,208 +814,106 @@ export default function HomeNavbar() {
                     {/* <!-- xs modal --> */}
                     
                   </div>
+
+                  <div className="rating">
+                    <span>{privateBNB}/600BNB</span><br/>
+                    <span>Raised</span>
+                    <div className="sale_line">
+                      <div className="sale_percent" style={privateRate}></div>
+                    </div>
+                    <div className="private_period work-token-item">
+                      <ul>
+                        <li>
+                          <strong>Minimum Contribution</strong>
+                          <span> 0.25 BNB </span>
+                        </li>
+                        <li>
+                          <strong>Maximum Contribution</strong>
+                          <span> 2 BNB </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div className="col-lg-3 offset-lg-1 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2s">
+                <div className="col-lg-3 offset-lg-1 col-md-6 align-self-center wow fadeInUp" style={{paddingRight:'0px'}} data-wow-duration="2s">
                   <div className="work-token-item">
                     <ul>
                       <li>
-                        <strong> Pre-Sale Starts</strong>
-                        <span> Open for registration</span>
+                        <strong> Pre-Sale Start</strong>
+                        <span> 11 Dec 2021 at 21:00 </span>
                       </li>
                       <li>
-                        <strong> Pre-Sale Terms</strong>
-                        <span>To be confirmed</span>
+                        <strong> Pre-Sale End</strong>
+                        <span> 11 Dec 2021 at 21:00 </span>
                       </li>
                       <li>
-                        <strong> Token Symbol</strong>
-                        <span>BVLT</span>
+                        <strong> Liquidity Unlock Date</strong>
+                        <span> 11 Dec 2021 at 21:00 </span>
                       </li>
                       <li>
-                        <strong> Total Number of Tokens</strong>
-                        <span>To be confirmed</span>
+                        <strong>Soft Cap</strong>
+                        <span> 300 BNB </span>
+                      </li>
+                      <li>
+                        <strong>Hard Cap</strong>
+                        <span> 600 BNB </span>
+                      </li>
+                      <li>
+                        <strong>Private-Sale price</strong>
+                        <span> 400,000,000 BVLT per BNB </span>
+                      </li>
+                      <li>
+                        <strong>Pre-Sale price</strong>
+                        <span> 360,000,000 BVLT per BNB </span>
+                      </li>
+                      <li>
+                        <strong>Listing Rate</strong>
+                        <span> 324,000,000 BVLT per BNB </span>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div className="col-lg-4 align-self-center col-md-12 wow fadeInUp" data-wow-duration="2.5s">
-                  <div className="work-video">
-                    <img src="assets/images/how-works/video.jpg" alt=""/>
-                    <a href="https://www.youtube.com/watch?v=G5Hy4-ri6b4" className="video-btn xs-video" data-effect="mfp-zoom-in">
-                      <i className="icon icon-play-button2"></i>
-                      <span className="btn-hover-anim"></span>
-                    </a>
+                <div className="col-lg-4 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2.5s">
+                  <div className="work-token-item">
+                    <ul>
+                      <li>
+                        <strong> Total Supply </strong>
+                        <span> 3,000,000,000,000 BVLT - 100% </span>
+                      </li>
+                      <li>
+                        <strong> Tokens For Private-Sale </strong>
+                        <span> 240,000,000,000 BVLT - 8% </span>
+                      </li>
+                      <li>
+                        <strong> Pre-sale </strong>
+                        <span> 54,000,000,000 BVLT - 1.8% </span>
+                      </li>
+                      <li>
+                        <strong> Marketing fund </strong>
+                        <span>  225,000,000,000 BVLT 7.5% VESTED </span>
+                      </li>
+                      <li>
+                        <strong> Development fund </strong>
+                        <span> 225,000,000,000 BVLT 7.5% VESTED </span>
+                      </li>
+                      <li>
+                        <strong> Liquidity </strong>
+                        <span>201,114,000,000 BVLT 6.7% LOCKED</span>
+                      </li>
+                      <li>
+                        <strong>Reserve liquidity</strong>
+                        <span>210,000,000,000 BVLT 7% LOCKED</span>
+                      </li>
+                      <li>
+                        <strong>Airdropping/promos</strong>
+                        <span>150,000,000,000 BVLT 5% VESTED</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          <div className="token-roadmap-area">
-            <section className="token-distribution-sec section-padding" >
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-8 mx-auto">
-                    <div className="section-title-item">
-                      <small className="xs-section-title">Token Details</small>
-                      <h2 className="section-title">Token Distribution</h2>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-lg-6 wow fadeInUp" data-wow-duration="1.5s">
-                    <div className="row chart-gap">
-                      <div className="col-sm-7 ml-lg-auto">
-                        <canvas className="token-chart-item" id="myChart"></canvas>
-                        <h3 className="xs-single-title">Token Distribution</h3>
-                      </div>
-                      <div className=" col-sm-5">
-                        <ul className="chart-label">
-                          <li>
-                            <img src="assets/images/token/label_img1.png" alt=""/>
-                            <span className="chart-bg1"></span> To Be Comfirmed
-                          </li>
-                          <li>
-                            <img src="assets/images/token/label_img2.png" alt=""/>
-                            <span className="chart-bg2"></span> To Be Comfirmed
-                          </li>
-                          <li>
-                            <img src="assets/images/token/label_img3.png" alt=""/>
-                            <span className="chart-bg3"></span> To Be Comfirmed
-                          </li>
-                          <li>
-                            <img src="assets/images/token/label_img4.png" alt=""/>
-                            <span className="chart-bg4"></span> To Be Comfirmed
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 wow fadeInUp" data-wow-duration="2s">
-                    <div className="row chart-gap">
-                      <div className="col-sm-7 ml-lg-auto">
-                        <canvas className="token-chart-item" id="myChartTwo"></canvas>
-                        <h3 className="xs-single-title">Tokenomics</h3>
-                      </div>
-                      <div className="col-sm-5">
-                        <ul className="chart-label chartLabel2">
-                          <li>
-                            <img src="assets/images/token/label_img2-1.png" alt=""/>
-                            <span className="chart-bg1">2 %</span> Liquidity
-                          </li>
-                          <li>  
-                            <img src="assets/images/token/label_img2-2.png" alt=""/>
-                            <span className="chart-bg2">3 %</span> Development
-                          </li>
-                          <li>
-                            <img src="assets/images/token/label_img2-3.png" alt=""/>
-                            <span className="chart-bg3">2 %</span> Marketing
-                          </li>
-                          <li>
-                            <img src="assets/images/token/label_img2-4.png" alt=""/>
-                            <span className="chart-bg4">3 %</span> Holders
-                          </li>
-                          <li>
-                            <img src="assets/images/token/label_img2-5.png" alt=""/>
-                            <span className="chart-bg5">2 %</span> Buy Back
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section className="roadmap-sec section-padding" >
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-lg-8 mx-auto">
-                    <div className="section-title-item">
-                      <small className="xs-section-title"></small>
-                      <h2 className="section-title">Blocvault Roadmap</h2>
-                    </div>
-                  </div>
-                </div>
-                <div className="roadmap-timeline">
-                  <img src="assets/images/roadmap/timelinered.png" alt=""/>
-                  <div className="custom-container container">
-                    <div className="row roadmap-timeline-item">
-                      <div className="col-md xs-roadmap wow fadeInUp" data-wow-duration="1.5s">
-                        <div className="single-roadmap-timeline">
-                          <b></b>
-                          <h3>Oct 2021</h3>
-                          <p> 
-                              Social Media Platforms<br/>
-                              Whitepaper Launch<br/>
-                              Build out our community<br/>
-                              Begin App Development
-                          </p>
-                        </div>
-                      </div>
-                      <div className="col-md xs-roadmap wow fadeInUp" data-wow-duration="2s">
-                        <div className="single-roadmap-timeline">
-                          <b></b>
-                          <h3>Nov 2021</h3>
-                            <p> 
-                              Website Launch<br/>
-                              Social Marketing<br/>
-                              New token platforms<br/>
-                              Techrate Audit.<br/>
-                              Begin PPC campaign’s<br/>
-                              Token Giveaways<br/>
-                            </p>
-                        </div>
-                      </div>
-                      <div className="col-md xs-roadmap wow fadeInUp" data-wow-duration="2.5s">
-                        <div className="single-roadmap-timeline">
-                          <b></b>
-                          <h3>Dec 2021</h3>
-                          <p> 
-                            Pre-Sale BVLT Token<br/> 
-                            Public Launch BVLT<br/>
-                            List on CMC & CG<br/>
-                            (fast-tracked)<br/>
-                            Trend on DEX & CMC<br/> 
-                            Massive marketing<br/>
-                            push directly with<br/>
-                            Launch
-                          </p>
-                        </div>
-                      </div>
-                      <div className="col-md xs-roadmap wow fadeInUp" data-wow-duration="3s">
-                        <div className="single-roadmap-timeline">
-                          <b></b>
-                          <h3>Jan-Feb 2022</h3>
-                          <p> 
-                            Continue to market<br/>
-                            BVLT Globally<br/>
-                            Ramp up Development<br/>
-                            of our App<br/>
-                            Second Audit By Certik<br/>
-                            Listing on Major<br/>
-                            Exchanges<br/>
-                            Launch of New Website 
-                          </p>
-                        </div>
-                      </div>
-                      <div className="col-md xs-roadmap wow fadeInUp" data-wow-duration="3.5s">
-                        <div className="single-roadmap-timeline">
-                          <b></b>
-                          <h3>Mar-Apr 2022</h3>
-                          <p>
-                            Global App Marketing<br/>
-                            Release Merch Store<br/>
-                            Test App for Launch<br/>
-                            Release BVW Wallet<br/>
-                            Listing on top 10<br/>
-                            exchange
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
         </div>
     </>
   );

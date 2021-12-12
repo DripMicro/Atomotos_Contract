@@ -990,7 +990,8 @@ h6 {
             animation: bounce 2s ease-in-out 0s infinite alternate; }
 
 .blockcain-content p {
-  margin-bottom: 30px; }
+  margin-bottom: 30px; 
+}
 
 .blockcain-content .btn {
   margin-top: 10px; }
@@ -2665,4 +2666,8 @@ a.cencel-preloader {
 }
 .bn-onboard-custom{
   z-index: 10000;
+}
+.ps_titleTitle{
+  font-size: 16px;
+  color: #c0d2fe;
 }

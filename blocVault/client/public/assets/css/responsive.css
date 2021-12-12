@@ -37,6 +37,11 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 		width: 38%;
 		height: 100%;
 	}
+	.ps_titleTitle{
+		padding: 30px;
+		font-size: 20px;
+		color: #c0d2fe;
+	  }
 }
 @media (min-width: 1600px) and (max-width: 2000px){
 	.roadmap-timeline img{
@@ -64,6 +69,7 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	.roadmap-timeline-item .xs-roadmap:nth-of-type(5) {
 		margin-top: 14px;
 	}
+	
 }
 @media (min-width: 1280px) and (max-width: 1600px){
 	.roadmap-timeline img{
@@ -90,6 +96,11 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	}
 	.roadmap-timeline-item .xs-roadmap:nth-of-type(5) {
 		margin-top: 5px;
+	}
+	.ps_titleTitle{
+		padding: 30px;
+		font-size: 20px;
+		color: #c0d2fe;
 	}
 }
 @media (min-width: 1200px) and (max-width: 1280px){
@@ -123,6 +134,11 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	.chart-label li img{
 		display: none;
 	}
+	.ps_titleTitle{
+		padding: 30px;
+		font-size: 20px;
+		color: #c0d2fe;
+	  }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -175,6 +191,10 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	.chart-label li img,
 	.single-roadmap-timeline b{
 		display: none;
+	}
+	.ps_titleTitle{
+		padding:0;
+		font-size: 16px;
 	}
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -320,6 +340,10 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	.wallet_btn {
 		margin-left: 20px;
 		margin-right: 20px;
+	}
+	.ps_titleTitle{
+		padding:0;
+		font-size: 16px;
 	}
 }
 
@@ -559,6 +583,10 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 		margin-left: 20px;
 		margin-right: 20px;
 	}
+	.ps_titleTitle{
+		padding:0;
+		font-size: 16px;
+	}
 }
 @media only screen and (max-width: 567px) {
 	/*----------- banner animation -----*/
@@ -627,5 +655,9 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	.wallet_btn {
 		margin-left: 20px;
 		margin-right: 20px;
+	}
+	.ps_titleTitle{
+		padding:0;
+		font-size: 16px;
 	}
 }

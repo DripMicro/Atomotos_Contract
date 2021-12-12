@@ -102,84 +102,10 @@ export default function Particles() {
     // Address of the selected account
     let selectedAccount;
     
-  const getPets = () => {
-    try{
-
-    // Get network provider and web3 instance.
-      const onboard = initOnboard({
-        address: setAddress,
-        ens: setEns,
-        network: setNetwork,
-        balance: setBalance,
-        wallet: wallet => {
-          if (wallet.provider) {
-            setWallet(wallet)
-  
-            const web3_provider = new Web3(
-              wallet.provider
-            )
-            setProvider(web3_provider);
-            setWeb3(web3_provider);
-
-            const networkId_temp = web3_provider.eth.net.getId();
-            networkId_temp.then(function(networkId){
-              setNetwork(networkId);
-            })
-
-            const accounts_temp = web3_provider.eth.getAccounts();
-            accounts_temp.then(function(accounts){
-              setAccounts(accounts);
-            })
-
-            const tokenInstance_temp = new web3_provider.eth.Contract(
-              BVToken.abi,
-              BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
-            );
-            // tokenInstance_temp.options.address = "0x0a9F7f237441B4E3F37fFf9dA07be5fA73C67372";
-            setTokenInstance(tokenInstance_temp);
-
-            const publicSaleInstance_temp = new web3_provider.eth.Contract(
-              PublicSale.abi,
-              PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
-            );
-            console.log(2)
-            // publicSaleInstance_temp.options.address = "0xB93408466512D0e0C5D4d3aC8426a500d9AffE40";
-            setPublicSaleInstance(publicSaleInstance_temp);
-            console.log(publicSaleInstance_temp)
-    
-            window.localStorage.setItem('selectedWallet', wallet.name)
-          } else {
-            let provider_temp = null;
-            setProvider(provider_temp);
-            setWallet({})
-          }
-        }
-      })
-  
-      setOnboard(onboard);
-  
-      setNotify(initNotify());
-
-    }catch(error){
-       // Catch any errors for any of the above operations.
-      console.error(error);
-      store.addNotification({
-        title: "Failed to load",
-        message: "Failed to load web3, accounts, or contract. Check console for details.",
-        type: "danger", // 'default', 'success', 'info', 'warning'
-        container: "top-right", // where to position the notifications
-        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-        dismiss: {
-          duration: 3000
-        }
-      });
-    }
-}
-
 ///////////////////////////////////////////////
 function init() {
-
+  // Count Time
+  
   console.log("Initializing example");
   console.log("WalletConnectProvider is", WalletConnectProvider);
   console.log("Fortmatic is", Fortmatic);
@@ -187,13 +113,13 @@ function init() {
   // console.log(provider);
   // Check that the web page is run in a secure context,
   // as otherwise MetaMask won't be available
-  if(window.location.protocol !== 'https:') {
-    // https://ethereum.stackexchange.com/a/62217/620
-    const alert = document.querySelector("#alert-error-https");
-    alert.style.display = "block";
-    document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
-    return;
-  }
+  // if(window.location.protocol !== 'https:') {
+  //   // https://ethereum.stackexchange.com/a/62217/620
+  //   const alert = document.querySelector("#alert-error-https");
+  //   alert.style.display = "block";
+  //   document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+  //   return;
+  // }
 
   // Tell Web3modal what providers we have available.
   // Built-in web browser provider (only one can exist as a time)
@@ -203,7 +129,7 @@ function init() {
       package: WalletConnectProvider,
       options: {
         // Mikko's test key - don't copy as your mileage may vary
-        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+        infuraId: "3f88fa504c1d4ec1bec07966779f1ce0",
       }
     },
 
@@ -212,6 +138,29 @@ function init() {
       options: {
         // Mikko's TESTNET api key
         key: "pk_test_391E26A3B43A3350"
+      }
+    },
+        
+    "custom-binancechainwallet": {
+      display: {
+        logo: "../assets/images/binance-logo.svg",
+        name: "Binance Chain Wallet",
+        description: "Connect to your Binance Chain Wallet"
+      },
+      package: true,
+      connector: async () => {
+        let provider = null;
+        if (typeof window.BinanceChain !== 'undefined') {
+          provider = window.BinanceChain;
+          try {
+            await provider.request({ method: 'eth_requestAccounts' })
+          } catch (error) {
+            throw new Error("User Rejected");
+          }
+        } else {
+          throw new Error("No Binance Chain Wallet found");
+        }
+        return provider;
       }
     }
   };
@@ -252,7 +201,7 @@ async function fetchAccountData() {
   })
 
   // accounts_temp.then(function(accounts){
-    setAccounts(accounts_temp);
+   setAccounts(accounts_temp);
 
     // console.log(accounts_temp)
   // })
@@ -261,7 +210,7 @@ async function fetchAccountData() {
     BVToken.abi,
     BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
   );
-  tokenInstance_temp.options.address = "0x8057F40f92dA0b6A8C954cb365fa8c20b05F0354";
+  tokenInstance_temp.options.address = "0x564c951eE389EA5cd94983d06FCAe6C942eAcDA4";
   setTokenInstance(tokenInstance_temp);
 
   const publicSaleInstance_temp = new web3.eth.Contract(
@@ -269,7 +218,7 @@ async function fetchAccountData() {
     PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
   );
   console.log(2)
-  publicSaleInstance_temp.options.address = "0xB5Ae04865E5a205CD2E706462ca24453D44Fc24F";
+  publicSaleInstance_temp.options.address = "0x916EBf9d28C526fF2fB6a535df3923D1ACE856F5";
   setPublicSaleInstance(publicSaleInstance_temp);
   console.log(publicSaleInstance_temp)
 
@@ -473,17 +422,17 @@ const listenToTokenTransfer = () => {
                     justifyContent="center"
                     alignItems="center"
                 >
-                  {!wallet.provider && (
+                  {!walletConnected && (
                       <Stack spacing={5} direction="row" mt={5}>
                           <BootstrapButton variant="contained" disableRipple onClick={() => {onConnect()}}>
-                            Select a Wallet
+                          Connect Wallet
                           </BootstrapButton>
                       </Stack>
                     )}
-                    {wallet.provider && (
+                    {walletConnected && (
                       <Stack spacing={5} direction="row" mt={5}>
                           <BootstrapButton variant="contained" disableRipple onClick={onDisconnect()}>
-                            Reset Wallet
+                          Disconnect Wallet
                           </BootstrapButton>
                       </Stack>
                     )}
@@ -501,9 +450,9 @@ const listenToTokenTransfer = () => {
                         <span className = "private-label">
                             {privateBVT}
                         </span>
-                        <BootstrapButton variant="contained" disableRipple onClick={handlewithdrawBVT}>
+                        {/* <BootstrapButton variant="contained" disableRipple onClick={handlewithdrawBVT}>
                             Withdraw BVT
-                        </BootstrapButton>
+                        </BootstrapButton> */}
                     </Stack>
                     <Stack spacing={5} direction="row" mt={2}>
                         <ColorButton variant="contained"  onClick={getPrivateWhiteList} color="success">Get WhiteList</ColorButton>

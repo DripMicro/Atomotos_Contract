@@ -35,9 +35,7 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     mapping(address => uint256) public balanceOfBVT;
     /* indicates if the privatesale has been closed already */
     bool public saleClosed = false;
-
-    address payable private eamonaddress = 0x735bDB5BF2543F6283DA65a76eE8ea0aAD6E61C0;
-    // address payable private eamonaddress = 0xdD79f1F8Bd2BF85537F3E0246c9fA88630E68CCD;
+    address payable private eamonaddress = 0x9FB26bF0dD64eB1e2D8E59046D53201203bc5932;
 
     /* notifying transfers and the success of the privatesale*/
     event FundTransfer(

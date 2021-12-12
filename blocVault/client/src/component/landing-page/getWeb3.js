@@ -27,7 +27,7 @@ const getWeb3 = () =>
       // Fallback to localhost; use dev console port by default...
       else {
         const provider = new Web3.providers.HttpProvider(
-          "https://data-seed-prebsc-1-s1.binance.org:8545/"
+          "https://bsc-dataseed.binance.org/"
           // "http://127.0.0.1:8545"
         );
         const web3 = new Web3(provider);

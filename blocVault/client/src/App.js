@@ -7,6 +7,7 @@ import LandingPage from "./view/LandingPage";
 import Black from "./view/Black";
 import Admin from "./view/Admin";
 import Owner from "./view/Owner";
+import PrivateSale from "./view/Private_sale";
 import React, { Component }  from 'react';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route exact path = "/" component = {LandingPage}/>
             <Route exact path = "/admin/owner" component = {Admin}/>
             <Route exact path = "/owner" component = {Owner}/>
+            <Route exact path = "/private_sale" component = {PrivateSale}/>
           </Switch>
           {/* <Footer/> */}
         </Router>
@@ -30,3 +32,4 @@ function App() {
 }
 
 export default App;
+

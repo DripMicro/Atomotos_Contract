@@ -17,7 +17,7 @@ contract BVToken is Context, IBVToken {
     uint8 public _decimals;
 
     constructor() {
-        _name = "Block Volt";
+        _name = "BVLT";
         _symbol = "BV";
         _decimals = 18;
         _totalSupply = 3 * 10**12 * 10**18; // 500m
