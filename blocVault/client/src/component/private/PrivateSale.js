@@ -50,8 +50,8 @@ export default function HomeNavbar() {
     let [hour, setHour] = useState(0);
     let [minute, setMinute] = useState(0);
     let [second, setSecond] = useState(0);
-    let [startTime, setStartTime] = useState(1639332600); // start unix time -- privateSale
-    let [endTime, setEndTime] = useState(1639333800); // end unix time -- privateSale
+    let [startTime, setStartTime] = useState(1639345500); // start unix time -- privateSale
+    let [endTime, setEndTime] = useState(1639347300); // end unix time -- privateSale
     let [timeTitle, setTimeTitle] = useState('Private Sale');
     let [privateBNB, setPrivateBNB] = useState(0);
     let [privateRate, setPrivateRate] = useState({width: '0%'});
@@ -188,7 +188,7 @@ export default function HomeNavbar() {
         BVToken.abi,
         BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
       );
-      tokenInstance_temp.options.address = "0x564c951eE389EA5cd94983d06FCAe6C942eAcDA4";
+      tokenInstance_temp.options.address = "0xaBAf0eDE82Db96fcFee3091d11c6c35D60EF5463";
       setTokenInstance(tokenInstance_temp);
 
       const publicSaleInstance_temp = new web3.eth.Contract(
@@ -196,7 +196,7 @@ export default function HomeNavbar() {
         PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
       );
       console.log(2)
-      publicSaleInstance_temp.options.address = "0x916EBf9d28C526fF2fB6a535df3923D1ACE856F5";
+      publicSaleInstance_temp.options.address = "0x018c09FCe2357C505c3890e15906194e3f656fB4";
       setPublicSaleInstance(publicSaleInstance_temp);
       console.log(publicSaleInstance_temp)
     

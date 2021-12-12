@@ -83,7 +83,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -96,7 +97,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -109,7 +111,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -128,7 +131,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -147,7 +151,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -160,7 +165,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -173,7 +179,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -186,7 +193,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -205,7 +213,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -225,7 +234,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -238,7 +248,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -290,7 +301,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -303,7 +315,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -316,14 +329,16 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
       "name": "investBNB",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [],
@@ -350,7 +365,8 @@
       "name": "withdrawBNB",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IBVToken\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_start\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_dead\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"backer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"isContribution\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountRaised\",\"type\":\"uint256\"}],\"name\":\"FundTransfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"BNBPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"amountRaisedBNB\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"amountRaisedBVT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"balanceOfBNB\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"balanceOfBVT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"createTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deadline\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBVTBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getFundsBNB\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getPrivateWhiteList\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getbalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"investBNB\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"privateWhiteList\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"saleClosed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"start\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_dead\",\"type\":\"uint256\"}],\"name\":\"updateDeadline\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_start\",\"type\":\"uint256\"}],\"name\":\"updateStart\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdrawBNB\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdrawBVT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getBVTBalance()\":{\"details\":\"return total BVT balance of contract\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"updateDeadline(uint256)\":{\"details\":\"update deadline and publishDate from parameter\",\"params\":{\"_dead\":\"new deadline\"}},\"updateStart(uint256)\":{\"details\":\"update start date from parameter\",\"params\":{\"_start\":\"new start date\"}},\"withdrawBVT()\":{\"details\":\"withdraw BVT balance of contract\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/PublicSale.sol\":\"PublicSale\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"details\":{\"constantOptimizer\":true,\"cse\":true,\"deduplicate\":true,\"jumpdestRemover\":true,\"orderLiterals\":true,\"peephole\":true,\"yul\":false},\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0x15e2d5bd4c28a88548074c54d220e8086f638a71ed07e6b3ba5a70066fcf458d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://90faf5851c02f9bd42c5bfb54d4f0421a2612f50ab80b2c4fa24fa3792071cc2\",\"dweb:/ipfs/QmRGM4F2PcGVF85aTfaA9YBhCHHDqrMhRjyp6fGeBTtirb\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c\",\"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x8d3cb350f04ff49cfb10aef08d87f19dcbaecc8027b0bed12f3275cd12f38cf0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded47ec7c96750f9bd04bbbc84f659992d4ba901cb7b532a52cd468272cf378f\",\"dweb:/ipfs/QmfBrGtQP7rZEqEg6Wz6jh2N2Kukpj1z5v3CGWmAqrzm96\"]},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"keccak256\":\"0x8bbbc2f5c10065ee272592ae0a7a6ceb23de2fbd81564ee0bb015ecf404d5f61\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b95e56c1640d0ef789fc5c16269e141e992f6c8ac97cc6d377bd3825e9cab182\",\"dweb:/ipfs/QmVzaxJZY51EhagrcNnkxoU6Uq17RhATe7aHvtkC6wUkgK\"]},\"project:/contracts/PublicSale.sol\":{\"keccak256\":\"0x46dcf9dd4bb52c713bf14e342fb9dead79f27f172f4ea93c3ba68a4eeeda431a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://179e91c60cc47694190e9799c53666b667feab7a0e3da4188416741a6d53c856\",\"dweb:/ipfs/QmcdgR2m6VaMdgGk9PZADbBQ3Ta7hueUqzcvBHtrM77VEa\"]},\"project:/contracts/interfaces/IBVToken.sol\":{\"keccak256\":\"0xe0bc9c8ea459e981ab3a37c381ad289100033aa1bd50cb6725ee9d47f8e479f2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://acbc4e043470c7a23f49d9928e616c8a787c14c53955e45705bf3779163e37af\",\"dweb:/ipfs/QmPZWCohSpRFneWdK9DC448wGUkyBpWjuTUkfk7D43n9rr\"]},\"project:/contracts/interfaces/IPublicSale.sol\":{\"keccak256\":\"0x0cddb9099404e238b3ccd0c5c413a4814d56490df02a27902264287673afe7ee\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://065bf2d745988a7934c4210dc34021feea2d44c4794b5d369aea3d063d42af7c\",\"dweb:/ipfs/Qmb59zgTTyBBQUg9vVqtAHCpDf8Pva2sgc8P3RvRdhtT3S\"]}},\"version\":1}",
@@ -362,7 +378,7 @@
   "sourceMap": "309:5412:5:-:0;;;837:7;811:33;;1190:30;;;-1:-1:-1;;;;;;1227:81:5;;;;;1577:182;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1577:182:5;;;;;;;;;;;;;;884:17:0;904:12;:10;:12::i;:::-;926:6;:18;;-1:-1:-1;;;;;;926:18:0;-1:-1:-1;;;;;926:18:0;;;;;;;959:43;;926:18;;-1:-1:-1;926:18:0;959:43;;926:6;;959:43;-1:-1:-1;1645:1:3;1760:22;;1682:8:5;:17;;-1:-1:-1;;;;;;1682:17:5;-1:-1:-1;;;;;1682:17:5;;;;;;;;;;;1710:5;:14;1735:8;:16;309:5412;;598:104:2;685:10;598:104;:::o;309:5412:5:-;;;;;;;",
   "deployedSourceMap": "309:5412:5:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;449:30;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;5479:239;;;:::i;:::-;;811:33;;;;;;;;;;;;;:::i;4624:498::-;;;;;;;;;;;;;:::i;570:23::-;;;;;;;;;;;;;:::i;1879:208::-;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1879:208:5;;:::i;2757:97::-;;;;;;;;;;;;;:::i;853:25::-;;;;;;;;;;;;;:::i;5194:277::-;;;;;;;;;;;;;:::i;1717:145:0:-;;;;;;;;;;;;;:::i;412:30:5:-;;;;;;;;;;;;;:::i;3398:1218::-;;;:::i;1085:85:0:-;;;;;;;;;;;;;:::i;:::-;;;;-1:-1:-1;;;;;1085:85:0;;;;;;;;;;;;;;2862:110:5;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;702:34;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;702:34:5;;:::i;968:47::-;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;968:47:5;-1:-1:-1;;;;;968:47:5;;:::i;1190:30::-;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;2506:125;;;;;;;;;;;;;:::i;543:20::-;;;;;;;;;;;;;:::i;2011:240:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;2011:240:0;-1:-1:-1;;;;;2011:240:0;;:::i;2196:234:5:-;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;2196:234:5;;:::i;1072:47::-;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1072:47:5;-1:-1:-1;;;;;1072:47:5;;:::i;449:30::-;;;;:::o;5479:239::-;5679:12;;5671:39;;5589:21;;5679:12;;;-1:-1:-1;;;;;5679:12:5;;5671:39;;;;;5589:21;;5571:15;5671:39;5571:15;5671:39;5589:21;5679:12;5671:39;;;;;;;;;;;;;;;;;;;;;5479:239;:::o;811:33::-;;;;:::o;4624:498::-;1688:1:3;2277:7;;:19;;2269:63;;;;;-1:-1:-1;;;2269:63:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;1688:1;2407:7;:18;;;4700:10:5::1;::::0;::::1;;:18;;;::::0;:48:::1;;;4740:8;;4722:15;:26;4700:48;4678:113;;;::::0;;-1:-1:-1;;;4678:113:5;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;4678:113:5;;;;;;;;;;;;;::::1;;4823:10;4837:1;4810:24:::0;;;:12:::1;:24;::::0;;;;;4802:57:::1;;;::::0;;-1:-1:-1;;;4802:57:5;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;4802:57:5;;;;;;;;;;;;;::::1;;4900:10;4870:14;4887:24:::0;;;:12:::1;:24;::::0;;;;;;;;4940:8:::1;::::0;:33;;-1:-1:-1;;;4940:33:5;;4967:4:::1;4940:33;::::0;::::1;::::0;;;4887:24;;4870:14;-1:-1:-1;;;;;4940:8:5;;::::1;::::0;:18:::1;::::0;:33;;;;;4887:24;4940:33;;;;;:8;:33;::::1;;::::0;::::1;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;::::0;::::1;;-1:-1:-1::0;4940:33:5;;-1:-1:-1;4992:17:5;;::::1;;4984:43;;;::::0;;-1:-1:-1;;;4984:43:5;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;4984:43:5;;;;;;;;;;;;;::::1;;5051:10;5065:1;5038:24:::0;;;:12:::1;:24;::::0;;;;;;;:28;;;5077:8:::1;::::0;:37;;-1:-1:-1;;;5077:37:5;;::::1;::::0;::::1;::::0;;;;;;;;;;;;-1:-1:-1;;;;;5077:8:5;;::::1;::::0;:17:::1;::::0;:37;;;;;5038:24;5077:37;;;;;;;;:8;:37;::::1;;::::0;::::1;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;::::0;::::1;;-1:-1:-1::0;;1645:1:3;2580:22;;-1:-1:-1;;4624:498:5:o;570:23::-;;;;:::o;1879:208::-;1308:12:0;:10;:12::i;:::-;-1:-1:-1;;;;;1297:23:0;:7;:5;:7::i;:::-;-1:-1:-1;;;;;1297:23:0;;1289:68;;;;;-1:-1:-1;;;1289:68:0;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1289:68:0;;;;;;;;;;;;;;;1997:10:5::1;::::0;::::1;;:19;1989:63;;;::::0;;-1:-1:-1;;;1989:63:5;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;::::1;::::0;;;;;;;;;;;;;::::1;;2063:8;:16:::0;1879:208::o;2757:97::-;2825:21;2757:97;:::o;853:25::-;;;;:::o;5194:277::-;5290:15;1308:12:0;:10;:12::i;:::-;-1:-1:-1;;;;;1297:23:0;:7;:5;:7::i;:::-;-1:-1:-1;;;;;1297:23:0;;1289:68;;;;;-1:-1:-1;;;1289:68:0;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1289:68:0;;;;;;;;;;;;;;;5333:8:5::1;::::0;:33:::1;::::0;;-1:-1:-1;;;5333:33:5;;5360:4:::1;5333:33;::::0;::::1;::::0;;;-1:-1:-1;;;;;5333:8:5;;::::1;::::0;:18:::1;::::0;:33;;;;;::::1;::::0;;;;;;;;;:8;:33;::::1;;::::0;::::1;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;::::0;::::1;;-1:-1:-1::0;5333:33:5;;-1:-1:-1;5385:11:5;5377:40:::1;;;::::0;;-1:-1:-1;;;5377:40:5;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;5377:40:5;;;;;;;;;;;;;::::1;;5428:8;::::0;-1:-1:-1;;;;;5428:8:5::1;:17;5446:7;:5;:7::i;:::-;5455;5428:35;;;;;;;;;;;;;-1:-1:-1::0;;;;;5428:35:5::1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;::::0;::::1;;-1:-1:-1::0;5194:277:5;;;-1:-1:-1;5194:277:5:o;1717:145:0:-;1308:12;:10;:12::i;:::-;-1:-1:-1;;;;;1297:23:0;:7;:5;:7::i;:::-;-1:-1:-1;;;;;1297:23:0;;1289:68;;;;;-1:-1:-1;;;1289:68:0;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1289:68:0;;;;;;;;;;;;;;;1823:1:::1;1807:6:::0;;1786:40:::1;::::0;-1:-1:-1;;;;;1807:6:0;;::::1;::::0;1786:40:::1;::::0;1823:1;;1786:40:::1;1853:1;1836:19:::0;;-1:-1:-1;;;;;;1836:19:0::1;::::0;;1717:145::o;412:30:5:-;;;;:::o;3398:1218::-;3565:5;;3461:9;;3546:15;:24;;3538:53;;;;;-1:-1:-1;;;3538:53:5;;;;;;;;;;;;-1:-1:-1;;;3538:53:5;;;;;;;;;;;;;;;3760:13;3747:9;:26;;3739:65;;;;;-1:-1:-1;;;3739:65:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;3830:10;3817:9;:23;;3809:59;;;;;-1:-1:-1;;;3809:59:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;3900:10;3887:24;;;;:12;:24;;;;;;:29;3879:63;;;;;-1:-1:-1;;;3879:63:5;;;;;;;;;;;;-1:-1:-1;;;3879:63:5;;;;;;;;;;;;;;;3982:10;3961:32;;;;:20;:32;;;;;;;;:40;;:32;:40;;3953:58;;;;;-1:-1:-1;;;3953:58:5;;;;;;;;;;;;-1:-1:-1;;;3953:58:5;;;;;;;;;;;;;;;4030:10;;;;:19;4022:55;;;;;-1:-1:-1;;;4022:55:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;4134:10;4121:24;;;;:12;:24;;;;;;:36;;4150:6;4121:28;:36::i;:::-;4107:10;4094:24;;;;:12;:24;;;;;:63;4180:15;;:27;;4200:6;4180:19;:27::i;:::-;4162:15;:45;;;4240:14;-1:-1:-1;4218:68:5;;4269:10;:17;;-1:-1:-1;;4269:17:5;4282:4;4269:17;;;4218:68;4318:51;4347:21;4358:8;;4347:6;:10;;:21;;;;:::i;:::-;4331:10;4318:24;;;;:12;:24;;;;;;;:28;:51::i;:::-;4304:10;4291:24;;;;:12;:24;;;;;:78;4423:8;;4392:41;;4412:20;;:6;;:10;:20::i;:::-;4392:15;;;:19;:41::i;:::-;4374:15;:59;4465:10;4444:32;;;;:20;:32;;;;;;;;:39;;-1:-1:-1;;4444:39:5;4479:4;4444:39;;;;;;4494:16;:33;;;;;;;;;;;;;;;-1:-1:-1;;;;;;4494:33:5;;;;;4592:15;;4553:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3398:1218;:::o;1085:85:0:-;1131:7;1157:6;-1:-1:-1;;;;;1157:6:0;1085:85;:::o;2862:110:5:-;2912:17;2948:16;2941:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2941:23:5;;;;;;;;;;;;;;;;;;;;;;;2862:110;:::o;702:34::-;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;702:34:5;;-1:-1:-1;702:34:5;:::o;968:47::-;;;;;;;;;;;;;:::o;1190:30::-;;;;;;:::o;2506:125::-;2590:8;;:33;;;-1:-1:-1;;;2590:33:5;;2617:4;2590:33;;;;;;2563:7;;-1:-1:-1;;;;;2590:8:5;;:18;;:33;;;;;;;;;;;;;;:8;:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;2590:33:5;;-1:-1:-1;2506:125:5;:::o;543:20::-;;;;:::o;2011:240:0:-;1308:12;:10;:12::i;:::-;-1:-1:-1;;;;;1297:23:0;:7;:5;:7::i;:::-;-1:-1:-1;;;;;1297:23:0;;1289:68;;;;;-1:-1:-1;;;1289:68:0;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1289:68:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;2099:22:0;::::1;2091:73;;;;-1:-1:-1::0;;;2091:73:0::1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2200:6;::::0;;2179:38:::1;::::0;-1:-1:-1;;;;;2179:38:0;;::::1;::::0;2200:6;::::1;::::0;2179:38:::1;::::0;::::1;2227:6;:17:::0;;-1:-1:-1;;;;;;2227:17:0::1;-1:-1:-1::0;;;;;2227:17:0;;;::::1;::::0;;;::::1;::::0;;2011:240::o;2196:234:5:-;1308:12:0;:10;:12::i;:::-;-1:-1:-1;;;;;1297:23:0;:7;:5;:7::i;:::-;-1:-1:-1;;;;;1297:23:0;;1289:68;;;;;-1:-1:-1;;;1289:68:0;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1289:68:0;;;;;;;;;;;;;;;2312:5:5::1;;2294:15;:23;2272:125;;;;-1:-1:-1::0;;;2272:125:5::1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2408:5;:14:::0;2196:234::o;1072:47::-;;;;;;;;;;;;;:::o;598:104:2:-;685:10;598:104;:::o;2690:175:1:-;2748:7;2779:5;;;2802:6;;;;2794:46;;;;;-1:-1:-1;;;2794:46:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;2857:1;-1:-1:-1;2690:175:1;;;;;:::o;3538:215::-;3596:7;3619:6;3615:20;;-1:-1:-1;3634:1:1;3627:8;;3615:20;3657:5;;;3661:1;3657;:5;:1;3680:5;;;;;:10;3672:56;;;;-1:-1:-1;;;3672:56:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.6;\r\n\r\nimport \"./interfaces/IBVToken.sol\";\r\nimport \"./interfaces/IPublicSale.sol\";\r\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\r\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\r\nimport \"@openzeppelin/contracts/utils/ReentrancyGuard.sol\";\r\n\r\n\r\ncontract PublicSale is Ownable, ReentrancyGuard, IPublicSale {\r\n    using SafeMath for uint256;\r\n\r\n    uint256 public amountRaisedBVT;\r\n    uint256 public amountRaisedBNB;\r\n    \r\n    /* the start & end date of the privatesale */\r\n    uint256 public start;\r\n    uint256 public deadline;\r\n\r\n    //address [] public privateWhiteListFlag;\r\n    mapping (address => bool) privateWhiteListFlag;\r\n    address [] public privateWhiteList;\r\n\r\n    /* there are different prices in different time intervals */\r\n    uint256 public BNBPrice = 4*10**8;\r\n\r\n    uint256 public createTime;  \r\n\r\n    /* the address of the token contract */\r\n    IBVToken private tokenBVT;\r\n\r\n    mapping(address => uint256) public balanceOfBNB;\r\n    /* the balances (in BVT) of all investors */\r\n    mapping(address => uint256) public balanceOfBVT;\r\n    /* indicates if the privatesale has been closed already */\r\n    bool public saleClosed = false;\r\n    address payable private eamonaddress = 0x9FB26bF0dD64eB1e2D8E59046D53201203bc5932;\r\n\r\n    /* notifying transfers and the success of the privatesale*/\r\n    event FundTransfer(\r\n        address backer,\r\n        uint256 amount,\r\n        bool isContribution,\r\n        uint256 amountRaised\r\n    );\r\n\r\n    /*  initialization, set the token address */\r\n    constructor(\r\n        IBVToken _token,\r\n        uint256 _start,\r\n        uint256 _dead\r\n    ) {\r\n        tokenBVT = _token;\r\n        start = _start;\r\n        deadline = _dead;\r\n    }\r\n\r\n    /**\r\n     * @dev update deadline and publishDate from parameter\r\n     * @param _dead new deadline\r\n     */\r\n    function updateDeadline(uint256 _dead)\r\n        external\r\n        override\r\n        onlyOwner\r\n    {\r\n        require(saleClosed == false, \"private: sale is already closed\");\r\n        deadline = _dead;\r\n    }\r\n\r\n    /**\r\n     * @dev update start date from parameter\r\n     * @param _start new start date\r\n     */\r\n    function updateStart(uint256 _start) external override onlyOwner {\r\n        require(\r\n            block.timestamp < start,\r\n            \"PublicSale: public sale is already started or ended.\"\r\n        );\r\n        start = _start;\r\n    }\r\n\r\n    /**\r\n     * @dev return total BVT balance of contract\r\n     */\r\n    function getBVTBalance() external view override returns (uint256) {\r\n        return tokenBVT.balanceOf(address(this));\r\n    }\r\n\r\n    //for test\r\n    // function getmsgvalue() public view returns(uint256){\r\n    //     return msgvalue;\r\n    // }\r\n\r\n    function getbalance() public view returns(uint256){\r\n        return address(this).balance;\r\n    }\r\n\r\n    function getPrivateWhiteList()public view returns(address [] memory){\r\n        return privateWhiteList;\r\n    }\r\n\r\n    /* make an investment\r\n     *  only callable if the privatesale started and hasn't been closed already and the maxGoal wasn't reached yet.\r\n     *  the current token price is looked up and the corresponding number of tokens is transfered to the receiver.\r\n     *  the sent value is directly forwarded to a safe multisig wallet.\r\n     *  this method allows to purchase tokens in behalf of another address.*/\r\n    \r\n    function investBNB() public payable{\r\n        uint256 amount = msg.value;\r\n        //for test\r\n            // msgvalue = amount;\r\n\r\n        require(block.timestamp >= start, \"sale-not-started\");        \r\n        // require(\r\n        //     saleClosed == false && block.timestamp < deadline,\r\n        //     \"sale-closed\"\r\n        // );\r\n\r\n\t\trequire(msg.value >= 0.25 * 10**18, \"Fund is less than 0.25 BNB\");\r\n\t\trequire(msg.value <= 2 * 10**18, \"Fund is more than 2 BNB\");\r\n        require(balanceOfBNB[msg.sender] == 0, \"You can only buy once\");\r\n        require(privateWhiteListFlag[msg.sender] != true, \"BUYED\");\r\n        require(saleClosed == false, \"PrivateSale has 600 BNB\");\r\n        \r\n\r\n\t\tbalanceOfBNB[msg.sender] = balanceOfBNB[msg.sender].add(amount);\r\n\t\tamountRaisedBNB = amountRaisedBNB.add(amount);\r\n        if(amountRaisedBNB >= 600 * 10 ** 18)\r\n            saleClosed = true;\r\n\t\tbalanceOfBVT[msg.sender] = balanceOfBVT[msg.sender].add(amount.mul(BNBPrice ));\r\n\t\tamountRaisedBVT = amountRaisedBVT.add(amount.mul(BNBPrice));\r\n        privateWhiteListFlag[msg.sender] = true;\r\n        privateWhiteList.push(msg.sender);\r\n        \r\n        emit FundTransfer(msg.sender, amount, true, amountRaisedBNB);\r\n    }\r\n\r\n    function getFundsBNB() public nonReentrant {\r\n        require(\r\n            saleClosed == true || block.timestamp > deadline,\r\n            \"sale-not-closed\"\r\n        );\r\n        require(balanceOfBVT[msg.sender] > 0, \"non-contribution\");\r\n        uint256 amount = balanceOfBVT[msg.sender];\r\n        uint256 balance = tokenBVT.balanceOf(address(this));\r\n        require(balance >= amount, \"lack of funds\");\r\n        balanceOfBVT[msg.sender] = 0;\r\n        tokenBVT.transfer(msg.sender, amount);\r\n    }\r\n\r\n    /**\r\n     * @dev withdraw BVT balance of contract\r\n     */\r\n    function withdrawBVT()\r\n        external\r\n        override\r\n        onlyOwner\r\n        returns (uint256 balance)\r\n    {\r\n        balance = tokenBVT.balanceOf(address(this));\r\n        require(balance > 0, \"zero-BVT-balance\");\r\n        tokenBVT.transfer(owner(), balance);\r\n    }\r\n\r\n    function withdrawBNB()\r\n        external\r\n        override\r\n        payable\r\n    {\r\n        uint256 balance = address(this).balance;\r\n        //payable(msg.sender).transfer(balance);\r\n        payable(eamonaddress).transfer(balance);\r\n    }\r\n}",
-  "sourcePath": "D:\\Work\\BlockChain\\BlocVault-git\\BlocVaultAddWallet\\blocVault\\contracts\\PublicSale.sol",
+  "sourcePath": "E:\\BlocVaultAddWallet\\blocVault\\contracts\\PublicSale.sol",
   "ast": {
     "absolutePath": "project:/contracts/PublicSale.sol",
     "exportedSymbols": {
@@ -12266,6 +12282,12 @@
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
   "networks": {
+    "56": {
+      "events": {},
+      "links": {},
+      "address": "0x018c09FCe2357C505c3890e15906194e3f656fB4",
+      "transactionHash": "0xf13428218c3c4800507787ee20a338f50c84eb836d6c60c2650e9a5125129635"
+    },
     "97": {
       "events": {
         "0x1673f758ed3beff5e37b51f770fd638a812bade2568f15526a4f5b33945c9363": {
@@ -12320,8 +12342,8 @@
         }
       },
       "links": {},
-      "address": "0xf700E8Ba08A327F09A3Ac50b79153cc0018B25b3",
-      "transactionHash": "0x392f3139f61e42aef6311ce76a937a432858b97f5a8c180caf54823da2150f42"
+      "address": "0xB935bE58bFd03FE90668f83c1F2f48951f473482",
+      "transactionHash": "0xa90f48d668df41f38aa6a26ba089c7abed8c29d0463dd5124867f6b1c5b205d9"
     },
     "1337": {
       "events": {
@@ -12388,7 +12410,8 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-12T20:13:14.115Z",
+  "updatedAt": "2021-12-12T21:26:32.416Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {

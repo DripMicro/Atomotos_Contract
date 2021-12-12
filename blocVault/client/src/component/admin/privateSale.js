@@ -210,7 +210,7 @@ async function fetchAccountData() {
     BVToken.abi,
     BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
   );
-  tokenInstance_temp.options.address = "0x564c951eE389EA5cd94983d06FCAe6C942eAcDA4";
+  tokenInstance_temp.options.address = "0xaBAf0eDE82Db96fcFee3091d11c6c35D60EF5463";
   setTokenInstance(tokenInstance_temp);
 
   const publicSaleInstance_temp = new web3.eth.Contract(
@@ -218,7 +218,7 @@ async function fetchAccountData() {
     PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
   );
   console.log(2)
-  publicSaleInstance_temp.options.address = "0x916EBf9d28C526fF2fB6a535df3923D1ACE856F5";
+  publicSaleInstance_temp.options.address = "0x018c09FCe2357C505c3890e15906194e3f656fB4";
   setPublicSaleInstance(publicSaleInstance_temp);
   console.log(publicSaleInstance_temp)
 

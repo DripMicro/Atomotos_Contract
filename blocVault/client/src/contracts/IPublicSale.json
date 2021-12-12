@@ -70,7 +70,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.6;\r\n\r\ninterface IPublicSale {\r\n    function getBVTBalance() external returns (uint256);\r\n\r\n    function updateDeadline(uint256 _dead) external;\r\n\r\n    function updateStart(uint256 _start) external;\r\n\r\n    function withdrawBVT() external returns (uint256 balance);\r\n\r\n    function withdrawBNB() external payable;\r\n}\r\n",
-  "sourcePath": "D:\\Work\\BlockChain\\BlocVault-git\\BlocVaultAddWallet\\blocVault\\contracts\\interfaces\\IPublicSale.sol",
+  "sourcePath": "E:\\BlocVaultAddWallet\\blocVault\\contracts\\interfaces\\IPublicSale.sol",
   "ast": {
     "absolutePath": "project:/contracts/interfaces/IPublicSale.sol",
     "exportedSymbols": {
@@ -712,7 +712,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-12T20:13:14.124Z",
+  "updatedAt": "2021-12-12T21:22:59.343Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
