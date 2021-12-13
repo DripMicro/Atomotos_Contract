@@ -8,7 +8,7 @@ import {
 import {
   Header,
   Footer,
-  ConnectWallet,
+  // ConnectWallet,
   Header_P_T
 } from '../component/header-footer'
 
