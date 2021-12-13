@@ -7,18 +7,12 @@ import evmChains from 'evm-chains';
 import Fortmatic from 'fortmatic';
 import BVToken from "../../contracts/BVToken.json";
 import PublicSale from "../../contracts/PublicSale.json";
-import BUSDToken from "../../contracts/BUSDToken.json";
-import { initOnboard, initNotify } from '../landing-page/services';
-// import { ethers } from 'ethers';
-// import getSigner from './signer'
-import Onboard from 'bnc-onboard'
 import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import Modal from "react-modal";
 import TimeAgo from 'javascript-time-ago';
 import en from "javascript-time-ago/locale/en.json";
 import "../css/style.css";
-// import { init, onConnect, onDisconnect } from '../../util/we3modal';
 
 TimeAgo.addDefaultLocale(en);
 Modal.setAppElement("#root");
@@ -107,7 +101,11 @@ export default function HomeNavbar() {
           package: WalletConnectProvider,
           options: {
             // Mikko's test key - don't copy as your mileage may vary
-            infuraId: "3f88fa504c1d4ec1bec07966779f1ce0",
+            // infuraId: "3f88fa504c1d4ec1bec07966779f1ce0",
+            rpc: {
+              56: 'https://bsc-dataseed.binance.org/'
+            },
+            network:'binance'
           }
         },
     
@@ -317,14 +315,14 @@ export default function HomeNavbar() {
 
 
   
-    useEffect(() => {
-        const previouslySelectedWallet =
-          window.localStorage.getItem('selectedWallet')
+    // useEffect(() => {
+    //     const previouslySelectedWallet =
+    //       window.localStorage.getItem('selectedWallet')
     
-        if (previouslySelectedWallet && onboard) {
-          onboard.walletSelect(previouslySelectedWallet)
-        }
-    }, [onboard])
+    //     if (previouslySelectedWallet && onboard) {
+    //       onboard.walletSelect(previouslySelectedWallet)
+    //     }
+    // }, [onboard])
     
       const updateUserTokens = async () => {
         if (accounts.length > 0 ){

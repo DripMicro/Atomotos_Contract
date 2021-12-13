@@ -88,272 +88,274 @@ export default function Particles() {
   const [address, setAddress] = useState(null)
 
 
-    // Web3modal instance
-    const [web3Modal, setWeb3Modal] = useState(null);
-    const [walletConnected, setWalletConnected] = useState(false);
+  // Web3modal instance
+  const [web3Modal, setWeb3Modal] = useState(null);
+  const [walletConnected, setWalletConnected] = useState(false);
 
-    // Chosen wallet provider given by the dialog window
-    let [provider, setProvider] = useState(null);
-    // Address of the selected account
-    let selectedAccount;
+  // Chosen wallet provider given by the dialog window
+  let [provider, setProvider] = useState(null);
+  // Address of the selected account
+  let selectedAccount;
     
 ///////////////////////////////////////////////
 function init() {
-      // Count Time
+  // Count Time
   
-      console.log("Initializing example");
-      console.log("WalletConnectProvider is", WalletConnectProvider);
-      console.log("Fortmatic is", Fortmatic);
-      console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
-      
-      const providerOptions = {
-        walletconnect: {
-          package: WalletConnectProvider,
-          options: {
-            // Mikko's test key - don't copy as your mileage may vary
-            // infuraId: "3f88fa504c1d4ec1bec07966779f1ce0",
-            rpc: {
-              56: 'https://bsc-dataseed.binance.org/'
-            },
-            network:'binance'
-          }
+  console.log("Initializing example");
+  console.log("WalletConnectProvider is", WalletConnectProvider);
+  console.log("Fortmatic is", Fortmatic);
+  console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
+
+  const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider,
+      options: {
+        // Mikko's test key - don't copy as your mileage may vary
+        // infuraId: "3f88fa504c1d4ec1bec07966779f1ce0",
+        rpc: {
+          56: 'https://bsc-dataseed.binance.org/'
         },
-    
-        fortmatic: {
-          package: Fortmatic,
-          options: {
-            // Mikko's TESTNET api key
-            key: "pk_test_391E26A3B43A3350"
-          }
-        },
+        network:'binance'
+      }
+    },
+
+    fortmatic: {
+      package: Fortmatic,
+      options: {
+        // Mikko's TESTNET api key
+        key: "pk_test_391E26A3B43A3350"
+      }
+    },
         
-        "custom-binancechainwallet": {
-          display: {
-            logo: "../assets/images/binance-logo.svg",
-            name: "Binance Chain Wallet",
-            description: "Connect to your Binance Chain Wallet"
-          },
-          package: true,
-          connector: async () => {
-            let provider = null;
-            if (typeof window.BinanceChain !== 'undefined') {
-              provider = window.BinanceChain;
-              try {
-                await provider.request({ method: 'eth_requestAccounts' })
-              } catch (error) {
-                throw new Error("User Rejected");
-              }
-            } else {
-              throw new Error("No Binance Chain Wallet found");
-            }
-            return provider;
+    "custom-binancechainwallet": {
+      display: {
+        logo: "../assets/images/binance-logo.svg",
+        name: "Binance Chain Wallet",
+        description: "Connect to your Binance Chain Wallet"
+      },
+      package: true,
+      connector: async () => {
+        let provider = null;
+        if (typeof window.BinanceChain !== 'undefined') {
+          provider = window.BinanceChain;
+          try {
+            await provider.request({ method: 'eth_requestAccounts' })
+          } catch (error) {
+            throw new Error("User Rejected");
           }
+        } else {
+          throw new Error("No Binance Chain Wallet found");
         }
-      };
-    
-      let web3_Modal = new Web3Modal({
-        cacheProvider: false, // optional
-        providerOptions, // required
-        disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
-      });
-
-      setWeb3Modal(web3_Modal);
-    
-      console.log("Web3Modal instance is", web3Modal);
+        return provider;
+      }
     }
+  };
 
-    async function fetchAccountData() {
+  let web3_Modal = new Web3Modal({
+    cacheProvider: false, // optional
+    providerOptions, // required
+    disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
+  });
 
-      // Get a Web3 instance for the wallet
-      const web3 = new Web3(provider);
-      setWeb3(web3);
-    
-      console.log("Web3 instance is", web3);
-    
-      // Get connected chain id from Ethereum node
-      const chainId = await web3.eth.getChainId();
-      // Load chain information over an HTTP API
-      // console.log(chainId)
-      // console.log(evmChains)
-      // const chainData = evmChains.getChain(chainId);
-      // document.querySelector("#network-name").textContent = chainData.name;
-    
-      // Get list of accounts of the connected wallet
-      const accounts_temp = await web3.eth.getAccounts();
-      
-      const networkId_temp = web3.eth.net.getId();
-      networkId_temp.then(function(networkId){
-        setNetwork(networkId);
-      })
+  setWeb3Modal(web3_Modal);
 
-      // accounts_temp.then(function(accounts){
-        setAccounts(accounts_temp);
+  console.log("Web3Modal instance is", web3Modal);
+}
 
-        // console.log(accounts_temp)
-      // })
-    
-      const tokenInstance_temp = new web3.eth.Contract(
-        BVToken.abi,
-        BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
-      );
-      tokenInstance_temp.options.address = "0xaBAf0eDE82Db96fcFee3091d11c6c35D60EF5463";
-      setTokenInstance(tokenInstance_temp);
+async function fetchAccountData() {
 
-      const publicSaleInstance_temp = new web3.eth.Contract(
-        PublicSale.abi,
-        PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
-      );
-      console.log(2)
-      publicSaleInstance_temp.options.address = "0x018c09FCe2357C505c3890e15906194e3f656fB4";
-      setPublicSaleInstance(publicSaleInstance_temp);
-      console.log(publicSaleInstance_temp)
-    
-      // MetaMask does not give you all accounts, only the selected account
-      console.log("Got accounts", accounts);
-      // selectedAccount = accounts[0];
-    
-      // document.querySelector("#selected-account").textContent = selectedAccount;
-      // console.log('selectedAccount', selectedAccount);
-    
-      // Get a handl
-      // const template = document.querySelector("#template-balance");
-      // const accountContainer = document.querySelector("#accounts");
-    
-      // Purge UI elements any previously loaded accounts
-      // accountContainer.innerHTML = '';
-    
-      // Go through all accounts and get their ETH balance
+  // Get a Web3 instance for the wallet
+  const web3 = new Web3(provider);
+  setWeb3(web3);
+
+  console.log("Web3 instance is", web3);
+
+  // Get connected chain id from Ethereum node
+  const chainId = await web3.eth.getChainId();
+  // Load chain information over an HTTP API
+  // console.log(chainId)
+  // console.log(evmChains)
+  // const chainData = evmChains.getChain(chainId);
+  // document.querySelector("#network-name").textContent = chainData.name;
+
+  // Get list of accounts of the connected wallet
+  const accounts_temp = await web3.eth.getAccounts();
+  
+  const networkId_temp = web3.eth.net.getId();
+  networkId_temp.then(function(networkId){
+    setNetwork(networkId);
+  })
+
+  // accounts_temp.then(function(accounts){
+   setAccounts(accounts_temp);
+
+    // console.log(accounts_temp)
+  // })
+
+  const tokenInstance_temp = new web3.eth.Contract(
+    BVToken.abi,
+    BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
+  );
+  tokenInstance_temp.options.address = "0xaBAf0eDE82Db96fcFee3091d11c6c35D60EF5463";
+  setTokenInstance(tokenInstance_temp);
+
+  const publicSaleInstance_temp = new web3.eth.Contract(
+    PublicSale.abi,
+    PublicSale.networks[networkId_temp] && PublicSale.networks[networkId_temp].address,
+  );
+  console.log(2)
+  publicSaleInstance_temp.options.address = "0x018c09FCe2357C505c3890e15906194e3f656fB4";
+  setPublicSaleInstance(publicSaleInstance_temp);
+  console.log(publicSaleInstance_temp)
+
+  // MetaMask does not give you all accounts, only the selected account
+  console.log("Got accounts", accounts);
+  // selectedAccount = accounts[0];
+
+  // document.querySelector("#selected-account").textContent = selectedAccount;
+  // console.log('selectedAccount', selectedAccount);
+
+  // Get a handl
+  // const template = document.querySelector("#template-balance");
+  // const accountContainer = document.querySelector("#accounts");
+
+  // Purge UI elements any previously loaded accounts
+  // accountContainer.innerHTML = '';
+
+  // Go through all accounts and get their ETH balance
   const rowResolvers = accounts_temp.map(async (address) => {
-        const balance = await web3.eth.getBalance(address);
-        // ethBalance is a BigNumber instance
-        // https://github.com/indutny/bn.js/
-        const ethBalance = web3.utils.fromWei(balance, "ether");
-        const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4);
-        // Fill in the templated row and put in the document
-        // const clone = template.content.cloneNode(true);
-        // clone.querySelector(".address").textContent = address;
-        // clone.querySelector(".balance").textContent = humanFriendlyBalance;
-        // accountContainer.appendChild(clone);
-        console.log(address);
-        console.log(humanFriendlyBalance);
-      });
-    
-      // Because rendering account does its own RPC commucation
-      // with Ethereum node, we do not want to display any results
-      // until data for all accounts is loaded
-      await Promise.all(rowResolvers);
-      // Display fully loaded UI for wallet data
-      // document.querySelector("#prepare").style.display = "none";
-      // document.querySelector("#connected").style.display = "block";
-      setWalletConnected(true);
-    }
-    
-    async function refreshAccountData() {
+    const balance = await web3.eth.getBalance(address);
+    // ethBalance is a BigNumber instance
+    // https://github.com/indutny/bn.js/
+    const ethBalance = web3.utils.fromWei(balance, "ether");
+    const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4);
+    // Fill in the templated row and put in the document
+    // const clone = template.content.cloneNode(true);
+    // clone.querySelector(".address").textContent = address;
+    // clone.querySelector(".balance").textContent = humanFriendlyBalance;
+    // accountContainer.appendChild(clone);
+    console.log(address);
+    console.log(humanFriendlyBalance);
+  });
 
-      // If any current data is displayed when
-      // the user is switching acounts in the wallet
-      // immediate hide this data
-      // document.querySelector("#connected").style.display = "none";
-      // document.querySelector("#prepare").style.display = "block";
-      setWalletConnected(false);
-      // Disable button while UI is loading.
-      // fetchAccountData() will take a while as it communicates
-      // with Ethereum node via JSON-RPC and loads chain data
-      // over an API call.
-      // document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
-      await fetchAccountData(provider);
-      // document.querySelector("#btn-connect").removeAttribute("disabled")
-    }
+  // Because rendering account does its own RPC commucation
+  // with Ethereum node, we do not want to display any results
+  // until data for all accounts is loaded
+  await Promise.all(rowResolvers);
+  // Display fully loaded UI for wallet data
+  // document.querySelector("#prepare").style.display = "none";
+  // document.querySelector("#connected").style.display = "block";
+  setWalletConnected(true);
+  console.log(walletConnected)
+}
+
+async function refreshAccountData() {
+
+  // If any current data is displayed when
+  // the user is switching acounts in the wallet
+  // immediate hide this data
+  // document.querySelector("#connected").style.display = "none";
+  // document.querySelector("#prepare").style.display = "block";
+  setWalletConnected(false);
+  // Disable button while UI is loading.
+  // fetchAccountData() will take a while as it communicates
+  // with Ethereum node via JSON-RPC and loads chain data
+  // over an API call.
+  // document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+  await fetchAccountData(provider);
+  // document.querySelector("#btn-connect").removeAttribute("disabled")
+}
 
 
 
-    async function onConnect() {
+async function onConnect() {
 
-      console.log("Opening a dialog", web3Modal);
-      try {
-        provider = await web3Modal.connect();
-      } catch(e) {
-        console.log("Could not get a wallet connection", e);
-        return;
-      }
-      console.log(provider);
-      setProvider(provider);
-      console.log(provider);
-      console.log('provider accounts changed')
-      // Subscribe to accounts change
-      provider.on("accountsChanged", (accounts) => {
-        fetchAccountData();
-      });
-      console.log('provider chain changed')
-      // Subscribe to chainId change
-      provider.on("chainChanged", (chainId) => {
-        fetchAccountData();
-      });
-      console.log('provider network changed')
-      // Subscribe to networkId change
-      provider.on("networkChanged", (networkId) => {
-        fetchAccountData();
-      });
-    
-      await refreshAccountData();
-    }
+  console.log("Opening a dialog", web3Modal);
+  try {
+    provider = await web3Modal.connect();
+  } catch(e) {
+    console.log("Could not get a wallet connection", e);
+    return;
+  }
+  console.log(provider);
+  setProvider(provider);
+  console.log(provider);
+  console.log('provider accounts changed')
+  // Subscribe to accounts change
+  provider.on("accountsChanged", (accounts) => {
+    fetchAccountData();
+  });
+  console.log('provider chain changed')
+  // Subscribe to chainId change
+  provider.on("chainChanged", (chainId) => {
+    fetchAccountData();
+  });
+  console.log('provider network changed')
+  // Subscribe to networkId change
+  provider.on("networkChanged", (networkId) => {
+    fetchAccountData();
+  });
 
-    async function onDisconnect() {
+  await refreshAccountData();
+}
 
-      console.log("Killing the wallet connection", provider);
-    
-      // TODO: Which providers have close method?
-      if(provider.close) {
-        await provider.close();
-    
-        // If the cached provider is not cleared,
-        // WalletConnect will default to the existing session
-        // and does not allow to re-scan the QR code with a new wallet.
-        // Depending on your use case you may want or want not his behavir.
-        await web3Modal.clearCachedProvider();
-        setProvider(null);
-      }
-    
-      selectedAccount = null;
-    
-      // Set the UI back to the initial state
-      // document.querySelector("#prepare").style.display = "block";
-      // document.querySelector("#connected").style.display = "none";
-      setWalletConnected(false);
-    }
+async function onDisconnect() {
+
+  console.log("Killing the wallet connection", provider);
+
+  // TODO: Which providers have close method?
+  if(provider.close) {
+    await provider.close();
+
+    // If the cached provider is not cleared,
+    // WalletConnect will default to the existing session
+    // and does not allow to re-scan the QR code with a new wallet.
+    // Depending on your use case you may want or want not his behavir.
+    await web3Modal.clearCachedProvider();
+    setProvider(null);
+  }
+
+  selectedAccount = null;
+
+  // Set the UI back to the initial state
+  // document.querySelector("#prepare").style.display = "block";
+  // document.querySelector("#connected").style.display = "none";
+  setWalletConnected(false);
+  console.log(walletConnected)
+}
 ///////////////////////////////////////////////
 
 
-  
-    // useEffect(() => {
-    //     const previouslySelectedWallet =
-    //       window.localStorage.getItem('selectedWallet')
-    
-    //     if (previouslySelectedWallet && onboard) {
-    //       onboard.walletSelect(previouslySelectedWallet)
-    //     }
-    // }, [onboard])
-    
-      const updateUserTokens = async () => {
-        if (accounts.length > 0 ){
-          let userTokens = await tokenInstance.methods.balanceOf(accounts[0]).call();
-          setUserTokens(userTokens);
-        } else {
-          store.addNotification({
-            title: "Error cannot find your account",
-            message: "Please check out available wallets",
-            type: "danger", // 'default', 'success', 'info', 'warning'
-            container: "top-right", // where to position the notifications
-            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-            dismiss: {
-              duration: 3000
-            }
-          });
-        }
+
+
+// useEffect(() => {
+//   // const previouslySelectedWallet =
+//     // window.localStorage.getItem('selectedWallet')
+
+//   // if (previouslySelectedWallet && onboard) {
+//     // onboard.walletSelect(previouslySelectedWallet)
+//   // }
+// }, [onboard])
+
+const updateUserTokens = async () => {
+  if (accounts.length > 0 ){
+    let userTokens = await tokenInstance.methods.balanceOf(accounts[0]).call();
+    setUserTokens(userTokens);
+  } else {
+    store.addNotification({
+      title: "Error cannot find your account",
+      message: "Please check out available wallets",
+      type: "danger", // 'default', 'success', 'info', 'warning'
+      container: "top-right", // where to position the notifications
+      animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+      animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+      dismiss: {
+        duration: 3000
       }
-    
-      
+    });
+  }
+}
+
   const handlewithdrawBNB = async() => {
     if(publicSaleInstance){
       await publicSaleInstance.methods.withdrawBNB().send({from:accounts[0]});
@@ -407,7 +409,6 @@ function init() {
         dismiss: {
           duration: 3000
         }
-    
       });
     }
   }
@@ -462,8 +463,8 @@ function init() {
     init();
   },[])
 
-  return (
-    <>
+    return (
+      <>
         <header className="header">
           <div className="container">
             <nav id="navigation1" className="navigation">
@@ -570,6 +571,7 @@ function init() {
                 </Grid>
             </Container>
         </div>
-    </>
-  );
-}
+      </>
+    );
+  }
+  
