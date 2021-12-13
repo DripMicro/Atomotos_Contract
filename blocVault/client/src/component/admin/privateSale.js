@@ -464,7 +464,7 @@ function init() {
 
   return (
     <>
-        <header className="header">
+    <header className="header">
           <div className="container">
             <nav id="navigation1" className="navigation">
               <div className="nav-header">
@@ -508,22 +508,7 @@ function init() {
                     justifyContent="center"
                     alignItems="center"
                 >
-                  
-                  {!walletConnected && (
-                      <Stack spacing={5} direction="row" mt={5}>
-                          <BootstrapButton variant="contained" disableRipple onClick={() => {onConnect()}}>
-                          Connect Wallet
-                          </BootstrapButton>
-                      </Stack>
-                    )}
-                    {walletConnected && (
-                      <Stack spacing={5} direction="row" mt={5}>
-                          <BootstrapButton variant="contained" disableRipple onClick={onDisconnect()}>
-                          Disconnect Wallet
-                          </BootstrapButton>
-                      </Stack>
-                    )}
-                    <Stack spacing={5} direction="row" mt={2}>
+                    <Stack spacing={5} direction="row" mt={2} style={{marginTop: '100px'}}>
                         <ColorButton variant="contained"  onClick={handleGetBNBBalance}>Private BNB</ColorButton>
                         <span className = "private-label">
                             {privateBNB}
@@ -535,7 +520,7 @@ function init() {
                     <Stack spacing={5} direction="row"mt={2}>
                         <ColorButton variant="contained"  onClick={handleGetBVTBalance}>Private BVT</ColorButton>
                         <span className = "private-label">
-                            {privateBVT}
+                            {privateBVT} BNB
                         </span>
                         {/* <BootstrapButton variant="contained" disableRipple onClick={handlewithdrawBVT}>
                             Withdraw BVT
