@@ -50,8 +50,8 @@ export default function HomeNavbar() {
     let [hour, setHour] = useState(0);
     let [minute, setMinute] = useState(0);
     let [second, setSecond] = useState(0);
-    let [startTime, setStartTime] = useState(1639345500); // start unix time -- privateSale
-    let [endTime, setEndTime] = useState(1639347300); // end unix time -- privateSale
+    let [startTime, setStartTime] = useState(1639360800); // start unix time -- privateSale
+    let [endTime, setEndTime] = useState(1639364400); // end unix time -- privateSale
     let [timeTitle, setTimeTitle] = useState('Private Sale');
     let [privateBNB, setPrivateBNB] = useState(0);
     let [privateRate, setPrivateRate] = useState({width: '0%'});
@@ -821,18 +821,12 @@ export default function HomeNavbar() {
                     <div className="sale_line">
                       <div className="sale_percent" style={privateRate}></div>
                     </div>
-                    <div className="private_period work-token-item">
+                    {/* <div className="private_period work-token-item">
                       <ul>
-                        <li>
-                          <strong>Minimum Contribution</strong>
-                          <span> 0.25 BNB </span>
-                        </li>
-                        <li>
-                          <strong>Maximum Contribution</strong>
-                          <span> 2 BNB </span>
-                        </li>
+                       
+                       
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="col-lg-3 offset-lg-1 col-md-6 align-self-center wow fadeInUp" style={{paddingRight:'0px'}} data-wow-duration="2s">
@@ -847,16 +841,26 @@ export default function HomeNavbar() {
                         <span> 11 Dec 2021 at 21:00 </span>
                       </li>
                       <li>
-                        <strong> Liquidity Unlock Date</strong>
-                        <span> 11 Dec 2021 at 21:00 </span>
-                      </li>
-                      <li>
                         <strong>Soft Cap</strong>
                         <span> 300 BNB </span>
                       </li>
                       <li>
                         <strong>Hard Cap</strong>
                         <span> 600 BNB </span>
+                      </li>
+                      <li>
+                          <strong>Minimum Contribution</strong>
+                          <span> 0.25 BNB </span>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2.5s">
+                  <div className="work-token-item">
+                    <ul>
+                      <li>
+                        <strong> Total Supply </strong>
+                        <span> 3,000,000,000,000 BVLT - 100% </span>
                       </li>
                       <li>
                         <strong>Private-Sale price</strong>
@@ -870,44 +874,10 @@ export default function HomeNavbar() {
                         <strong>Listing Rate</strong>
                         <span> 324,000,000 BVLT per BNB </span>
                       </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2.5s">
-                  <div className="work-token-item">
-                    <ul>
                       <li>
-                        <strong> Total Supply </strong>
-                        <span> 3,000,000,000,000 BVLT - 100% </span>
-                      </li>
-                      <li>
-                        <strong> Tokens For Private-Sale </strong>
-                        <span> 240,000,000,000 BVLT - 8% </span>
-                      </li>
-                      <li>
-                        <strong> Pre-sale </strong>
-                        <span> 54,000,000,000 BVLT - 1.8% </span>
-                      </li>
-                      <li>
-                        <strong> Marketing fund </strong>
-                        <span>  225,000,000,000 BVLT 7.5% VESTED </span>
-                      </li>
-                      <li>
-                        <strong> Development fund </strong>
-                        <span> 225,000,000,000 BVLT 7.5% VESTED </span>
-                      </li>
-                      <li>
-                        <strong> Liquidity </strong>
-                        <span>201,114,000,000 BVLT 6.7% LOCKED</span>
-                      </li>
-                      <li>
-                        <strong>Reserve liquidity</strong>
-                        <span>210,000,000,000 BVLT 7% LOCKED</span>
-                      </li>
-                      <li>
-                        <strong>Airdropping/promos</strong>
-                        <span>150,000,000,000 BVLT 5% VESTED</span>
-                      </li>
+                          <strong>Maximum Contribution</strong>
+                          <span> 2 BNB </span>
+                        </li>
                     </ul>
                   </div>
                 </div>

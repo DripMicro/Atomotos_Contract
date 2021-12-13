@@ -52,8 +52,8 @@ export default function HomeNavbar() {
     let [hour, setHour] = useState(0);
     let [minute, setMinute] = useState(0);
     let [second, setSecond] = useState(0);
-    let [startTime, setStartTime] = useState(1639345500); // start unix time -- privateSale
-    let [endTime, setEndTime] = useState(1639347300); // end unix time -- privateSale
+    let [startTime, setStartTime] = useState(1639350000); // start unix time -- privateSale
+    let [endTime, setEndTime] = useState(1639357200); // end unix time -- privateSale
     let [timeTitle, setTimeTitle] = useState('Private Sale');
     let [privateBNB, setPrivateBNB] = useState(0);
     let [privateRate, setPrivateRate] = useState({width: '0%'});
@@ -84,7 +84,7 @@ export default function HomeNavbar() {
       if(localTime > startTime)
         setCountTime(endTime - localTime);
       else {
-        setCountTime(endTime - startTime);
+        // setCountTime(endTime - startTime);
         setStartInTime(startTime - localTime);
       }
       console.log("Initializing example");
@@ -631,6 +631,7 @@ export default function HomeNavbar() {
             setTimeTitle('Private Sale Ends in')
             remainTime -= 1;
             if (remainTime >= 0) {
+              console.log(remainTime)
               countdown(remainTime)
               setIsPrivateBuy(true)
             } 
@@ -646,8 +647,11 @@ export default function HomeNavbar() {
           } else {
             setIsGetBV(false)
           }
-      
-          setTimeout(() => {setCountTime(remainTime); setStartInTime(startIn)}, 1000);
+          if (localTime < startTime){
+            setTimeout(() => {setStartInTime(startIn)}, 1000);  
+          } else {
+            setTimeout(() => {setCountTime(remainTime)}, 1000);
+          }
       }, );
 
   return (

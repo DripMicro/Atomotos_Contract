@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 80;
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../BlockVault/client/build')));
+app.use(express.static(path.resolve(__dirname, '../blocVault/client/build')));
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
@@ -17,7 +17,7 @@ app.get("/.well-known/pki-validation/B0F026A73BA4CFC941BE2DEFF92FA552.txt", (req
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../BlockVault/client/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../blocVault/client/build', 'index.html'));
 });
 
 const httpsServer = https.createServer({

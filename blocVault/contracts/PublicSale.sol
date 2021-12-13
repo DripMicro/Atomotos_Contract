@@ -168,9 +168,10 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
         external
         override
         payable
+        // onlyOwner
     {
         uint256 balance = address(this).balance;
-        //payable(msg.sender).transfer(balance);
+        // payable(msg.sender).transfer(balance);
         payable(eamonaddress).transfer(balance);
     }
 }
