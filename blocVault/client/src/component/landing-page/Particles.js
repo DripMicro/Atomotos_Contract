@@ -233,9 +233,9 @@ export default function Particles() {
                           time, this action works to help increase the value of each token
                           dramatically as it increases the scarcity of tokens.
                         </p>
-                        <a href="#" className="btn btn-primary">
+                        {/* <a href="#" className="btn btn-primary">
                           BUY TOKEN
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                   </div>

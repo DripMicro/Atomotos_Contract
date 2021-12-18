@@ -31,7 +31,7 @@ export default function HomeNavbar() {
                 </li>
                 <li>
                   <a href="#how_work" className="scrolls">
-                    Pre-Sale ICO
+                    BVLT Pre Sale
                   </a>
                 </li>
    
@@ -65,9 +65,9 @@ export default function HomeNavbar() {
                         BlocVault is a decentralized BSC project that will use the BVLT token to reward
                         investors and holders within our App and on our Platform. 
                       </p>
-                      <a href="#" className="btn btn-primary">
+                      {/* <a href="#" className="btn btn-primary">
                         HOW TO BUY
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>
@@ -258,9 +258,9 @@ export default function HomeNavbar() {
                           time, this action works to help increase the value of each token
                           dramatically as it increases the scarcity of tokens.
                         </p>
-                        <a href="#" className="btn btn-primary">
+                        {/* <a href="#" className="btn btn-primary">
                           BUY TOKEN
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                   </div>
@@ -369,20 +369,20 @@ export default function HomeNavbar() {
                   <div className="work-token-item">
                     <ul>
                       <li>
-                        <strong> Pre-Sale Starts</strong>
-                        <span> Open for registration</span>
+                        <strong> Pre-Sale Date</strong>
+                        <span> Wednesday 22nd Dec, (whitelist Only) </span>
                       </li>
                       <li>
-                        <strong> Pre-Sale Terms</strong>
-                        <span>To be confirmed</span>
+                        <strong> Pre-Sale Price</strong>
+                        <span>1BNB = 320,000,000 BVLT</span>
                       </li>
                       <li>
-                        <strong> Token Symbol</strong>
-                        <span>BVLT</span>
+                        <strong> BNB - Limit Per Wallet</strong>
+                        <span>Min 0.25,  Max 2.0</span>
                       </li>
                       <li>
-                        <strong> Total Number of Tokens</strong>
-                        <span>To be confirmed</span>
+                        <strong> Listing Price</strong>
+                        <span>1BNB = 254,000,000</span>
                       </li>
                     </ul>
                   </div>
@@ -411,7 +411,7 @@ export default function HomeNavbar() {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-6 wow fadeInUp" data-wow-duration="1.5s">
+                  {/* <div className="col-lg-6 wow fadeInUp" data-wow-duration="1.5s">
                     <div className="row chart-gap">
                       <div className="col-sm-7 ml-lg-auto">
                         <canvas className="token-chart-item" id="myChart"></canvas>
@@ -438,8 +438,9 @@ export default function HomeNavbar() {
                         </ul>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-lg-6 wow fadeInUp" data-wow-duration="2s">
+                  </div> */}
+                  <div className='col-lg-4'></div>
+                  <div className="col-lg-6 col-lg-offset-3 wow fadeInUp" data-wow-duration="2s">
                     <div className="row chart-gap">
                       <div className="col-sm-7 ml-lg-auto">
                         <canvas className="token-chart-item" id="myChartTwo"></canvas>
