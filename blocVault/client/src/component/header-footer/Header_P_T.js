@@ -342,8 +342,8 @@ export default function HomeNavbar() {
               <div className="row">
                 <div className="col-lg-4 col-md-6 wow fadeInUp " data-wow-duration="1.5s">
                   <div className="xs-count-down">
-                    <h3 className="xs-single-title">Enter ICO</h3>
-                    <ul className="xs-counter-list">
+                    <h3 className="xs-single-title">Join our Whitelist Pre-Sale</h3>
+                    {/* <ul className="xs-counter-list">
                       <li>
                         <strong id="">0</strong>
                         <span>Day</span>
@@ -360,8 +360,16 @@ export default function HomeNavbar() {
                         <strong id="">0</strong>
                         <span>Second</span>
                       </li>
-                    </ul>
+                    </ul> */}
+                    <div>
+                      <span className='preSaleTitle'>Telegram or Discord handle</span>
+                      <input className='preSaleBtn'/><br/>
+                      <span className='preSaleTitle'>Wallet Address for whitelist</span>
+                      <input className='preSaleBtn'/><br/>
+                      <div  className='preSaleTitle'>Please note:<br/> Your BVLT tokens will be airdropped to your wallet address after our Whitelisted Pre-sale ends</div>
+                    </div>
                     <div className="btn-wrapper text-center">
+                      <button className="btn btn-primary" >Enter Our Whitelist Pre-Sale</button>
                     </div>
                   </div>
                 </div>
@@ -439,15 +447,17 @@ export default function HomeNavbar() {
                       </div>
                     </div>
                   </div> */}
-                  <div className='col-lg-4'></div>
-                  <div className="col-lg-6 col-lg-offset-3 wow fadeInUp" data-wow-duration="2s">
-                    <div className="row chart-gap">
-                      <div className="col-sm-7 ml-lg-auto">
-                        <canvas className="token-chart-item" id="myChartTwo"></canvas>
+                  <div className='col-lg-3'></div>
+                  <div className="col-lg-8 col-lg-offset-3 wow fadeInUp" data-wow-duration="2s">
+                    <div className="rows">
+                      <div className="col-sm-12 ml-lg-auto">
+                        <img src="assets/images/token/1.png"/>
+                      </div>
+                      <div className="col-sm-8">
                         <h3 className="xs-single-title">Tokenomics</h3>
                       </div>
-                      <div className="col-sm-5">
-                        <ul className="chart-label chartLabel2">
+                      {/* <div className="col-sm-5"> */}
+                        {/* <ul className="chart-label chartLabel2">
                           <li>
                             <img src="assets/images/token/label_img2-1.png" alt=""/>
                             <span className="chart-bg1">2 %</span> Liquidity
@@ -466,10 +476,15 @@ export default function HomeNavbar() {
                           </li>
                           <li>
                             <img src="assets/images/token/label_img2-5.png" alt=""/>
-                            <span className="chart-bg5">2 %</span> Buy Back
+                            <span className="chart-bg5">1 %</span> Buy Back
                           </li>
-                        </ul>
-                      </div>
+                          <li>
+                            <img src="assets/images/token/label_img2-5.png" alt=""/>
+                            <span className="chart-bg5">1 %</span> Buy Back
+                          </li>
+                        </ul> */}
+                        
+                      {/* </div> */}
                     </div>
                   </div>
                 </div>

@@ -257,7 +257,10 @@ h6 {
 
 .xs-single-title {
   font-size: 24px;
-  letter-spacing: 0.6px; }
+  letter-spacing: 0.6px; 
+  text-align: center;
+  margin-top: 30px;
+}
 .underline {
   border-bottom: 1px solid #FFF;
   padding-bottom: 10px;
@@ -266,7 +269,9 @@ h6 {
 .section-title-item {
   text-align: center;
   position: relative;
-  z-index: 1; }
+  z-index: 1; 
+  margin-top: 40px;
+}
   .section-title-item .section-title {
     font-size: 36px;
     letter-spacing: -0.9px;
@@ -1117,7 +1122,13 @@ h6 {
         display: block;
         font-size: 14px; }
   .xs-count-down .btn-wrapper {
-    margin-bottom: 10px; }
+    margin-bottom: 10px; 
+    margin-top: 10px; 
+  }
+  .xs-count-down .btn-wrapper .btn{
+    width:100%;
+    padding: 0 10px;
+  }
 
 .xs-progress-bar {
   position: relative;
@@ -2670,4 +2681,18 @@ a.cencel-preloader {
 .ps_titleTitle{
   font-size: 16px;
   color: #c0d2fe;
+}
+.preSaleBtn{
+    width: 100%;
+    border-radius: 5px;
+    border: 0;
+    padding: 5px;
+    padding-left: 15px;
+    background: #ffffff40;
+    color: white;
+}
+.preSaleTitle{
+    font-size: 14px;
+    margin-left: 13px;
+    margin-top: 10px;
 }
