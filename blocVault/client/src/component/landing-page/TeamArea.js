@@ -25,7 +25,7 @@ export default function TeamArea() {
                     <a className="col-md" id="v-pills-report-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">
                       <i className="icon-report"></i> Audits </a>
                     <a className="col-md" id="v-pills-ico-tab" data-toggle="pill" href="#v-pills-ICO" role="tab" aria-controls="v-pills-ICO" aria-selected="false">
-                      <i className="icon-structure"></i> ICO Structure </a>
+                      <i className="icon-structure"></i> Pre-Sale </a>
                   </div>
                   
                   <div className="road-map-tab">

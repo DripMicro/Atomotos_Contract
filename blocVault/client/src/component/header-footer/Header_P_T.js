@@ -1,8 +1,56 @@
 import React, {useState, useEffect} from 'react';
+import { send } from 'emailjs-com';
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import "../css/style.css";
 
 export default function HomeNavbar() {
-    
+  const [toSend, setToSend] = useState({
+    from_url: '',
+    address: '',
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    send(
+      'service_l5jtea6',
+      'template_qhe90is',
+      toSend,
+      'user_MgvYcHYIyMEkrdSoAvcZb'
+    )
+      .then((response) => {
+        store.addNotification({
+          title: "Success",
+          message: "Please check out available wallets",
+          type: "success", // 'default', 'success', 'info', 'warning'
+          container: "top-right", // where to position the notifications
+          animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+          animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+          dismiss: {
+            duration: 10000
+          }
+        });
+      })
+      .catch((err) => {
+        store.addNotification({
+          title: "Error",
+          message: "",
+          type: "danger", // 'default', 'success', 'info', 'warning'
+          container: "top-right", // where to position the notifications
+          animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+          animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+          dismiss: {
+            duration: 3000
+          }
+        });
+      });
+  };
+
+  const handleChange = (e) => {
+    setToSend({ ...toSend, [e.target.name]: e.target.value });
+  };
+
+
   return (
     <>
       <header className="header">
@@ -361,13 +409,27 @@ export default function HomeNavbar() {
                         <span>Second</span>
                       </li>
                     </ul> */}
-                    <div>
-                      <span className='preSaleTitle'>Telegram or Discord handle</span>
-                      <input className='preSaleBtn'/><br/>
-                      <span className='preSaleTitle'>Wallet Address for whitelist</span>
-                      <input className='preSaleBtn'/><br/>
-                      <div  className='preSaleTitle'>Please note:<br/> Your BVLT tokens will be airdropped to your wallet address after our Whitelisted Pre-sale ends</div>
-                    </div>
+                    <form onSubmit={onSubmit}>
+                      <div>
+                        <span className='preSaleTitle'>Telegram or Discord handle</span>
+                        <input 
+                          className='preSaleBtn' 
+                          name='from_url'
+                          placeholder=''
+                          value={toSend.from_url}
+                          onChange={handleChange}
+                        /><br/>
+                        <span className='preSaleTitle'>Wallet Address for whitelist</span>
+                        <input 
+                          className='preSaleBtn'
+                          name='address'
+                          placeholder=''
+                          value={toSend.address}
+                          onChange={handleChange}
+                        /><br/>
+                        <div  className='preSaleTitle'>Please note:<br/> Your BVLT tokens will be airdropped to your wallet address after our Whitelisted Pre-sale ends</div>
+                      </div>
+                    </form>
                     <div className="btn-wrapper text-center">
                       <button className="btn btn-primary" >Enter Our Whitelist Pre-Sale</button>
                     </div>
