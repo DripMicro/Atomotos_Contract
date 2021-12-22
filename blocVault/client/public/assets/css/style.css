@@ -2696,3 +2696,41 @@ a.cencel-preloader {
     margin-left: 13px;
     margin-top: 10px;
 }
+.vesting-section1 .section-title{
+  color: #debd00;
+  text-align: center;
+}
+.vesting-section1 .section-footer{
+  color: #debd00;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.vesting-section1 .content {
+  line-height: 3;
+}
+.vesting-section1 .content-title {
+  font-size: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.vesting-section1 .content-body {
+  color: #d2d6e4;
+  line-height: 2;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.vesting-section1 .content-footer {
+  color : #d2b301;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+}
+.xs-count-down .content{
+  text-align: left;
+  margin-left: 20px;
+  color: #d2d6e4;
+  margin-bottom: 20px;
+}
+.xs-count-down input{
+  margin-bottom: 20px;
+}
