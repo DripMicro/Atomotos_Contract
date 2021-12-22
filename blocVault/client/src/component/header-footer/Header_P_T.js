@@ -21,7 +21,7 @@ export default function HomeNavbar() {
       .then((response) => {
         store.addNotification({
           title: "Success",
-          message: "Please check out available wallets",
+          message: "Thank you for entering our presale See you on the moon",
           type: "success", // 'default', 'success', 'info', 'warning'
           container: "top-right", // where to position the notifications
           animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
@@ -30,11 +30,12 @@ export default function HomeNavbar() {
             duration: 10000
           }
         });
+	setToSend({ from_url: '', address: ''});
       })
       .catch((err) => {
         store.addNotification({
           title: "Error",
-          message: "",
+          message: "You don't send your information",
           type: "danger", // 'default', 'success', 'info', 'warning'
           container: "top-right", // where to position the notifications
           animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
@@ -429,10 +430,11 @@ export default function HomeNavbar() {
                         /><br/>
                         <div  className='preSaleTitle'>Please note:<br/> Your BVLT tokens will be airdropped to your wallet address after our Whitelisted Pre-sale ends</div>
                       </div>
-                    </form>
+
                     <div className="btn-wrapper text-center">
-                      <button className="btn btn-primary" >Enter Our Whitelist Pre-Sale</button>
+                      <button type = "submit" className="btn btn-primary" >Enter Our Whitelist Pre-Sale</button>
                     </div>
+                    </form>
                   </div>
                 </div>
                 <div className="col-lg-3 offset-lg-1 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2s">
