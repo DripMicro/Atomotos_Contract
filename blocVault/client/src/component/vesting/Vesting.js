@@ -4,6 +4,7 @@ import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Fortmatic from 'fortmatic';
 import BVToken from "../../contracts/BlocVaultToken.json";
+import Vesting_Contract from "../../contracts/Vesting.json";
 import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
 import Modal from "react-modal";
@@ -29,6 +30,15 @@ export default function Vesting() {
   const [Amount_270, setAmount_270] = useState(0);
   const [Amount_360, setAmount_360] = useState(0);
 
+  const [isVested, setIsVested] = useState(false);
+  const [isVested_90, setIsVested_90] = useState(false);
+  const [isVested_180, setIsVested_180] = useState(false);
+  const [isVested_270, setIsVested_270] = useState(false);
+  const [isVested_360, setIsVested_360] = useState(false);
+
+  const [deadline, setDeadline] = useState('');
+  const [vestingAmount, setVestingAmount] = useState(0);
+
   function toggleModal() {
     setIsOpen(!isOpen);
   }
@@ -41,18 +51,40 @@ export default function Vesting() {
   },[])
 
   useEffect(()=>{
-    console.log(accounts)
-    getVestingInfo()
+    (async () => {      
+    })()
   },[accounts, tokenInstance])
 
   async function getVestingInfo () {
     if (accounts.length > 0 && tokenInstance ){
       const isVesting = await tokenInstance.methods.get_isVesting(accounts[0]).call();
       if (isVesting) {
-        console.log(await tokenInstance.methods.get_vest_info(accounts[0]).call());
+        const vestInfo = await tokenInstance.methods.get_vest_info(accounts[0]).call();
+        var date = new Date(vestInfo[0] * 1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        // Seconds part from the timestamp
+        var seconds = "0" + date.getSeconds();
+
+        // Will display time in 10:30:23 format
+        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+        const dateObject = new Date(vestInfo[0] * 1000)
+
+        setDeadline(dateObject.toLocaleString())
+        setVestingAmount(vestInfo[1])
+      } else {
+        setDeadline('')
+        setVestingAmount(0)
       }
     }
   }
+
+  useEffect(()=>{
+    getVestingInfo()
+  },[isVested_90, isVested_180, isVested_270, isVested_360])
+
 
   function init() {
     console.log("Initializing example");
@@ -141,18 +173,55 @@ export default function Vesting() {
 
       // console.log(accounts_temp)
     // })
-    console.log( BVToken.abi);
-    
-    const tokenInstance_temp = new web3.eth.Contract(
-      BVToken.abi,
-      BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
-    );
+    console.log( Vesting_Contract.abi);
+    let Vesting_Contract_address = "0xBF52fA023504f6966eb9703F2dECa2dC3deb5666";
 
-    tokenInstance_temp.options.address = "0xB47fd17bd50AFd40fF6A180ee02F88481629102B";
+    // const tokenInstance_temp = new web3.eth.Contract(
+    //   BVToken.abi,
+    //   BVToken.networks[networkId_temp] && BVToken.networks[networkId_temp].address,
+    // );
+
+    const tokenInstance_temp = new web3.eth.Contract(
+      Vesting_Contract.abi,Vesting_Contract_address
+    )
+
+    tokenInstance_temp.options.address = "0xBF52fA023504f6966eb9703F2dECa2dC3deb5666";
     setTokenInstance(tokenInstance_temp);
-    console.log("sdgfae");
     console.log(tokenInstance_temp);
-    console.log(await tokenInstance_temp.methods.get_isVesting(accounts_temp[0]).call());
+    let isVested_temp = await tokenInstance_temp.methods.get_isVesting(accounts_temp[0]).call();
+    console.log(`isVested_temp = ${isVested_temp}`);
+    setIsVested(isVested_temp);
+
+    setIsVested_90(false);
+    setIsVested_180(false);
+    setIsVested_270(false);
+    setIsVested_360(false);
+
+    if(isVested_temp){
+      console.log("dsafad");
+      const vest_info = await tokenInstance_temp.methods.get_vest_info(accounts_temp[0]).call();
+      console.log(vest_info)
+      switch (vest_info[2]) {
+        case "90":
+          console.log("set90");
+          setIsVested_90(true);
+          break;
+        case "180":
+          console.log("set90");
+          setIsVested_180(true);
+          break;
+        case "270":
+          console.log("set270");
+          setIsVested_270(true);
+          break;
+        case "360":
+          console.log("set360");
+          setIsVested_360(true);
+          break;
+      }
+      
+    }
+    // console.log(await tokenInstance_temp.methods.get_isVesting(accounts_temp[0]).call());
     // console.log("Got accounts", accounts);
 
     const rowResolvers = accounts.map(async (address) => {
@@ -230,7 +299,7 @@ export default function Vesting() {
       await web3Modal.clearCachedProvider();
       setProvider(null);
     }
-  
+
     selectedAccount = null;
   
     // Set the UI back to the initial state
@@ -263,19 +332,72 @@ export default function Vesting() {
     setAmount_360(value);
   }
 
+  const claim = async() => {
+    if(tokenInstance && accounts.length > 0){
+      if(isVested_90 || isVested_180 || isVested_270 || isVested_360){
+        await tokenInstance.methods.claim_vest().send({from:accounts[0]});
+        setIsVested_90(false);
+        setIsVested_180(false);
+        setIsVested_270(false);
+        setIsVested_360(false);
+        setIsVested(false);
+      } else
+          store.addNotification({
+            title: "Error",
+            message: "You can't claim now",
+            type: "danger", // 'default', 'success', 'info', 'warning'
+            container: "top-right", // where to position the notifications
+            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+            dismiss: {
+              duration: 3000
+            }
+          });
+      } 
+    else {
+      store.addNotification({
+        title: "Error",
+        message: "Please check out available wallets",
+        type: "danger", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+    }
+  }
+
   const Invest_90 = async() => {
-    if(tokenInstance){
-      if (accounts.length > 0){
-        if(Amount_90 > 254000000) {
+    if(tokenInstance && accounts.length > 0){
+        let isVested_temp = await tokenInstance.methods.get_isVesting(accounts[0]).call();
+        if (isVested_temp) {
+          store.addNotification({
+            title: "Error",
+            message: "You've already vested",
+            type: "danger", // 'default', 'success', 'info', 'warning'
+            container: "top-right", // where to position the notifications
+            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+            dismiss: {
+              duration: 3000
+            }
+          });
+      } else {
+        if(Amount_90 >= 254000000) {
           const amount = Amount_90 * 10**9;
           console.log(amount);
-          console.log(accounts);
-          await tokenInstance.methods.approve(tokenInstance._address, web3.utils.toBN(amount.toString())).send({from:accounts[0]});
+          console.log("invest_90");
+          //await tokenInstance.methods.approve(tokenInstance._address, web3.utils.toBN(amount.toString())).send({from:accounts[0]});
           await tokenInstance.methods.vesting(web3.utils.toBN(amount.toString()), 90).send({from:accounts[0]});
+          //, gas: 1500000, gasPrice: '30000'
+          setIsVested_90(true);
         } else {
           store.addNotification({
             title: "Error",
-            message: "Please Input correctly",
+            message: `Please input correctly 
+            (Please enter at least 254000000 = 1bnb)`,
             type: "danger", // 'default', 'success', 'info', 'warning'
             container: "top-right", // where to position the notifications
             animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
@@ -285,20 +407,8 @@ export default function Vesting() {
             }
           });
         }
-      } else {
-        store.addNotification({
-          title: "Error cannot find your account",
-          message: "Please check out available wallets",
-          type: "danger", // 'default', 'success', 'info', 'warning'
-          container: "top-right", // where to position the notifications
-          animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-          animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-          dismiss: {
-            duration: 3000
-          }
-        });
       }
-    }else{
+    } else {
       store.addNotification({
         title: "Error cannot find your account",
         message: "Please check out available wallets",
@@ -311,20 +421,168 @@ export default function Vesting() {
         }
       });
     }
-    console.log(Amount_90);
   }
 
-
   const Invest_180 = async() => {
-    console.log(Amount_180);    
+    if(tokenInstance && accounts.length > 0){
+      let isVested_temp = await tokenInstance.methods.get_isVesting(accounts[0]).call();
+      if (isVested_temp) {
+        store.addNotification({
+          title: "Error",
+          message: "You've already vested",
+          type: "danger", // 'default', 'success', 'info', 'warning'
+          container: "top-right", // where to position the notifications
+          animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+          animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+          dismiss: {
+            duration: 3000
+          }
+        });
+      } 
+      else {
+        if(Amount_180 >= 254000000) {
+          const amount = Amount_180 * 10**9;
+          console.log(`invest_180${amount}`);
+          //await tokenInstance.methods.approve(tokenInstance._address, web3.utils.toBN(amount.toString())).send({from:accounts[0]});
+          await tokenInstance.methods.vesting(web3.utils.toBN(amount.toString()), 180).send({from:accounts[0]});
+          //, gas: 1500000, gasPrice: '30000'
+          setIsVested_180(true);
+        } else {
+          store.addNotification({
+            title: "Error",
+            message: `Please input correctly 
+            (Please enter at least 254000000 = 1bnb)`,
+            type: "danger", // 'default', 'success', 'info', 'warning'
+            container: "top-right", // where to position the notifications
+            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+            dismiss: {
+              duration: 3000
+            }
+          });
+        }
+      }
+    }else {
+        store.addNotification({
+          title: "Error cannot find your account",
+          message: "Please check out available wallets",
+          type: "danger", // 'default', 'success', 'info', 'warning'
+          container: "top-right", // where to position the notifications
+          animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+          animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+          dismiss: {
+            duration: 3000
+          }
+        });
+      }
   }
 
   const Invest_270 = async() => {
-      console.log(Amount_270);
+    if(tokenInstance && accounts.length > 0){
+      let isVested_temp = await tokenInstance.methods.get_isVesting(accounts[0]).call();
+      if (isVested_temp) {
+        store.addNotification({
+          title: "Error",
+          message: "You've already vested",
+          type: "danger", // 'default', 'success', 'info', 'warning'
+          container: "top-right", // where to position the notifications
+          animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+          animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+          dismiss: {
+            duration: 3000
+          }
+        });
+      } 
+      else {
+        if(Amount_270 >= 254000000) {
+          const amount = Amount_270 * 10**9;
+          console.log(`invest_270${amount}`);
+          //await tokenInstance.methods.approve(tokenInstance._address, web3.utils.toBN(amount.toString())).send({from:accounts[0]});
+          await tokenInstance.methods.vesting(web3.utils.toBN(amount.toString()), 270).send({from:accounts[0]});
+          //, gas: 1500000, gasPrice: '30000'
+          setIsVested_270(true);
+        } else {
+          store.addNotification({
+            title: "Error",
+            message: `Please input correctly 
+            (Please enter at least 254000000 = 1bnb)`,
+            type: "danger", // 'default', 'success', 'info', 'warning'
+            container: "top-right", // where to position the notifications
+            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+            dismiss: {
+              duration: 3000
+            }
+          });
+        }
+      }
+    }else {
+      store.addNotification({
+        title: "Error cannot find your account",
+        message: "Please check out available wallets",
+        type: "danger", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+    }
   }
 
-  const Invest_360 = async() => {    
-    console.log(Amount_360);
+  const Invest_360 = async() => {
+    if(tokenInstance && accounts.length > 0){
+      let isVested_temp = await tokenInstance.methods.get_isVesting(accounts[0]).call();
+      if (isVested_temp) {
+        store.addNotification({
+          title: "Error",
+          message: "You've already vested",
+          type: "danger", // 'default', 'success', 'info', 'warning'
+          container: "top-right", // where to position the notifications
+          animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+          animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+          dismiss: {
+            duration: 3000
+          }
+        });
+      } 
+      else {
+        if(Amount_360 >= 254000000) {
+          const amount = Amount_360 * 10**9;
+          console.log(`invest_360${amount}`);
+          //await tokenInstance.methods.approve(tokenInstance._address, web3.utils.toBN(amount.toString())).send({from:accounts[0]});
+          await tokenInstance.methods.vesting(web3.utils.toBN(amount.toString()), 360).send({from:accounts[0]});
+          //, gas: 1500000, gasPrice: '30000'
+          setIsVested_360(true);
+        } else {
+          store.addNotification({
+            title: "Error",
+            message: `Please input correctly 
+            (Please enter at least 254000000 = 1bnb)`,
+            type: "danger", // 'default', 'success', 'info', 'warning'
+            container: "top-right", // where to position the notifications
+            animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+            dismiss: {
+              duration: 3000
+            }
+          });
+        }
+      }
+    }else {
+      store.addNotification({
+        title: "Error cannot find your account",
+        message: "Please check out available wallets",
+        type: "danger", // 'default', 'success', 'info', 'warning'
+        container: "top-right", // where to position the notifications
+        animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+        animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+        dismiss: {
+          duration: 3000
+        }
+      });
+    }
   }
 
   return (
@@ -378,6 +636,12 @@ export default function Vesting() {
                 <div className='content-footer'><i>www.blocvault.io</i></div> 
               </div>
             </div>
+            <div className="row vesting-section2">
+              <div className="content col-lg-12 align-self-center wow fadeInUp" data-wow-duration="1.5s">
+                <div className='content-title'>{deadline != '' && `Your Tokens will be released on ${deadline}`}</div>
+                <div className='content-footer'>{vestingAmount > 0 &&  `Amount: ${vestingAmount}`}</div> 
+              </div>
+            </div>
 
             <div className="row">
               <div className="col-lg-4 offset-lg-1 col-md-6 wow fadeInUp mt-5" data-wow-duration="1.5s">
@@ -392,7 +656,8 @@ export default function Vesting() {
                       <li>- Early release fee 3.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_90" value={Amount_90} onChange={InputValue_90} />
-                    <button className="btn btn-primary" onClick={() => Invest_90()}>VEST BV</button>
+                    {!isVested_90 && (<button className="btn btn-primary" onClick={() => Invest_90()}>VEST BV</button>)}
+                    {isVested_90 && (<button className="btn btn-primary" onClick={() => claim()}>Claim BV</button>)}
                   </div>
                 </div>
               </div>
@@ -408,7 +673,8 @@ export default function Vesting() {
                       <li>- Early release fee 3.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_180" value={Amount_180} onChange={InputValue_180} />
-                    <button className="btn btn-primary" onClick={() => Invest_180()}>VEST BV</button>
+                    {!isVested_180 && (<button className="btn btn-primary" onClick={() => Invest_180()}>VEST BV</button>)}
+                    {isVested_180 && (<button className="btn btn-primary" onClick={() => claim()}>Claim BV</button>)}
                   </div>
                 </div>
               </div>
@@ -424,7 +690,8 @@ export default function Vesting() {
                       <li>- Early release fee 5.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_270" value={Amount_270} onChange={InputValue_270} />
-                    <button className="btn btn-primary" onClick={() => Invest_270()}>VEST BV</button>
+                    {!isVested_270 && (<button className="btn btn-primary" onClick={() => Invest_270()}>VEST BV</button>)}
+                    {isVested_270 && (<button className="btn btn-primary" onClick={() => claim()}>Claim BV</button>)}
                   </div>
                 </div>
               </div>
@@ -440,7 +707,8 @@ export default function Vesting() {
                       <li>- Early release fee 5.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_360" value={Amount_360} onChange={InputValue_360} />
-                    <button className="btn btn-primary" onClick={() => Invest_360()}>VEST BV</button>
+                    {!isVested_360 && (<button className="btn btn-primary" onClick={() => Invest_360()}>VEST BV</button>)}
+                    {isVested_360 && (<button className="btn btn-primary" onClick={() => claim()}>Claim BV</button>)}
                   </div>
                 </div>
               </div>
@@ -449,7 +717,6 @@ export default function Vesting() {
         </section>
           </div>
         </div>
-
       </div>
     </>
   );

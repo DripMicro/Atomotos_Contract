@@ -442,7 +442,7 @@ export default function HomeNavbar() {
                     <ul>
                       <li>
                         <strong> Pre-Sale Date</strong>
-                        <span> Wednesday 22nd Dec, (whitelist Only) </span>
+                        <span> Saturday 1st 8pm GMT </span>
                       </li>
                       <li>
                         <strong> Pre-Sale Price</strong>
@@ -450,7 +450,7 @@ export default function HomeNavbar() {
                       </li>
                       <li>
                         <strong> BNB - Limit Per Wallet</strong>
-                        <span>Min 0.25,  Max 2.0</span>
+                        <span>Min 0.25,  Max 1.0</span>
                       </li>
                       <li>
                         <strong> Listing Price</strong>
@@ -462,7 +462,7 @@ export default function HomeNavbar() {
                 <div className="col-lg-4 align-self-center col-md-12 wow fadeInUp" data-wow-duration="2.5s">
                   <div className="work-video">
                     <img src="assets/images/how-works/video.jpg" alt=""/>
-                    <a href="https://www.youtube.com/watch?v=G5Hy4-ri6b4" className="video-btn xs-video" data-effect="mfp-zoom-in">
+                    <a href="https://www.youtube.com/watch?v=IA40bfxCEec" className="video-btn xs-video" data-effect="mfp-zoom-in">
                       <i className="icon icon-play-button2"></i>
                       <span className="btn-hover-anim"></span>
                     </a>

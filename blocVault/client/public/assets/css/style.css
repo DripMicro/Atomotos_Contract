@@ -39,7 +39,9 @@ body {
   -moz-osx-font-smoothing: grayscale; }
 
 iframe {
-  border: none; }
+  border: none; 
+  z-index: 0!important;
+}
 
 a,
 b,
@@ -2733,4 +2735,18 @@ a.cencel-preloader {
 }
 .xs-count-down input{
   margin-bottom: 20px;
+}
+
+.vesting-section2 .content-title {
+  color: #d2d6e4;
+  font-size: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+.vesting-section2 .content-footer {
+  color : #d2b301;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  text-align: center;
 }
