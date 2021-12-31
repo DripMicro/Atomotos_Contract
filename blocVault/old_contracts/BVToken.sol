@@ -15,12 +15,14 @@ contract BVToken is Context, IBVToken {
     string public _name;
     string public _symbol;
     uint8 public _decimals;
+    mapping(uint256 => address) privateWhitelist;
+    mapping(uint256 => address) preWhitelist;
 
     constructor() {
-        _name = "BVLT";
+        _name = "Block Volt";
         _symbol = "BV";
         _decimals = 18;
-        _totalSupply = 3 * 10**12 * 10**18; // 500m
+        _totalSupply = 1 * 10**12 * 10**18; // 500m
         _balances[msg.sender] = _totalSupply;
     }
 
@@ -38,6 +40,7 @@ contract BVToken is Context, IBVToken {
         return _symbol;
     }
 
+    
     /**
      * @dev Returns the token name.
      */

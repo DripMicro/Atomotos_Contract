@@ -1,0 +1,25 @@
+var bvToken = artifacts.require("BVToken.sol");
+var BUSDToken = artifacts.require("BUSDToken.sol");
+const PublicSale = artifacts.require("PublicSale.sol");
+const { toWei } = web3.utils;
+
+module.exports = async function (deployer, network) {
+    try {
+        let BUSDTokenAddress;
+        if (network == 'develop' || network == 'bscTestnet' || network == 'ganache_local') {
+            await deployer.deploy(BUSDToken);
+            BUSDTokenAddress = BUSDToken.address;
+        } if (network == 'mainnet')
+            BUSDTokenAddress = '0xe9e7cea3dedca5984780bafc599bd69add087d56';
+        const bvTokenInstance = await bvToken.deployed();
+        const startOfICO = Math.floor(Date.UTC(2021, 9, 17, 13, 25, 0) / 1000);
+        const endOfICO = Math.floor(Date.UTC(2021, 11, 22, 13, 40, 0) / 1000);
+        const publishDate = Math.floor(Date.UTC(2021, 11, 23, 13, 45, 0) / 1000);
+        await deployer.deploy(PublicSale, bvTokenInstance.address, BUSDTokenAddress, startOfICO, endOfICO, publishDate);
+        await bvTokenInstance.transfer(PublicSale.address, toWei('240000000000000000000', 'gwei'));
+        const currentBVBalance = await bvTokenInstance.balanceOf(PublicSale.address);
+        console.log(currentBVBalance);
+    } catch (error) {
+        console.log(error);
+    }
+};

