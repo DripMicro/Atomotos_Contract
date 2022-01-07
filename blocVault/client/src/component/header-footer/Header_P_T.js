@@ -442,11 +442,12 @@ export default function HomeNavbar() {
                     <ul>
                       <li>
                         <strong> Pre-Sale Date</strong>
-                        <span> Saturday 1st 8pm GMT </span>
+                        <span> Wednesday 5th 8pm GMT </span>
                       </li>
                       <li>
                         <strong> Pre-Sale Price</strong>
-                        <span>1BNB = 320,000,000 BVLT</span>
+                        <span>1375000000 BVLT presale per BNB</span><br/>
+                        <span>1237500000 BVLT Listing rate per BNB</span>
                       </li>
                       <li>
                         <strong> BNB - Limit Per Wallet</strong>
