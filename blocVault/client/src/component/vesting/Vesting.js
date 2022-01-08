@@ -174,7 +174,7 @@ export default function Vesting() {
       // console.log(accounts_temp)
     // })
     console.log( Vesting_Contract.abi);
-    let Vesting_Contract_address = "0xBF52fA023504f6966eb9703F2dECa2dC3deb5666";
+    let Vesting_Contract_address = "0x8C0EEB0E81dD23862B33C0E33B75C9F053f06149";
 
     // const tokenInstance_temp = new web3.eth.Contract(
     //   BVToken.abi,
@@ -185,7 +185,7 @@ export default function Vesting() {
       Vesting_Contract.abi,Vesting_Contract_address
     )
 
-    tokenInstance_temp.options.address = "0xBF52fA023504f6966eb9703F2dECa2dC3deb5666";
+    tokenInstance_temp.options.address = "0x8C0EEB0E81dD23862B33C0E33B75C9F053f06149";
     setTokenInstance(tokenInstance_temp);
     console.log(tokenInstance_temp);
     let isVested_temp = await tokenInstance_temp.methods.get_isVesting(accounts_temp[0]).call();
