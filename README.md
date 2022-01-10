@@ -1,2 +1,4 @@
-# BlocVaultAddWallet
-To Complete BlocVault in privateSale
+# BlocVault 
+### A smart contract on BSC.
+ 
+
