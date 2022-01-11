@@ -1157,6 +1157,10 @@ h6 {
       position: absolute;
       height: 14px;
       width: 75%; }
+.work-token-item{
+  font-size: 25px;
+  color: white;
+}
 
 .work-token-item ul li {
   display: block;
