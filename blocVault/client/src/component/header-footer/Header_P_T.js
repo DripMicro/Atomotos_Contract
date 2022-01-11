@@ -437,9 +437,10 @@ export default function HomeNavbar() {
                     </form>
                   </div>
                 </div>
-                <div className="col-lg-3 offset-lg-1 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2s">
+                <div className="col-lg-4 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2s">
                   <div className="work-token-item">
-                    <a href="https://pancakeswap.finance/swap">Pancakeswap</a>
+                    {/* <a href="https://pancakeswap.finance/swap">Pancakeswap</a> */}
+                    <a href="https://pancakeswap.finance/swap" target="_blank"><button className="btn btn-primary">Pancake swap</button></a>
                     {/* <ul> */}
                       {/* <li>
                         <strong> Pre-Sale Date</strong>
