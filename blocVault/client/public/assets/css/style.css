@@ -1158,7 +1158,7 @@ h6 {
       height: 14px;
       width: 75%; }
 .work-token-item{
-  font-size: 25px;
+  /* font-size: 25px; */
   color: white;
   text-align: center;
 }
