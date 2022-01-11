@@ -439,8 +439,8 @@ export default function HomeNavbar() {
                 </div>
                 <div className="col-lg-3 offset-lg-1 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2s">
                   <div className="work-token-item">
-                    <ul>
-                      <li>
+                    {/* <ul> */}
+                      {/* <li>
                         <strong> Pre-Sale Date</strong>
                         <span> Wednesday 5th 8pm GMT </span>
                       </li>
@@ -456,8 +456,8 @@ export default function HomeNavbar() {
                       <li>
                         <strong> Listing Price</strong>
                         <span>1BNB = 254,000,000</span>
-                      </li>
-                    </ul>
+                      </li> */}
+                    {/* </ul> */}
                   </div>
                 </div>
                 <div className="col-lg-4 align-self-center col-md-12 wow fadeInUp" data-wow-duration="2.5s">
