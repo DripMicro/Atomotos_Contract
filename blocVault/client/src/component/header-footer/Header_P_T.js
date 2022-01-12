@@ -78,15 +78,25 @@ export default function HomeNavbar() {
                     Features
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#how_work" className="scrolls">
                     BVLT Pre Sale
                   </a>
-                </li>
+                </li> */}
    
                 <li>
                   <a href="#whitePaper" className="scrolls">
                     White Paper
+                  </a>
+                </li>
+                <li>
+                  <a href="https://pancakeswap.finance/swap" className="" target="_blank">
+                    Pancakeswap
+                  </a>
+                </li>
+                <li>
+                  <a href="/vesting" className="">
+                    Vesting
                   </a>
                 </li>
               </ul>
