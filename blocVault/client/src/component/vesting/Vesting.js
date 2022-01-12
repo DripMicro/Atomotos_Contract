@@ -652,7 +652,7 @@ export default function Vesting() {
                       <li>- 90 Day Lock period</li>
                       <li>- 1 - BNB Minimum Vest</li>
                       <li>- 0% Fees apply</li>
-                      <li>- 10% Coin on release</li>
+                      <li>- 10% Reward on release</li>
                       <li>- Early release fee 3.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_90" value={Amount_90} onChange={InputValue_90} />
@@ -669,7 +669,7 @@ export default function Vesting() {
                       <li>- 180 Day Lock period</li>
                       <li>- 1 - BNB Minimum Vest</li>
                       <li>- 0% Fees apply</li>
-                      <li>- 15% Coin on release</li>
+                      <li>- 15% Reward on release</li>
                       <li>- Early release fee 3.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_180" value={Amount_180} onChange={InputValue_180} />
@@ -686,7 +686,7 @@ export default function Vesting() {
                       <li>- 270 Day Lock period</li>
                       <li>- 1 - BNB Minimum Vest</li>
                       <li>- 0% Fees apply</li>
-                      <li>- 20% Coin on release</li>
+                      <li>- 20% Reward on release</li>
                       <li>- Early release fee 5.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_270" value={Amount_270} onChange={InputValue_270} />
@@ -703,7 +703,7 @@ export default function Vesting() {
                       <li>- 360 Day Lock period</li>
                       <li>- 1 - BNB Minimum Vest</li>
                       <li>- 0% Fees apply</li>
-                      <li>- 25% Coin on release</li>
+                      <li>- 25% Reward on release</li>
                       <li>- Early release fee 5.5%</li>
                     </ul>
                     <input class="preSaleBtn" type="number" name="amount_360" value={Amount_360} onChange={InputValue_360} />
