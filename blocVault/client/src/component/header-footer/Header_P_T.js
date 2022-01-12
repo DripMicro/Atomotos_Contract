@@ -378,7 +378,7 @@ export default function HomeNavbar() {
         </div>
      
         <div className="how-work-and-token-area">
-          <section className="how-work-sec section-padding" id="how_work">
+          {/* <section className="how-work-sec section-padding" id="how_work">
             <div className="container">
               <div className="row">
                 <div className="col-lg-8 mx-auto">
@@ -392,7 +392,7 @@ export default function HomeNavbar() {
                 <div className="col-lg-4 col-md-6 wow fadeInUp " data-wow-duration="1.5s">
                   <div className="xs-count-down">
                     <h3 className="xs-single-title">Join our Whitelist Pre-Sale</h3>
-                    {/* <ul className="xs-counter-list">
+                    <ul className="xs-counter-list">
                       <li>
                         <strong id="">0</strong>
                         <span>Day</span>
@@ -409,7 +409,7 @@ export default function HomeNavbar() {
                         <strong id="">0</strong>
                         <span>Second</span>
                       </li>
-                    </ul> */}
+                    </ul>
                     <form onSubmit={onSubmit}>
                       <div>
                         <span className='preSaleTitle'>Telegram or Discord handle</span>
@@ -440,8 +440,8 @@ export default function HomeNavbar() {
                 <div className="col-lg-4 col-md-6 align-self-center wow fadeInUp" data-wow-duration="2s">
                   <div className="work-token-item">
                     <a href="https://pancakeswap.finance/swap" target="_blank"><button className="btn btn-primary">Pancake swap</button></a>
-                    {/* <ul> */}
-                      {/* <li>
+                    <ul>
+                      <li>
                         <strong> Pre-Sale Date</strong>
                         <span> Wednesday 5th 8pm GMT </span>
                       </li>
@@ -457,8 +457,8 @@ export default function HomeNavbar() {
                       <li>
                         <strong> Listing Price</strong>
                         <span>1BNB = 254,000,000</span>
-                      </li> */}
-                    {/* </ul> */}
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <div className="col-lg-4 align-self-center col-md-12 wow fadeInUp" data-wow-duration="2.5s">
@@ -472,7 +472,7 @@ export default function HomeNavbar() {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
           <div className="token-roadmap-area">
             <section className="token-distribution-sec section-padding" >
               <div className="container">
