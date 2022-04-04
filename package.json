@@ -7,7 +7,7 @@
     "start": "node server/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Atomots",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
